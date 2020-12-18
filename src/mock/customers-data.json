@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "customerType": "Business",
+    "email": "crumin0@cloudflare.com",
+    "buildings": 3,
+    "fiscal_address": "24 Laurel Pass"
+  },
+  {
+    "id": 2,
+    "customerType": "Particular",
+    "email": "cgaliero1@livejournal.com",
+    "buildings": 7,
+    "fiscal_address": "3 Artisan Junction"
+  },
+  {
+    "id": 3,
+    "customerType": "Business",
+    "email": "narkill2@vinaora.com",
+    "buildings": 7,
+    "fiscal_address": "7 Oak Lane"
+  },
+  {
+    "id": 4,
+    "customerType": "Particular",
+    "email": "gwoodburn3@slate.com",
+    "buildings": 3,
+    "fiscal_address": "3739 Jana Circle"
+  },
+  {
+    "id": 5,
+    "customerType": "Particular",
+    "email": "bhulmes4@spotify.com",
+    "buildings": 3,
+    "fiscal_address": "0955 Kenwood Drive"
+  }
+]
