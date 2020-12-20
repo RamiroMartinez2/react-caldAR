@@ -1,10 +1,19 @@
 import "./App.css";
+import Nav from './Layout/Nav/Nav';
+import Main from './Layout/Main/Main';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-      <h1>HOLA</h1>
-    </div>
+    <Router>
+      <div className="App">
+        <Nav/>
+        <Switch>
+          <Route path="/" exact component={Main}/>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

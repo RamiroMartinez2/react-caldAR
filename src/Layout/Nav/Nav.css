@@ -1,0 +1,46 @@
+.logo{
+    text-align: center;
+    border-top: 2px solid  rgb(239,232,216);
+    border-bottom: 2px solid  rgb(239,232,216);
+    color: rgb(239,232,216);
+     
+}
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background-color:  rgb(19,84,76);
+    color: rgb(239,232,216);
+    text-decoration: none;
+}
+a:link{
+    text-decoration: none;
+    color: rgb(239,232,216);
+}
+a:visited{
+    color: rgb(239, 216, 224);
+    text-decoration: none;
+}
+a:hover{
+    background-color: rgb(26, 43, 9);
+}
+a:active{
+    background-color: rgb(56, 8, 26);
+    text-decoration: none;
+}
+.nav-links{
+    color:rgb(239,232,216);
+    width: 85%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+}
+.selected{
+    color: white;
+    border-bottom: 3px solid white;
+}
+
+  
