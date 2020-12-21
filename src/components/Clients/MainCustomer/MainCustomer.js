@@ -1,0 +1,65 @@
+import React, { Component } from "react";
+import AddCustomer from "../AddCustomer/AddCustomer";
+import Customers from "../Customers/Customers";
+import customersBD from "../../../Mock/customers-data.json";
+import shortid from "shortid";
+
+export default class MainCustomer extends Component {
+  state = {
+    customers: customersBD,
+  };
+
+  editMode = false;
+  // Delete customer
+
+  delCustomer = (id) => {
+    this.setState({
+      customers: [
+        ...this.state.customers.filter((customer) => customer.id !== id),
+      ],
+    });
+  };
+
+  // Edit customer
+
+  updateCustomer = (customerUpdated) => {
+    this.setState({
+      customers: [
+        ...this.state.customers.map((customer) => {
+          if (customer.id === customerUpdated.id) {
+            customer = customerUpdated;
+          }
+          return customer;
+        }),
+      ],
+    });
+  };
+
+  // Add customer
+
+  AddCustomer = (id, customerType, email, buildings, fiscal_address) => {
+    const newCustomer = {
+      id: shortid.generate(),
+      customerType,
+      email,
+      buildings,
+      fiscal_address,
+    };
+    this.setState({
+      customers: [...this.state.customers, newCustomer],
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <Customers
+          customers={this.state.customers}
+          delCustomer={this.delCustomer}
+          updateCustomer={this.updateCustomer}
+        />
+        <AddCustomer AddCustomer={this.AddCustomer} />
+      </div>
+    );
+  }
+}
