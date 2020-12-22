@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './AddAppointment.css';
+import PropTypes from 'prop-types'
 
 export class AddAppointment extends Component {
     state = {
@@ -13,7 +14,7 @@ export class AddAppointment extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.addAppointment(this.state);
+        this.props.addAppoint(this.state);
         this.setState(
             {
                 id: '',
@@ -87,4 +88,7 @@ export class AddAppointment extends Component {
     }
 }
 
+AddAppointment.propTypes = {
+    addAppoint: PropTypes.array.isRequired,
+}
 export default AddAppointment
