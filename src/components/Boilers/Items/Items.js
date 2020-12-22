@@ -23,7 +23,6 @@ export class Items extends Component {
         const { id } = this.props.boil;
         if (this.state.isEditing){
             return(
-                console.log(this.state),
                 <ul className={styles.showForm}>
                 <input className={styles.inputStyleEdt}
                         type="text" 
