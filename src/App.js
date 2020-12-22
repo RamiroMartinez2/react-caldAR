@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Nav from "./Layout/Nav/Nav";
 import Main from "./Layout/Main/Main";
-import MainBoiler from './components/Boilers/MainBoiler/MainBoiler';
+import MainBoiler from "./components/Boilers/MainBoiler/MainBoiler";
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <div className="App">
         <Nav />
         <Switch>
-          <Route path="/boilers" component={MainBoiler}/>
+          <Route path="/boilers" component={MainBoiler} />
           <Route path="/" exact component={Main} />
         </Switch>
       </div>

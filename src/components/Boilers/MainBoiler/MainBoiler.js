@@ -8,7 +8,6 @@ import styles from './MainBoiler.module.css';
 class MainBoiler extends Component {
   state = {mockBoilers}
 
-  // Delete boiler
   delBoiler = (id) => {
     this.setState({ mockBoilers: [...this.state.mockBoilers.filter(boil => boil.id !== id)] });
   }
@@ -24,7 +23,6 @@ class MainBoiler extends Component {
     });
   }
 
-  //Add Boiler
   addBoiler = ({typeId, maintaince_rate, hour_maintaince_cost, hour_eventual_cost}) => {
     const newBoil = {
       id: Math.floor(Math.random() * 101),
