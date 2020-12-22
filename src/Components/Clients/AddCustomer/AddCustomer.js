@@ -85,3 +85,4 @@ AddCustomer.propTypes = {
 };
 
 export default AddCustomer;
+
