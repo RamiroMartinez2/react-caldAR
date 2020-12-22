@@ -10,7 +10,6 @@ export default class MainCustomer extends Component {
   };
 
   editMode = false;
-  // Delete customer
 
   delCustomer = (id) => {
     this.setState({
@@ -19,8 +18,6 @@ export default class MainCustomer extends Component {
       ],
     });
   };
-
-  // Edit customer
 
   updateCustomer = (customerUpdated) => {
     this.setState({
@@ -34,8 +31,6 @@ export default class MainCustomer extends Component {
       ],
     });
   };
-
-  // Add customer
 
   AddCustomer = (id, customerType, email, buildings, fiscal_address) => {
     const newCustomer = {
