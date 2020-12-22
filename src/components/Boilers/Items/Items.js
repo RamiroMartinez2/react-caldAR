@@ -23,6 +23,7 @@ export class Items extends Component {
         const { id } = this.props.boil;
         if (this.state.isEditing){
             return(
+                console.log(this.state),
                 <ul className={styles.showForm}>
                 <input className={styles.inputStyleEdt}
                         type="text" 
@@ -54,7 +55,7 @@ export class Items extends Component {
                     <input className={styles.inputStyleEdt}
                         type="number" 
                         name="hour_eventual_cost" 
-                        placeholder= {this.state.hour_eventual_cost}
+                        placeholder={this.state.hour_eventual_cost}
                         value={this.state.hour_eventual_cost.isRequired}
                         onChange={this.onChange}
                     ></input>
