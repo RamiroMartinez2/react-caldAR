@@ -14,7 +14,7 @@ export class AddBuilding extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.addBuilding(this.state);
+    this.props.addBld(this.state);
     this.setState({
       address: "",
       boilersId: "",
@@ -65,7 +65,7 @@ export class AddBuilding extends Component {
 }
 
 AddBuilding.propTypes = {
-  addBuilding: PropTypes.array.isRequired,
+  addBld: PropTypes.array.isRequired,
 };
 
 export default AddBuilding;

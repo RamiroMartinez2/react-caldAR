@@ -9,10 +9,10 @@ import "./Buildings.css";
 class Buildings extends Component {
   state = { mockBuildings };
 
-  delBld = (number) => {
+  delBld = (id) => {
     this.setState({
       mockBuildings: [
-        ...this.state.mockBuildings.filter((bld) => bld.number !== number),
+        ...this.state.mockBuildings.filter((bld) => bld.id !== id),
       ],
     });
   };
@@ -21,7 +21,7 @@ class Buildings extends Component {
     this.setState({
       mockBuildings: [
         ...this.state.mockBuildings.map((bld) => {
-          if (bld.number === bldUpdated.number) {
+          if (bld.id === bldUpdated.id) {
             bld = bldUpdated;
           }
           return bld;

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "./ListBuildings.css";
+import PropTypes from "prop-types";
 import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GoTrashcan } from "react-icons/go";
 
 export class ListBuildings extends Component {
-  state = { ...this.props.bld, isEditing: false };
+  state = { ...this.props.Bld, isEditing: false };
 
   toggleEdit = () => {
     this.setState({ isEditing: !this.state.isEditing });
@@ -22,10 +23,10 @@ export class ListBuildings extends Component {
   };
 
   render() {
-    const { id } = this.props.list;
+    const { id } = this.props.Bld;
     if (this.state.isEditing) {
       return (
-        <ul style={this.ulStyle()}>
+        <ul className="showForm">
           <input
             className="inputStyle"
             type="text"
@@ -72,12 +73,12 @@ export class ListBuildings extends Component {
 
     return (
       <div>
-        <ul style={this.ulStyle()}>
-          <li style={this.liStyle()}>{this.props.list.id}</li>
-          <li style={this.liStyle()}>{this.props.list.address}</li>
-          <li style={this.liStyle()}>{this.props.list.boilersId}</li>
-          <li style={this.liStyle()}>{this.props.list.fullName}</li>
-          <li style={this.liStyle()}>{this.props.list.phone}</li>
+        <ul className="showForm">
+          <li className="liStyle">{this.props.Bld.id}</li>
+          <li className="liStyle">{this.props.Bld.address}</li>
+          <li className="liStyle">{this.props.Bld.boilersId}</li>
+          <li className="liStyle">{this.props.Bld.fullName}</li>
+          <li className="liStyle">{this.props.Bld.phone}</li>
           <div>
             <button onClick={this.props.delBld.bind(this, id)} className="Btn">
               <GoTrashcan />
@@ -91,5 +92,11 @@ export class ListBuildings extends Component {
     );
   }
 }
+
+ListBuildings.propTypes = {
+  Bld: PropTypes.object.isRequired,
+  delBld: PropTypes.array.isRequired,
+  updateBuilding: PropTypes.array.isRequired,
+};
 
 export default ListBuildings;
