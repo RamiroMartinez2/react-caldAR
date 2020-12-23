@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ListBoilerType from "../ListBoilerType/ListBoilerType";
 
-
 class BoilerType extends Component {
   render() {
     return this.props.BoilersList.map((list) => (

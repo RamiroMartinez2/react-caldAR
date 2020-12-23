@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import './AddBoilerType.css';
-import PropTypes from 'prop-types';
+import "./AddBoilerType.css";
+import PropTypes from "prop-types";
 export class AddBoilerType extends Component {
   state = {
     skillsId: "",
@@ -23,8 +23,8 @@ export class AddBoilerType extends Component {
   render() {
     return (
       <form className="addForm" onSubmit={this.onSubmit}>
-        <input 
-          className="inputStyle"          
+        <input
+          className="inputStyle"
           type="text"
           name="skillsId"
           placeholder="Skills ID"
@@ -32,7 +32,7 @@ export class AddBoilerType extends Component {
           onChange={this.onChange}
           required
         ></input>
-        <input 
+        <input
           className="inputStyle"
           type="text"
           name="description"
@@ -41,8 +41,8 @@ export class AddBoilerType extends Component {
           onChange={this.onChange}
           required
         ></input>
-        <input 
-          className="inputStyle"          
+        <input
+          className="inputStyle"
           type="text"
           name="stock"
           placeholder="Stock"
@@ -50,10 +50,10 @@ export class AddBoilerType extends Component {
           onChange={this.onChange}
           required
         ></input>
-        <input 
+        <input
           className="btnSubmit"
           type="submit"
-          value="Add new Boiler Type"          
+          value="Add new Boiler Type"
         ></input>
       </form>
     );
@@ -62,5 +62,5 @@ export class AddBoilerType extends Component {
 
 AddBoilerType.propTypes = {
   addBoilerType: PropTypes.array.isRequired,
-}
+};
 export default AddBoilerType;
