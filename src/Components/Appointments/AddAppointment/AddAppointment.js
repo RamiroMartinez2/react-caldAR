@@ -1,37 +1,39 @@
-import React, { Component } from 'react'
-import './AddAppointment.css';
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import "./AddAppointment.css";
+import PropTypes from "prop-types";
 
 export class AddAppointment extends Component {
   state = {
-    id: '',
-    buildingId: '',
-    boilerId: '',
-    date: '',
-    estimatedTime: '',
-    maintenanceType: ''
-  }
+    id: "",
+    buildingId: "",
+    boilerId: "",
+    date: "",
+    estimatedTime: "",
+    maintenanceType: "",
+  };
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.addAppoint(this.state);
-    this.setState(
-      {
-        id: '',
-        buildingId: '',
-        boilerId: '',
-        date: '',
-        estimatedTime: '',
-        maintenanceType: ''
-      });
-  }
+    this.props.addAppointment(this.state);
+    this.setState({
+      id: "",
+      buildingId: "",
+      boilerId: "",
+      date: "",
+      estimatedTime: "",
+      maintenanceType: "",
+    });
+  };
 
-  onChange = (e) => { this.setState({ [e.target.name]: e.target.value }) }
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-        <input className="inputStyle"
+        <input
+          className="inputStyle"
           type="number"
           name="id"
           placeholder="Id"
@@ -39,7 +41,8 @@ export class AddAppointment extends Component {
           onChange={this.onChange}
           required
         ></input>
-        <input className="inputStyle"
+        <input
+          className="inputStyle"
           type="number"
           name="buildingId"
           placeholder="Building Id"
@@ -47,7 +50,8 @@ export class AddAppointment extends Component {
           onChange={this.onChange}
           required
         ></input>
-        <input className="inputStyle"
+        <input
+          className="inputStyle"
           type="number"
           name="boilerId"
           placeholder="Boiler Id"
@@ -55,7 +59,8 @@ export class AddAppointment extends Component {
           onChange={this.onChange}
           required
         ></input>
-        <input className="dateStyle"
+        <input
+          className="dateStyle"
           type="date"
           name="date"
           placeholder="Date"
@@ -63,7 +68,8 @@ export class AddAppointment extends Component {
           onChange={this.onChange}
           required
         ></input>
-        <input className="inputStyle"
+        <input
+          className="inputStyle"
           type="number"
           name="estimatedTime"
           placeholder="Estimated Time"
@@ -71,7 +77,8 @@ export class AddAppointment extends Component {
           onChange={this.onChange}
           required
         ></input>
-        <input className="inputStyle"
+        <input
+          className="inputStyle"
           type="text"
           name="maintenanceType"
           placeholder="Maintenance Type"
@@ -79,16 +86,17 @@ export class AddAppointment extends Component {
           onChange={this.onChange}
           required
         ></input>
-        <input className="btnSubmit"
+        <input
+          className="btnSubmit"
           type="submit"
           value="Add Appointment"
         ></input>
       </form>
-    )
+    );
   }
 }
 
 AddAppointment.propTypes = {
-  addAppoint: PropTypes.array.isRequired,
-}
-export default AddAppointment
+  addAppointment: PropTypes.array.isRequired,
+};
+export default AddAppointment;

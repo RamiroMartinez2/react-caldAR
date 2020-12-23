@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { MdDelete } from 'react-icons/md'
-import { AiFillEdit } from 'react-icons/ai'
-import { FcCancel } from 'react-icons/fc';
-import { AiOutlineCheckCircle } from 'react-icons/ai';
-import './ListAppointment.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { MdDelete } from "react-icons/md";
+import { AiFillEdit } from "react-icons/ai";
+import { FcCancel } from "react-icons/fc";
+import { AiOutlineCheckCircle } from "react-icons/ai";
+import "./ListAppointment.css";
 
-export class ListAppointment extends Component {
+class ListAppointment extends Component {
   state = { ...this.props.appointments, isEditing: false };
-
   toggleEditing = () => {
     this.setState({ isEditing: !this.state.isEditing });
-  }
+  };
 
   onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   saveChanges = () => {
     this.toggleEditing();
     this.props.updateAppointment(this.state);
-  }
+  };
 
   render() {
     const { id } = this.props.appointments;
     if (this.state.isEditing) {
       return (
         <ul onSubmit={this.onSubmit}>
-          <input className="inputStyle"
+          <input
+            className="inputStyle"
             type="number"
             name="id"
             placeholder="Id"
@@ -35,7 +35,8 @@ export class ListAppointment extends Component {
             onChange={this.onChange}
             required
           ></input>
-          <input className="inputStyle"
+          <input
+            className="inputStyle"
             type="number"
             name="buildingId"
             placeholder="Building Id"
@@ -43,7 +44,8 @@ export class ListAppointment extends Component {
             onChange={this.onChange}
             required
           ></input>
-          <input className="inputStyle"
+          <input
+            className="inputStyle"
             type="number"
             name="boilerId"
             placeholder="Boiler Id"
@@ -51,7 +53,8 @@ export class ListAppointment extends Component {
             onChange={this.onChange}
             required
           ></input>
-          <input className="inputStyle"
+          <input
+            className="inputStyle"
             type="date"
             name="date"
             placeholder="Date"
@@ -59,7 +62,8 @@ export class ListAppointment extends Component {
             onChange={this.onChange}
             required
           ></input>
-          <input className="inputStyle"
+          <input
+            className="inputStyle"
             type="number"
             name="estimatedTime"
             placeholder="Estimated Time"
@@ -67,7 +71,8 @@ export class ListAppointment extends Component {
             onChange={this.onChange}
             required
           ></input>
-          <input className="inputStyle"
+          <input
+            className="inputStyle"
             type="text"
             name="maintenanceType"
             placeholder="Maintenance Type"
@@ -76,11 +81,15 @@ export class ListAppointment extends Component {
             required
           ></input>
           <div>
-            <button onClick={this.toggleEditing} className="Btn"><FcCancel /></button>
-            <button onClick={this.saveChanges} className="Btn"><AiOutlineCheckCircle /></button>
+            <button onClick={this.toggleEditing} className="Btn">
+              <FcCancel />
+            </button>
+            <button onClick={this.saveChanges} className="Btn">
+              <AiOutlineCheckCircle />
+            </button>
           </div>
         </ul>
-      )
+      );
     }
 
     return (
@@ -93,19 +102,26 @@ export class ListAppointment extends Component {
           <li className="liStyle">{this.props.appointments.estimatedTime}</li>
           <li className="liStyle">{this.props.appointments.maintenanceType}</li>
           <div>
-            <button onClick={this.props.delAppointment.bind(this, id)} className="Btn"><MdDelete /></button>
-            <button onClick={this.toggleEditing} className="Btn"><AiFillEdit /></button>
+            <button
+              onClick={this.props.delAppointment.bind(this, id)}
+              className="Btn"
+            >
+              <MdDelete />
+            </button>
+            <button onClick={this.toggleEditing} className="Btn">
+              <AiFillEdit />
+            </button>
           </div>
         </ul>
       </div>
-    )
+    );
   }
 }
 
 ListAppointment.propTypes = {
   appointments: PropTypes.object.isRequired,
   delAppointment: PropTypes.array.isRequired,
-  updateAppointment: PropTypes.array.isRequired
-}
+  updateAppointment: PropTypes.array.isRequired,
+};
 
-export default ListAppointment
+export default ListAppointment;

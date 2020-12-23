@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
 import Nav from "./components/Layout/Nav/Nav"
 import Main from "./components/Layout/Main/Main";
-import "./App.css";
 import MainAppointment from "./components/Appointments/MainAppointment/MainAppointment"
 import MainBoiler from "./components/Boilers/MainBoiler/MainBoiler";
 import MainTechnician from "./components/Technicians/MainTechnician/MainTechnician";
