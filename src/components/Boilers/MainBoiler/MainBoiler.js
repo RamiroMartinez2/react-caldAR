@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../HeaderBoiler/Header';
 import Boilers from '../Boilers/Boilers';
 import AddBoilers from '../AddBoiler/AddBoiler';
-import mockBoilers from '../../../Mock/mockBoilers.json';
+import mockBoilers from '../../../mock/mockBoilers.json';
 import styles from './MainBoiler.module.css';
 
 class MainBoiler extends Component {
