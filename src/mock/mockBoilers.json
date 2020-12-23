@@ -1,0 +1,37 @@
+[
+    {
+      "id":1,
+      "typeId":"A",
+      "maintaince_rate":"yearly",
+      "hour_maintaince_cost":"30.22",
+      "hour_eventual_cost":"48.73"
+    },
+    {
+      "id":2,
+      "typeId":"B",
+      "maintaince_rate":"quarterly",
+      "hour_maintaince_cost":"7.91",
+      "hour_eventual_cost":"16.05"
+    },
+    {
+      "id":3,
+      "typeId":"C",
+      "maintaince_rate":"monthly",
+      "hour_maintaince_cost":"30.13",
+      "hour_eventual_cost":"4.73"
+    },
+    {
+      "id":4,
+      "typeId":"D",
+      "maintaince_rate":"monthly",
+      "hour_maintaince_cost":"22.84",
+      "hour_eventual_cost":"45.96"
+    },
+    {
+      "id":5,
+      "typeId":"A",
+      "maintaince_rate":"yearly",
+      "hour_maintaince_cost":"5.42",
+      "hour_eventual_cost":"48.22"
+    }
+]
