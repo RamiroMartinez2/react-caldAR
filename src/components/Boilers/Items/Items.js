@@ -106,4 +106,4 @@ Items.propTypes = {
   updateBoiler: PropTypes.array.isRequired,
 };
 
-export default Items;
+export default Items

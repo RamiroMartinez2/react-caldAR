@@ -32,4 +32,4 @@ Boilers.propTypes = {
     delBoiler: PropTypes.array.isRequired,
     updateBoiler: PropTypes.array.isRequired,
   }
-  export default Boilers;
+  export default Boilers

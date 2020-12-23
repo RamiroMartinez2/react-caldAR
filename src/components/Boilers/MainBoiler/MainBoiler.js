@@ -50,4 +50,4 @@ class MainBoiler extends Component {
   }
 }
 
-export default MainBoiler;
+export default MainBoiler
