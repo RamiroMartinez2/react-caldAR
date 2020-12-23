@@ -1,0 +1,53 @@
+[
+
+    {
+      "number": 1,
+      "fullName": "Theodosia Mews",
+      "email": "tmews0@instagram.com",
+      "phone": 4683244,
+      "statusActive": "Active",
+      "trained": "Type A-B",
+      "assignedClients": 6,
+      "spareHoursAvailable": 6
+    }, 
+    {
+      "number": 2,
+      "fullName": "Leonel Messi",
+      "email": "messi19@caldar.com",
+      "phone": 4656244,
+      "statusActive": "Inactive",
+      "trained": "Type A-B",
+      "assignedClients": 5,
+      "spareHoursAvailable": 1
+    }, 
+    {
+      "number": 3,
+      "fullName": "Jose Gomez",
+      "email": "gomez0@caldar.com",
+      "phone": 4685894,
+      "statusActive": "Active",
+      "trained": "Type B",
+      "assignedClients": 1,
+      "spareHoursAvailable": 6
+    }, 
+    {
+      "number": 4,
+      "fullName": "Juan Porcel",
+      "email": "porcelj@instagram.com",
+      "phone": 4614759,
+      "statusActive": "Active",
+      "trained": "Type A-B",
+      "assignedClients": 6,
+      "spareHoursAvailable": 3
+    }, 
+    {
+      "number": 5,
+      "fullName": "Marcelo Tinelli",
+      "email": "cuervoti@caldar.com",
+      "phone": 4612344,
+      "statusActive": "Inactive",
+      "trained": "Type A-D",
+      "assignedClients": 4,
+      "spareHoursAvailable": 8
+    }
+  ]
