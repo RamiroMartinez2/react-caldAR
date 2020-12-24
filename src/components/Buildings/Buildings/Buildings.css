@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  background: rgb(239, 232, 216);
+}
+
+.container {
+  padding: 0 1rem;
+}
+
+.btn:hover {
+  background: #666;
+}
