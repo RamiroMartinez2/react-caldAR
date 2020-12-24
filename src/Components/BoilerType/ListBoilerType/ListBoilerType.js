@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { MdDelete } from "react-icons/md";
-import { AiFillEdit } from "react-icons/ai";
+import { AiOutlineCheckCircle, AiFillEdit } from "react-icons/ai";
 import { FcCancel } from "react-icons/fc";
-import { AiOutlineCheckCircle } from "react-icons/ai";
 import "./ListBoilerType.css";
 
 export class ListBoilerType extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import BoilerType from "../BoilerType/BoilerType";
-import mockBoilerType from "../../../Mock/mocksBoilerType.json";
+import mockBoilerType from "../../../mocks/mocksBoilerType.json";
 import AddBoilerType from "../AddBoilerType/AddBoilerType";
 
 class MainBoilerType extends Component {
