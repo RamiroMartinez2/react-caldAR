@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { MdDelete } from "react-icons/md";
-import { AiFillEdit } from "react-icons/ai";
 import { FcCancel } from "react-icons/fc";
-import { AiOutlineCheckCircle } from "react-icons/ai";
+import { AiOutlineCheckCircle, AiFillEdit } from "react-icons/ai";
 import "./ListAppointment.css";
 
 class ListAppointment extends Component {
   state = { ...this.props.appointments, isEditing: false };
+
   toggleEditing = () => {
     this.setState({ isEditing: !this.state.isEditing });
   };
