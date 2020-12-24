@@ -45,7 +45,7 @@ class MainBoilerType extends Component {
     return (
       <div>
         <BoilerType
-          BoilerType={this.state.mockBoilerType}
+          boilerList={this.state.mockBoilerType}
           delBoilerType={this.delBoilerType}
           updateBoilerType={this.updateBoilerType}
         />

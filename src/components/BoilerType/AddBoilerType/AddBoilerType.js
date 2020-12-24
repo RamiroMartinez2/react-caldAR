@@ -12,7 +12,7 @@ export class AddBoilerType extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.addBoiler(this.state);
+    this.props.addBoilerType(this.state);
     this.setState({
       skillsId: "",
       description: "",

@@ -18,7 +18,7 @@ export class ListBoilerType extends Component {
 
   saveChanges = () => {
     this.toggleEdit();
-    this.props.updateBoiler(this.state);
+    this.props.updateBoilerType(this.state);
   };
 
   render() {
@@ -26,6 +26,15 @@ export class ListBoilerType extends Component {
     if (this.state.isEditing) {
       return (
         <ul className="showForm">
+          <input
+            className="inputStyle"
+            type="number"
+            name="id"
+            placeholder="Id"
+            value={this.state.id}
+            onChange={this.onChange}
+            required
+          ></input>
           <input
             className="inputStyle"
             type="text"
@@ -69,7 +78,7 @@ export class ListBoilerType extends Component {
           <li className="liStyle">{this.props.list.skillsId}</li>
           <li className="liStyle">{this.props.list.description}</li>
           <li className="liStyle">{this.props.list.stock}</li>
-          <button onClick={this.props.delBoild.bind(this, id)} className="Btn">
+          <button onClick={this.props.delBoilerType.bind(this, id)} className="Btn">
             <MdDelete />
           </button>
           <button onClick={this.toggleEdit} className="Btn">
@@ -83,7 +92,7 @@ export class ListBoilerType extends Component {
 
 ListBoilerType.propTypes = {
   list: PropTypes.object.isRequired,
-  delBoild: PropTypes.array.isRequired,
-  updateBoiler: PropTypes.array.isRequired,
+  delBoilerType: PropTypes.array.isRequired,
+  updateBoilerType: PropTypes.array.isRequired,
 };
 export default ListBoilerType;
