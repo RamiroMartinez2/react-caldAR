@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Bld from "../Bld/Bld";
 import AddBuildings from "../AddBuildings/AddBuildings";
 import HeaderBuilding from "../HeaderBuildings/HeaderBuildings";
-import mockBuildings from "../../../Mocks/buildings.json";
+import mockBuildings from "../../../mocks/buildings.json";
 import { v4 as uuidv4 } from "uuid";
 import "./Buildings.css";
 
