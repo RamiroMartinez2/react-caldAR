@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Tech from '../Tech/Tech';
 import AddTechnician from '../AddTechnician/AddTechnician';
 import HeaderTechnician from '../HeaderTechnician/HeaderTechnician';
-import mockTechnicians from '../../../Mock/mocksTechnician.json';
+import mockTechnicians from '../../../mocks/mocksTechnician.json';
 import nextId from 'react-id-generator';
 import './MainTechnician.css';
 

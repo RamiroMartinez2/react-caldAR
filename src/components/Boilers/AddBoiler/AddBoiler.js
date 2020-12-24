@@ -72,4 +72,4 @@ export class AddBoiler extends Component {
 AddBoiler.propTypes = {
   addBoiler: PropTypes.array.isRequired,
 };
-export default AddBoiler;
+export default AddBoiler
