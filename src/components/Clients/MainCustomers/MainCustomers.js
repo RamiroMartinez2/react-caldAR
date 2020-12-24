@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AddCustomer from "../AddCustomer/AddCustomer";
 import Customers from "../Customers/Customers";
-import customersBD from "../../../mock/customers-data.json";
+import customersBD from "../../../mocks/customers-data.json";
 import shortid from "shortid";
 import HeaderCustomer from "../HeaderCustomer/HeaderCustomer";
 
