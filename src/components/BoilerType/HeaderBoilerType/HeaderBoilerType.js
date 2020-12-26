@@ -1,9 +1,9 @@
 import React from "react";
-import "./HeaderBoilerType.css";
+import style from"./HeaderBoilerType.module.css";
 
 function Header() {
   return (
-    <header className="headerStyle">
+    <header className={style.headerStyle}>
       <h1>Boiler Type</h1>
     </header>
   );
