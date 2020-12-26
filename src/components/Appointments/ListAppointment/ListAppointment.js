@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { MdDelete } from "react-icons/md";
+import { GoTrashcan } from "react-icons/go";
 import { FcCancel } from "react-icons/fc";
-import { AiOutlineCheckCircle, AiFillEdit } from "react-icons/ai";
+import { AiOutlineCheckCircle } from "react-icons/ai";
+import { BiPencil } from "react-icons/bi";
 import style from "./ListAppointment.module.css";
 
 class ListAppointment extends Component {
@@ -106,10 +107,10 @@ class ListAppointment extends Component {
               onClick={this.props.delAppointment.bind(this, id)}
               className={style.Btn}
             >
-              <MdDelete />
+              <GoTrashcan />
             </button>
             <button onClick={this.toggleEditing} className={style.Btn}>
-              <AiFillEdit />
+              <BiPencil />
             </button>
           </div>
         </ul>
