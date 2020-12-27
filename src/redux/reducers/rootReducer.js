@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
   buildings: buildingReducer,
   boilerTypes: boilerTypesReducer,
   appointments: appointmentReducer,
+
 });
 
 export default rootReducer;

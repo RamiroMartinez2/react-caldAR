@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./Item.module.css";
-<<<<<<< HEAD
 import { connect } from "react-redux";
-=======
->>>>>>> c9ab34d (Add css module)
 import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
@@ -14,34 +11,30 @@ import {
   updateCustomer as updateCustomerAction,
 } from "../../../redux/actions/customerAction";
 
-const Item = (props) => {
+
+const Item =(props)=> {
+  
   const [isEditing, toggleEditing] = useState(false);
-  const [customer, setCustomer] = useState({ ...props.customer });
+  const [customer, setCustomer] = useState({...props.customer});
 
   const toggleEdit = () => {
     setCustomer(props.customer);
     toggleEditing(!isEditing);
   };
 
-  const onChange = (e) => {
-    setCustomer({ ...customer, [e.target.name]: e.target.value });
-  };
 
-<<<<<<< HEAD
   const saveChanges = () => {
     toggleEdit();
     props.updateCustomer(customer);
   };
-=======
-  onChangeCustomer = (e) =>
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+  
 
-  render() {
-    const { id } = this.props.customer;
+  const onChange = (e) => {
+    setCustomer({...customer, [e.target.name]: e.target.value});
+  }
+  
 
-    if (this.state.isEditing) {
+    if (isEditing) {
       return (
         <ul className={styles.showForm}>
           <input
@@ -49,8 +42,8 @@ const Item = (props) => {
             type="text"
             name="id"
             placeholder="Add a valid ID"
-            defaultValue={this.state.id}
-            onChange={this.onChangeCustomer}
+            defaultValue={customer.id}
+            onChange={onChange}
             required
             readOnly
           />
@@ -59,8 +52,8 @@ const Item = (props) => {
             type="text"
             name="customerType"
             placeholder="Particular or Business"
-            defaultValue={this.state.customerType}
-            onChange={this.onChangeCustomer}
+            defaultValue={customer.customerType}
+            onChange={onChange}
             required
           />
           <input
@@ -68,8 +61,8 @@ const Item = (props) => {
             type="email"
             name="email"
             placeholder="ramiro@hotmail.com"
-            defaultValue={this.state.email}
-            onChange={this.onChangeCustomer}
+            defaultValue={customer.email}
+            onChange={onChange}
             required
           />
           <input
@@ -77,8 +70,8 @@ const Item = (props) => {
             type="text"
             name="buildings"
             placeholder="Add how many buildings you have"
-            defaultValue={this.state.buildings}
-            onChange={this.onChangeCustomer}
+            defaultValue={customer.buildings}
+            onChange={onChange}
             required
           />
           <input
@@ -86,106 +79,17 @@ const Item = (props) => {
             type="text"
             name="fiscal_address"
             placeholder="Cordoba 2020"
-            defaultValue={this.state.fiscal_address}
-            onChange={this.onChangeCustomer}
+            defaultValue={customer.fiscal_address}
+            onChange={onChange}
             required
           />
           <div>
-            <button onClick={this.toggleEditing} className={styles.Btn}>
-              <FcCancel />
-            </button>
-            <button onClick={this.saveChanges} className={styles.Btn}>
-              <AiOutlineCheckCircle />
-            </button>
-          </div>
+          <button onClick={toggleEdit} className={styles.Btn}><FcCancel /></button>
+          <button onClick={saveChanges} className={styles.Btn}><AiOutlineCheckCircle/></button>
+        </div>
         </ul>
       );
     }
->>>>>>> c9ab34d (Add css module)
-
-  if (isEditing) {
-    return (
-<<<<<<< HEAD
-      <ul className={styles.showForm}>
-        <input
-          className={styles.inputStyleEdt}
-          type="text"
-          name="id"
-          placeholder="Add a valid ID"
-          defaultValue={customer.id}
-          onChange={onChange}
-          required
-          readOnly
-        />
-        <input
-          className={styles.inputStyleEdt}
-          type="text"
-          name="customerType"
-          placeholder="Particular or Business"
-          defaultValue={customer.customerType}
-          onChange={onChange}
-          required
-        />
-        <input
-          className={styles.inputStyleEdt}
-          type="email"
-          name="email"
-          placeholder="ramiro@hotmail.com"
-          defaultValue={customer.email}
-          onChange={onChange}
-          required
-        />
-        <input
-          className={styles.inputStyleEdt}
-          type="text"
-          name="buildings"
-          placeholder="Add how many buildings you have"
-          defaultValue={customer.buildings}
-          onChange={onChange}
-          required
-        />
-        <input
-          className={styles.inputStyleEdt}
-          type="text"
-          name="fiscal_address"
-          placeholder="Cordoba 2020"
-          defaultValue={customer.fiscal_address}
-          onChange={onChange}
-          required
-        />
-        <div>
-          <button onClick={toggleEdit} className={styles.Btn}>
-            <FcCancel />
-          </button>
-          <button onClick={saveChanges} className={styles.Btn}>
-            <AiOutlineCheckCircle />
-          </button>
-        </div>
-      </ul>
-=======
-      <>
-        <ul  className={styles.showForm}>
-          <li className={styles.liStyle}>{this.props.customer.id}</li>
-          <li className={styles.liStyle}>{this.props.customer.customerType}</li>
-          <li className={styles.liStyle}>{this.props.customer.email}</li>
-          <li className={styles.liStyle}>{this.props.customer.buildings}</li>
-          <li className={styles.liStyle}>{this.props.customer.fiscal_address}</li>
-          <div>
-            <button  className={styles.Btn} onClick={this.toggleEditing.bind(this, id)}>
-              <BiPencil />
-            </button>
-            <button
-               className={styles.Btn}
-              onClick={this.props.delCustomer.bind(this, id)}
-            >
-              <GoTrashcan />
-            </button>
-          </div>
-        </ul>
-      </>
->>>>>>> c9ab34d (Add css module)
-    );
-  }
 
   return (
     <>
@@ -209,7 +113,8 @@ const Item = (props) => {
       </ul>
     </>
   );
-};
+}
+
 
 Item.propTypes = {
   customer: PropTypes.object.isRequired,
@@ -217,7 +122,6 @@ Item.propTypes = {
   updateCustomer: PropTypes.array.isRequired,
 };
 
-<<<<<<< HEAD
 const mapDispatchToProps = (dispatch) => {
   return {
     delCustomer: (number) => dispatch(delCustomerAction(number)),
@@ -232,6 +136,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);
-=======
-export default Item;
->>>>>>> c9ab34d (Add css module)
