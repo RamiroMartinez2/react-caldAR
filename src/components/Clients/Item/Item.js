@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./Item.module.css";
+<<<<<<< HEAD
 import { connect } from "react-redux";
+=======
+>>>>>>> c9ab34d (Add css module)
 import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
@@ -24,13 +27,85 @@ const Item = (props) => {
     setCustomer({ ...customer, [e.target.name]: e.target.value });
   };
 
+<<<<<<< HEAD
   const saveChanges = () => {
     toggleEdit();
     props.updateCustomer(customer);
   };
+=======
+  onChangeCustomer = (e) =>
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+
+  render() {
+    const { id } = this.props.customer;
+
+    if (this.state.isEditing) {
+      return (
+        <ul className={styles.showForm}>
+          <input
+            className={styles.inputStyleEdt}
+            type="text"
+            name="id"
+            placeholder="Add a valid ID"
+            defaultValue={this.state.id}
+            onChange={this.onChangeCustomer}
+            required
+            readOnly
+          />
+          <input
+            className={styles.inputStyleEdt}
+            type="text"
+            name="customerType"
+            placeholder="Particular or Business"
+            defaultValue={this.state.customerType}
+            onChange={this.onChangeCustomer}
+            required
+          />
+          <input
+            className={styles.inputStyleEdt}
+            type="email"
+            name="email"
+            placeholder="ramiro@hotmail.com"
+            defaultValue={this.state.email}
+            onChange={this.onChangeCustomer}
+            required
+          />
+          <input
+            className={styles.inputStyleEdt}
+            type="text"
+            name="buildings"
+            placeholder="Add how many buildings you have"
+            defaultValue={this.state.buildings}
+            onChange={this.onChangeCustomer}
+            required
+          />
+          <input
+            className={styles.inputStyleEdt}
+            type="text"
+            name="fiscal_address"
+            placeholder="Cordoba 2020"
+            defaultValue={this.state.fiscal_address}
+            onChange={this.onChangeCustomer}
+            required
+          />
+          <div>
+            <button onClick={this.toggleEditing} className={styles.Btn}>
+              <FcCancel />
+            </button>
+            <button onClick={this.saveChanges} className={styles.Btn}>
+              <AiOutlineCheckCircle />
+            </button>
+          </div>
+        </ul>
+      );
+    }
+>>>>>>> c9ab34d (Add css module)
 
   if (isEditing) {
     return (
+<<<<<<< HEAD
       <ul className={styles.showForm}>
         <input
           className={styles.inputStyleEdt}
@@ -87,6 +162,28 @@ const Item = (props) => {
           </button>
         </div>
       </ul>
+=======
+      <>
+        <ul  className={styles.showForm}>
+          <li className={styles.liStyle}>{this.props.customer.id}</li>
+          <li className={styles.liStyle}>{this.props.customer.customerType}</li>
+          <li className={styles.liStyle}>{this.props.customer.email}</li>
+          <li className={styles.liStyle}>{this.props.customer.buildings}</li>
+          <li className={styles.liStyle}>{this.props.customer.fiscal_address}</li>
+          <div>
+            <button  className={styles.Btn} onClick={this.toggleEditing.bind(this, id)}>
+              <BiPencil />
+            </button>
+            <button
+               className={styles.Btn}
+              onClick={this.props.delCustomer.bind(this, id)}
+            >
+              <GoTrashcan />
+            </button>
+          </div>
+        </ul>
+      </>
+>>>>>>> c9ab34d (Add css module)
     );
   }
 
@@ -120,6 +217,7 @@ Item.propTypes = {
   updateCustomer: PropTypes.array.isRequired,
 };
 
+<<<<<<< HEAD
 const mapDispatchToProps = (dispatch) => {
   return {
     delCustomer: (number) => dispatch(delCustomerAction(number)),
@@ -134,3 +232,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);
+=======
+export default Item;
+>>>>>>> c9ab34d (Add css module)

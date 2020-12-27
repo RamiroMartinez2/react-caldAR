@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import React, { Component } from "react";
+>>>>>>> c9ab34d (Add css module)
 import styles from "./AddCustomer.module.css";
 import PropTypes from "prop-types";
 import { addCustomer as addCustomerAction } from "../../../redux/actions/customerAction";
@@ -27,11 +31,20 @@ const AddCustomer = (props) => {
     });
   };
 
+<<<<<<< HEAD
   return (
     <>
       <form className={styles.addForm} onSubmit={onSubmit}>
         <input
           className={styles.inputStyle}
+=======
+  render() {
+    return (
+      <>
+
+      <form className={styles.addForm} onSubmit={this.onSubmitCustomer}>
+        <input className={styles.inputStyle}
+>>>>>>> c9ab34d (Add css module)
           type="text"
           name="customerType"
           placeholder="Particular or Business"
@@ -39,8 +52,12 @@ const AddCustomer = (props) => {
           onChange={onChange}
           required
         />
+<<<<<<< HEAD
         <input
           className={styles.inputStyle}
+=======
+        <input className={styles.inputStyle}
+>>>>>>> c9ab34d (Add css module)
           type="email"
           name="email"
           placeholder="ramiro@hotmail.com"
@@ -48,8 +65,12 @@ const AddCustomer = (props) => {
           onChange={onChange}
           required
         />
+<<<<<<< HEAD
         <input
           className={styles.inputStyle}
+=======
+        <input  className={styles.inputStyle}
+>>>>>>> c9ab34d (Add css module)
           type="text"
           name="buildings"
           placeholder="Add how many buildings you have"
@@ -57,8 +78,12 @@ const AddCustomer = (props) => {
           onChange={onChange}
           required
         />
+<<<<<<< HEAD
         <input
           className={styles.inputStyle}
+=======
+        <input className={styles.inputStyle}
+>>>>>>> c9ab34d (Add css module)
           type="text"
           name="fiscal_address"
           placeholder="Cordoba 2020"
@@ -66,11 +91,15 @@ const AddCustomer = (props) => {
           onChange={onChange}
           required
         />
+<<<<<<< HEAD
         <input
           className={styles.btnSubmit}
           type="submit"
           value="Add new customer"
         />
+=======
+        <input className={styles.btnSubmit} type="submit" value="Add new customer" />
+>>>>>>> c9ab34d (Add css module)
       </form>
     </>
   );

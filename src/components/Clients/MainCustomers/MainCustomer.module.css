@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .Main {
   box-sizing: border-box;
   margin: 0;
@@ -13,3 +14,20 @@
 .btn:hover {
   background: #666;
 }
+=======
+.Main{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.4;
+    background: rgb(212, 212, 212);
+}
+.container {
+    padding: 0 1rem;
+}
+  
+.btn:hover{
+    background: #666;
+}
+>>>>>>> c9ab34d (Add css module)

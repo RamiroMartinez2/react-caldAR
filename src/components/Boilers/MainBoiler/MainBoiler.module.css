@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .Main {
   box-sizing: border-box;
   margin: 0;
@@ -5,6 +6,15 @@
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
   background:  rgb(239, 232, 216);
+=======
+.Main{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.4;
+    background: rgb(212, 212, 212);
+>>>>>>> c9ab34d (Add css module)
 }
 .container {
   padding: 0 1rem;
