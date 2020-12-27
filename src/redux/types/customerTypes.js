@@ -1,0 +1,3 @@
+export const ADD_CUSTOMER = "ADD_CUSTOMER";
+export const DEL_CUSTOMER = "DEL_CUSTOMER";
+export const UPD_CUSTOMER = "UPD_CUSTOMER";
