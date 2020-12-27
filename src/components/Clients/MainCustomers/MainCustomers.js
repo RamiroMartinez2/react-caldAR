@@ -4,6 +4,7 @@ import Customers from "../Customers/Customers";
 import customersBD from "../../../mocks/customers-data.json";
 import shortid from "shortid";
 import HeaderCustomer from "../HeaderCustomer/HeaderCustomer";
+import styles from "./MainCustomer.module.css";
 
 export default class MainCustomer extends Component {
   state = {
@@ -48,14 +49,17 @@ export default class MainCustomer extends Component {
 
   render() {
     return (
-      <div>
-        <HeaderCustomer/>
-        <Customers
-          customers={this.state.customers}
-          delCustomer={this.delCustomer}
-          updateCustomer={this.updateCustomer}
-        />
-        <AddCustomer AddCustomer={this.AddCustomer} />
+      <div className={styles.Main} >
+        <div  className={styles.Container}>
+          {" "}
+          <HeaderCustomer />
+          <Customers
+            customers={this.state.customers}
+            delCustomer={this.delCustomer}
+            updateCustomer={this.updateCustomer}
+          />
+          <AddCustomer AddCustomer={this.AddCustomer} />
+        </div>
       </div>
     );
   }

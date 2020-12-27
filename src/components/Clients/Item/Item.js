@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "./Item.css";
+import styles from "./Item.module.css";
 import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
@@ -33,9 +33,9 @@ export class Item extends Component {
 
     if (this.state.isEditing) {
       return (
-        <ul className="u-list">
+        <ul className={styles.showForm}>
           <input
-            className="inputStyleEdt"
+            className={styles.inputStyleEdt}
             type="text"
             name="id"
             placeholder="Add a valid ID"
@@ -45,7 +45,7 @@ export class Item extends Component {
             readOnly
           />
           <input
-            className="inputStyleEdt"
+            className={styles.inputStyleEdt}
             type="text"
             name="customerType"
             placeholder="Particular or Business"
@@ -54,7 +54,7 @@ export class Item extends Component {
             required
           />
           <input
-            className="inputStyleEdt"
+            className={styles.inputStyleEdt}
             type="email"
             name="email"
             placeholder="ramiro@hotmail.com"
@@ -63,7 +63,7 @@ export class Item extends Component {
             required
           />
           <input
-            className="inputStyleEdt"
+            className={styles.inputStyleEdt}
             type="text"
             name="buildings"
             placeholder="Add how many buildings you have"
@@ -72,7 +72,7 @@ export class Item extends Component {
             required
           />
           <input
-            className="inputStyleEdt"
+            className={styles.inputStyleEdt}
             type="text"
             name="fiscal_address"
             placeholder="Cordoba 2020"
@@ -81,11 +81,11 @@ export class Item extends Component {
             required
           />
           <div>
-            <button className="btn" type="submit" onClick={this.saveChanges}>
-              <AiOutlineCheckCircle />
-            </button>
-            <button className="btn" onClick={this.toggleEditing}>
+            <button onClick={this.toggleEditing} className={styles.Btn}>
               <FcCancel />
+            </button>
+            <button onClick={this.saveChanges} className={styles.Btn}>
+              <AiOutlineCheckCircle />
             </button>
           </div>
         </ul>
@@ -94,18 +94,18 @@ export class Item extends Component {
 
     return (
       <>
-        <ul className="u-list">
-          <li className="list">{this.props.customer.id}</li>
-          <li className="list">{this.props.customer.customerType}</li>
-          <li className="list">{this.props.customer.email}</li>
-          <li className="list">{this.props.customer.buildings}</li>
-          <li className="list">{this.props.customer.fiscal_address}</li>
+        <ul  className={styles.showForm}>
+          <li className={styles.liStyle}>{this.props.customer.id}</li>
+          <li className={styles.liStyle}>{this.props.customer.customerType}</li>
+          <li className={styles.liStyle}>{this.props.customer.email}</li>
+          <li className={styles.liStyle}>{this.props.customer.buildings}</li>
+          <li className={styles.liStyle}>{this.props.customer.fiscal_address}</li>
           <div>
-            <button className="btn" onClick={this.toggleEditing.bind(this, id)}>
+            <button  className={styles.Btn} onClick={this.toggleEditing.bind(this, id)}>
               <BiPencil />
             </button>
             <button
-              className="btn"
+               className={styles.Btn}
               onClick={this.props.delCustomer.bind(this, id)}
             >
               <GoTrashcan />

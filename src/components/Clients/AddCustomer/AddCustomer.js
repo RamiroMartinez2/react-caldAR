@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./AddCustomer.css";
+import styles from "./AddCustomer.module.css";
 import PropTypes from "prop-types";
 
 class AddCustomer extends Component {
@@ -38,9 +38,9 @@ class AddCustomer extends Component {
   render() {
     return (
       <>
-      <h3 className="titleCustomer">Add customer</h3>
-      <form className="form" onSubmit={this.onSubmitCustomer}>
-        <input className="inputStyle"
+
+      <form className={styles.addForm} onSubmit={this.onSubmitCustomer}>
+        <input className={styles.inputStyle}
           type="text"
           name="customerType"
           placeholder="Particular or Business"
@@ -48,7 +48,7 @@ class AddCustomer extends Component {
           onChange={this.onChangeCustomer}
           required
         />
-        <input className="inputStyle"
+        <input className={styles.inputStyle}
           type="email"
           name="email"
           placeholder="ramiro@hotmail.com"
@@ -56,7 +56,7 @@ class AddCustomer extends Component {
           onChange={this.onChangeCustomer}
           required
         />
-        <input className="inputStyle"
+        <input  className={styles.inputStyle}
           type="text"
           name="buildings"
           placeholder="Add how many buildings you have"
@@ -64,7 +64,7 @@ class AddCustomer extends Component {
           onChange={this.onChangeCustomer}
           required
         />
-        <input className="inputStyle"
+        <input className={styles.inputStyle}
           type="text"
           name="fiscal_address"
           placeholder="Cordoba 2020"
@@ -72,7 +72,7 @@ class AddCustomer extends Component {
           onChange={this.onChangeCustomer}
           required
         />
-        <input className="btn-submit" type="submit" value="Submit" required />
+        <input className={styles.btnSubmit} type="submit" value="Add new customer" />
       </form>
       </>
     )

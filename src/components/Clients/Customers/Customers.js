@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import Item from "../Item/Item";
 import PropTypes from "prop-types";
-import "./Customers.css";
+import styles from "./Customers.module.css";
 
 class Customers extends Component {
   render() {
     return (
       <>
-        <ul className="ulStyle">
-          <li className="liStyleHeader">Id</li>
-          <li className="liStyleHeader">Customer Type</li>
-          <li className="liStyleHeader">Email</li>
-          <li className="liStyleHeader">Buildings</li>
-          <li className="liStyleHeader">Fiscal Address</li>
+        <ul className={styles.ulStyle}>
+          <li className={styles.liStyleHeader}>Id</li>
+          <li className={styles.liStyleHeader}>Customer Type</li>
+          <li className={styles.liStyleHeader}>Email</li>
+          <li className={styles.liStyleHeader}>Buildings</li>
+          <li className={styles.liStyleHeader}>Fiscal Address</li>
         </ul>
 
         {this.props.customers.map((customer, index) => (
