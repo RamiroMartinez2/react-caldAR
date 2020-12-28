@@ -6,7 +6,7 @@ import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GoTrashcan } from "react-icons/go";
-import { delCustomer, updateCustomer } from '../../../redux/actions/customerAction';
+import { delCustomer as delCustomerAction, updateCustomer as updateCustomerAction } from '../../../redux/actions/customerAction';
 
 const Item =(props)=> {
   
@@ -109,8 +109,8 @@ Item.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    delCustomer: (number) => dispatch (delCustomer(number)),
-    updateCustomer: (content) => dispatch (updateCustomer(content))
+    delCustomer: (number) => dispatch (delCustomerAction(number)),
+    updateCustomer: (content) => dispatch (updateCustomerAction(content))
   };
 }
 

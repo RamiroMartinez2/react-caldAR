@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./AddCustomer.module.css";
 import PropTypes from "prop-types";
-import { addCustomer } from "../../../redux/actions/customerAction";
+import { addCustomer as addCustomerAction } from "../../../redux/actions/customerAction";
 import { connect } from "react-redux";
 import shortid from "shortid";
 
@@ -85,7 +85,7 @@ AddCustomer.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addCustomer: (content) => dispatch(addCustomer(content)),
+    addCustomer: (content) => dispatch(addCustomerAction(content)),
   };
 };
 
