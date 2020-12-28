@@ -4,7 +4,7 @@ import shortid from "shortid";
 export const addCustomer = content => ({
   type: ADD_CUSTOMER,
   payload: {
-    number: shortid.generate(),
+    id: shortid.generate(),
     ...content
   }
 });
