@@ -14,7 +14,7 @@ const AddCustomer = (props) => {
   });
 
   const onChange = (e) =>
-    setNewCustomer({ ...customer, [e.target.name]: e.target.value});
+    setNewCustomer({ ...customer, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();

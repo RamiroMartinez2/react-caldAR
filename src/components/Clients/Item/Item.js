@@ -134,5 +134,6 @@ const mapStateToProps = (state) => {
     customers: state.customers,
   };
 };
+   
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);
