@@ -106,4 +106,16 @@ AddTechnician.propTypes = {
   addTech: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addTech })(AddTechnician);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTech: (content) => dispatch(addTechnician(content))
+  };
+}
+
+const mapStateToProps = state => {
+  return{
+    technician: state.technicians
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTechnician);

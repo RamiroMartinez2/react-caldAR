@@ -116,4 +116,17 @@ TechItem.propTypes = {
   updateTech: PropTypes.func.isRequired,
 }
 
-export default connect(null, { delTech, updateTech })(TechItem);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    delTech: (number) => dispatch (delTechnician(number)),
+    updateTech: (content) => dispatch (updateTechnician(content))
+  };
+}
+
+const mapStateToProps = state => {
+  return{
+    technician: state.technicians
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TechItem);
