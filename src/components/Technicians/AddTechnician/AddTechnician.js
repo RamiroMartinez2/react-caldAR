@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import style from "./AddTechnician.module.css";
 import PropTypes from "prop-types";
-import { addTech } from "../../../redux/actions/technicianAction";
+import { addTech as addTechnician } from "../../../redux/actions/technicianAction";
 
 const AddTechnician = (props) => {
   const [technician, setNewTechnician] = useState({

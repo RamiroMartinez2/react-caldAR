@@ -6,7 +6,7 @@ import { BiPencil } from 'react-icons/bi';
 import { FcCancel } from 'react-icons/fc';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { GoTrashcan } from 'react-icons/go';
-import { delTech, updateTech } from '../../../redux/actions/technicianAction';
+import { delTech as delTechnician, updateTech as updateTechnician } from '../../../redux/actions/technicianAction';
 
 const TechItem = (props) => {
 
