@@ -12,7 +12,7 @@ const configureStore = () => {
   return createStore(rootReducer, enhancer);
 };
 
-const store = configureStore ();
+const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
