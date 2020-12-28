@@ -19,7 +19,7 @@ const Item =(props)=> {
   }
 
   const onChange = (e) => {
-    setCustomer({...customer, [e.target.name]: e.target.defaultValue});
+    setCustomer({...customer, [e.target.name]: e.target.value});
   }
   
   const saveChanges = () => {

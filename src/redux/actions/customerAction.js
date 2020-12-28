@@ -16,5 +16,5 @@ export const delCustomer = number => ({
 
 export const updateCustomer = content => ({
   type: UPD_CUSTOMER,
-  payload: content
+  payload: content,
 })
