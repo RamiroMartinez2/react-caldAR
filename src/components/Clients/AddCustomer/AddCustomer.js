@@ -15,7 +15,7 @@ const AddCustomer = (props) => {
   });
 
   const onChange = (e) =>
-    setNewCustomer({ ...customer, [e.target.name]: e.target.value});
+    setNewCustomer({ ...customer, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -83,4 +83,16 @@ AddCustomer.propTypes = {
   addCustomer: PropTypes.object.isRequired,
 };
 
-export default connect(null, { addCustomer })(AddCustomer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addCustomer: (content) => dispatch(addCustomer(content)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    customer: state.customers,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCustomer);

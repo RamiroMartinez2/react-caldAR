@@ -107,4 +107,17 @@ Item.propTypes = {
   updateCustomer: PropTypes.array.isRequired,
 };
 
-export default connect(null, { delCustomer, updateCustomer })(Item);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    delCustomer: (number) => dispatch (delCustomer(number)),
+    updateCustomer: (content) => dispatch (updateCustomer(content))
+  };
+}
+
+const mapStateToProps = (state )=> {
+  return{
+    customers: state.customers
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Item);
