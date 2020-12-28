@@ -3,10 +3,11 @@ import styles from "./AddCustomer.module.css";
 import PropTypes from "prop-types";
 import { addCustomer } from "../../../redux/actions/customerAction";
 import { connect } from "react-redux";
+import shortid from "shortid";
 
 const AddCustomer = (props) => {
   const [customer, setNewCustomer] = useState({
-    id: "",
+    id: shortid.generate(),
     customerType: "",
     email: "",
     buildings: "",
@@ -14,14 +15,14 @@ const AddCustomer = (props) => {
   });
 
   const onChange = (e) =>
-    setNewCustomer({ ...customer, [e.target.name]: e.target.value });
+    setNewCustomer({ ...customer, [e.target.name]: e.target.value});
 
   const onSubmit = (e) => {
     e.preventDefault();
     props.addCustomer(customer);
 
     setNewCustomer({
-      id: "",
+      id: shortid.generate(),
       customerType: "",
       email: "",
       buildings: "",
