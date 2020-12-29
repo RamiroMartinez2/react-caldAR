@@ -1,8 +1,11 @@
-import React, { Component } from "react";
-import "./AddTechnician.css";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import style from "./AddTechnician.module.css";
 import PropTypes from "prop-types";
-export class AddTechnician extends Component {
-  state = {
+import { addTech as addTechnician } from "../../../redux/actions/technicianAction";
+
+const AddTechnician = (props) => {
+  const [technician, setNewTechnician] = useState({
     fullName: "",
     email: "",
     phone: "",
@@ -10,14 +13,15 @@ export class AddTechnician extends Component {
     trained: "",
     assignedClients: "",
     spareHoursAvailable: "",
-  };
+  });
 
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setNewTechnician({ ...technician, [e.target.name]: e.target.value });
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    this.props.addTech(this.state);
-    this.setState({
+    props.addTech(technician);
+    setNewTechnician({
       fullName: "",
       email: "",
       phone: "",
@@ -28,79 +32,90 @@ export class AddTechnician extends Component {
     });
   };
 
-  render() {
-    return (
-      <form className="addForm" onSubmit={this.onSubmit}>
-        <input
-          className="inputStyle"
-          type="text"
-          name="fullName"
-          placeholder=" Add Name"
-          value={this.state.fullName}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className="inputStyle"
-          type="email"
-          name="email"
-          placeholder=" Add Email"
-          value={this.state.email}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className="inputStyle"
-          type="number"
-          name="phone"
-          placeholder=" Add Phone"
-          value={this.state.phone}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className="inputStyle"
-          type="text"
-          name="statusActive"
-          placeholder=" Add Status"
-          value={this.state.statusActive}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className="inputStyle"
-          type="text"
-          name="trained"
-          placeholder=" Add Trained Skills"
-          value={this.state.trained}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className="inputStyle"
-          type="number"
-          name="assignedClients"
-          placeholder=" Add Asigned Clients"
-          value={this.state.assignedClients}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className="inputStyle"
-          type="number"
-          name="spareHoursAvailable"
-          placeholder="Add Spare Hours"
-          value={this.state.spareHoursAvailable}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input className="btnSubmit" type="submit" value="Add New"></input>
-      </form>
-    );
-  }
-}
+  return (
+    <form className={style.addForm} onSubmit={onSubmit}>
+      <input
+        className={style.inputStyle}
+        type="text"
+        name="fullName"
+        placeholder=" Add Name"
+        value={technician.fullName}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className={style.inputStyle}
+        type="email"
+        name="email"
+        placeholder=" Add Email"
+        value={technician.email}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className={style.inputStyle}
+        type="number"
+        name="phone"
+        placeholder=" Add Phone"
+        value={technician.phone}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className={style.inputStyle}
+        type="text"
+        name="statusActive"
+        placeholder=" Add Status"
+        value={technician.statusActive}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className={style.inputStyle}
+        type="text"
+        name="trained"
+        placeholder=" Add Trained Skills"
+        value={technician.trained}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className={style.inputStyle}
+        type="number"
+        name="assignedClients"
+        placeholder=" Add Asigned Clients"
+        value={technician.assignedClients}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className={style.inputStyle}
+        type="number"
+        name="spareHoursAvailable"
+        placeholder="Add Spare Hours"
+        value={technician.spareHoursAvailable}
+        onChange={onChange}
+        required
+      ></input>
+      <input className={style.btnSubmit} type="submit" value="Add New"></input>
+    </form>
+  );
+};
 
 AddTechnician.propTypes = {
-  addTech: PropTypes.array.isRequired,
+  addTech: PropTypes.func.isRequired,
 };
-export default AddTechnician;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTech: (content) => dispatch(addTechnician(content)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    technician: state.technicians,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTechnician);
