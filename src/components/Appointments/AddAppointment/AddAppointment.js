@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./AddAppointment.css";
+import style from "./AddAppointment.module.css";
 import PropTypes from "prop-types";
 
 export class AddAppointment extends Component {
@@ -33,7 +33,7 @@ export class AddAppointment extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <input
-          className="inputStyle"
+          className={style.inputStyle}
           type="number"
           name="id"
           placeholder="Id"
@@ -42,7 +42,7 @@ export class AddAppointment extends Component {
           required
         ></input>
         <input
-          className="inputStyle"
+          className={style.inputStyle}
           type="number"
           name="buildingId"
           placeholder="Building Id"
@@ -51,7 +51,7 @@ export class AddAppointment extends Component {
           required
         ></input>
         <input
-          className="inputStyle"
+          className={style.inputStyle}
           type="number"
           name="boilerId"
           placeholder="Boiler Id"
@@ -60,7 +60,7 @@ export class AddAppointment extends Component {
           required
         ></input>
         <input
-          className="dateStyle"
+          className={style.dateStyle}
           type="date"
           name="date"
           placeholder="Date"
@@ -69,7 +69,7 @@ export class AddAppointment extends Component {
           required
         ></input>
         <input
-          className="inputStyle"
+          className={style.inputStyle}
           type="number"
           name="estimatedTime"
           placeholder="Estimated Time"
@@ -78,7 +78,7 @@ export class AddAppointment extends Component {
           required
         ></input>
         <input
-          className="inputStyle"
+          className={style.inputStyle}
           type="text"
           name="maintenanceType"
           placeholder="Maintenance Type"
@@ -87,7 +87,7 @@ export class AddAppointment extends Component {
           required
         ></input>
         <input
-          className="btnSubmit"
+          className={style.btnSubmit}
           type="submit"
           value="Add Appointment"
         ></input>

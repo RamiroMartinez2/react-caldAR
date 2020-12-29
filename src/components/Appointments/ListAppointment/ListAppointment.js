@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { MdDelete } from "react-icons/md";
+import { GoTrashcan } from "react-icons/go";
 import { FcCancel } from "react-icons/fc";
-import { AiOutlineCheckCircle, AiFillEdit } from "react-icons/ai";
-import "./ListAppointment.css";
+import { AiOutlineCheckCircle } from "react-icons/ai";
+import { BiPencil } from "react-icons/bi";
+import style from "./ListAppointment.module.css";
 
 class ListAppointment extends Component {
   state = { ...this.props.appointments, isEditing: false };
@@ -27,7 +28,7 @@ class ListAppointment extends Component {
       return (
         <ul onSubmit={this.onSubmit}>
           <input
-            className="inputStyle"
+            className={style.inputStyle}
             type="number"
             name="id"
             placeholder="Id"
@@ -36,7 +37,7 @@ class ListAppointment extends Component {
             required
           ></input>
           <input
-            className="inputStyle"
+            className={style.inputStyle}
             type="number"
             name="buildingId"
             placeholder="Building Id"
@@ -45,7 +46,7 @@ class ListAppointment extends Component {
             required
           ></input>
           <input
-            className="inputStyle"
+            className={style.inputStyle}
             type="number"
             name="boilerId"
             placeholder="Boiler Id"
@@ -54,7 +55,7 @@ class ListAppointment extends Component {
             required
           ></input>
           <input
-            className="inputStyle"
+            className={style.inputStyle}
             type="date"
             name="date"
             placeholder="Date"
@@ -63,7 +64,7 @@ class ListAppointment extends Component {
             required
           ></input>
           <input
-            className="inputStyle"
+            className={style.inputStyle}
             type="number"
             name="estimatedTime"
             placeholder="Estimated Time"
@@ -72,7 +73,7 @@ class ListAppointment extends Component {
             required
           ></input>
           <input
-            className="inputStyle"
+            className={style.inputStyle}
             type="text"
             name="maintenanceType"
             placeholder="Maintenance Type"
@@ -81,10 +82,10 @@ class ListAppointment extends Component {
             required
           ></input>
           <div>
-            <button onClick={this.toggleEditing} className="Btn">
+            <button onClick={this.toggleEditing} className={style.Btn}>
               <FcCancel />
             </button>
-            <button onClick={this.saveChanges} className="Btn">
+            <button onClick={this.saveChanges} className={style.Btn}>
               <AiOutlineCheckCircle />
             </button>
           </div>
@@ -94,22 +95,22 @@ class ListAppointment extends Component {
 
     return (
       <div>
-        <ul className="showForm">
-          <li className="liStyle">{this.props.appointments.id}</li>
-          <li className="liStyle">{this.props.appointments.buildingId}</li>
-          <li className="liStyle">{this.props.appointments.boilerId}</li>
-          <li className="liStyle">{this.props.appointments.date}</li>
-          <li className="liStyle">{this.props.appointments.estimatedTime}</li>
-          <li className="liStyle">{this.props.appointments.maintenanceType}</li>
+        <ul className={style.showForm}>
+          <li className={style.liStyle}>{this.props.appointments.id}</li>
+          <li className={style.liStyle}>{this.props.appointments.buildingId}</li>
+          <li className={style.liStyle}>{this.props.appointments.boilerId}</li>
+          <li className={style.liStyle}>{this.props.appointments.date}</li>
+          <li className={style.liStyle}>{this.props.appointments.estimatedTime}</li>
+          <li className={style.liStyle}>{this.props.appointments.maintenanceType}</li>
           <div>
             <button
               onClick={this.props.delAppointment.bind(this, id)}
-              className="Btn"
+              className={style.Btn}
             >
-              <MdDelete />
+              <GoTrashcan />
             </button>
-            <button onClick={this.toggleEditing} className="Btn">
-              <AiFillEdit />
+            <button onClick={this.toggleEditing} className={style.Btn}>
+              <BiPencil />
             </button>
           </div>
         </ul>
