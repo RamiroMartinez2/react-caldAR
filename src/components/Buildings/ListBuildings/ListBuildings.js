@@ -1,102 +1,122 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./ListBuildings.css";
 import PropTypes from "prop-types";
 import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GoTrashcan } from "react-icons/go";
+import { connect } from "react-redux";
+import {
+  delBuilding as delBuildingAction,
+  updateBuilding as updateBuildingAction,
+} from "../../../redux/actions/buildingAction";
 
-export class ListBuildings extends Component {
-  state = { ...this.props.Bld, isEditing: false };
+const ListBuildings = (props) => {
+  const [isEditing, toggleEditing] = useState(false);
+  const [building, setBuilding] = useState({ ...props.building });
 
-  toggleEdit = () => {
-    this.setState({ isEditing: !this.state.isEditing });
+  const toggleEdit = () => {
+    setBuilding(props.building);
+    toggleEditing(!isEditing);
   };
 
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  const onChange = (e) => {
+    setBuilding({ ...building, [e.target.name]: e.target.value });
   };
 
-  saveChanges = () => {
-    this.toggleEdit();
-    this.props.updateBuilding(this.state);
+  const saveChanges = () => {
+    toggleEdit();
+    props.updateBuilding(building);
   };
 
-  render() {
-    const { id } = this.props.Bld;
-    if (this.state.isEditing) {
-      return (
-        <ul className="showForm">
-          <input
-            className="inputStyle"
-            type="text"
-            name="address"
-            placeholder="Address"
-            value={this.state.address}
-            onChange={this.onChange}
-          ></input>
-          <input
-            className="inputStyle"
-            type="number"
-            name="boilersId"
-            placeholder="Boiler Type"
-            value={this.state.boilersId}
-            onChange={this.onChange}
-          ></input>
-          <input
-            className="inputStyle"
-            type="text"
-            name="fullName"
-            placeholder="Name"
-            value={this.state.fullName}
-            onChange={this.onChange}
-          ></input>
-          <input
-            className="inputStyle"
-            type="text"
-            name="phone"
-            placeholder="Phone"
-            value={this.state.phone}
-            onChange={this.onChange}
-          ></input>
-          <div>
-            <button onClick={this.toggleEdit} className="Btn">
-              <FcCancel />
-            </button>
-            <button onClick={this.saveChanges} className="Btn">
-              <AiOutlineCheckCircle />
-            </button>
-          </div>
-        </ul>
-      );
-    }
-
+  if (isEditing) {
     return (
-      <div>
-        <ul className="showForm">
-          <li className="liStyle">{this.props.Bld.id}</li>
-          <li className="liStyle">{this.props.Bld.address}</li>
-          <li className="liStyle">{this.props.Bld.boilersId}</li>
-          <li className="liStyle">{this.props.Bld.fullName}</li>
-          <li className="liStyle">{this.props.Bld.phone}</li>
-          <div>
-            <button onClick={this.props.delBld.bind(this, id)} className="Btn">
-              <GoTrashcan />
-            </button>
-            <button onClick={this.toggleEdit} className="Btn">
-              <BiPencil />
-            </button>
-          </div>
-        </ul>
-      </div>
+      <ul className="showForm">
+        <input
+          className="inputStyle"
+          type="text"
+          name="address"
+          placeholder="Address"
+          value={building.address}
+          onChange={onChange}
+        ></input>
+        <input
+          className="inputStyle"
+          type="number"
+          name="boilersId"
+          placeholder="Boiler Type"
+          value={building.boilersId}
+          onChange={onChange}
+        ></input>
+        <input
+          className="inputStyle"
+          type="text"
+          name="fullName"
+          placeholder="Name"
+          value={building.fullName}
+          onChange={onChange}
+        ></input>
+        <input
+          className="inputStyle"
+          type="text"
+          name="phone"
+          placeholder="Phone"
+          value={building.phone}
+          onChange={onChange}
+        ></input>
+        <div>
+          <button onClick={toggleEdit} className="Btn">
+            <FcCancel />
+          </button>
+          <button onClick={saveChanges} className="Btn">
+            <AiOutlineCheckCircle />
+          </button>
+        </div>
+      </ul>
     );
   }
-}
+
+  return (
+    <div>
+      <ul className="showForm">
+        <li className="liStyle">{props.building.id}</li>
+        <li className="liStyle">{props.building.address}</li>
+        <li className="liStyle">{props.building.boilersId}</li>
+        <li className="liStyle">{props.building.fullName}</li>
+        <li className="liStyle">{props.building.phone}</li>
+        <div>
+          <button
+            onClick={() => props.delBuilding(props.building.id)}
+            className="Btn"
+          >
+            <GoTrashcan />
+          </button>
+          <button onClick={toggleEdit} className="Btn">
+            <BiPencil />
+          </button>
+        </div>
+      </ul>
+    </div>
+  );
+};
 
 ListBuildings.propTypes = {
-  Bld: PropTypes.object.isRequired,
-  delBld: PropTypes.array.isRequired,
+  building: PropTypes.object.isRequired,
+  delBuilding: PropTypes.array.isRequired,
   updateBuilding: PropTypes.array.isRequired,
 };
 
-export default ListBuildings;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    delBuilding: (number) => dispatch(delBuildingAction(number)),
+    updateBuilding: (content) => dispatch(updateBuildingAction(content)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    building: state.building,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListBuildings);
