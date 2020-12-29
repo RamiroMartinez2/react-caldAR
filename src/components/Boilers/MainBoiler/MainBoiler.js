@@ -1,53 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from '../HeaderBoiler/Header';
 import Boilers from '../Boilers/Boilers';
-import AddBoilers from '../AddBoiler/AddBoiler';
-import mockBoilers from '../../../mocks/mockBoilers.json';
+import AddBoiler from '../AddBoiler/AddBoiler';
+import { connect } from "react-redux";
 import styles from './MainBoiler.module.css';
+import PropTypes from 'prop-types';
 
-class MainBoiler extends Component {
-  state = {mockBoilers}
-
-  delBoiler = (id) => {
-    this.setState({ mockBoilers: [...this.state.mockBoilers.filter(boil => boil.id !== id)] });
-  }
-
-  updateBoiler = (boilUpdated) => {
-    this.setState({
-      mockBoilers: [...this.state.mockBoilers.map(boil => {
-        if(boil.id === boilUpdated.id) {
-          boil = boilUpdated;
-        }
-        return boil;
-      })]
-    });
-  }
-
-  addBoiler = ({typeId, maintaince_rate, hour_maintaince_cost, hour_eventual_cost}) => {
-    const newBoil = {
-      id: Math.floor(Math.random() * 101),
-      typeId,
-      maintaince_rate,
-      hour_maintaince_cost,
-      hour_eventual_cost,
-    } 
-    this.setState({mockBoilers: [...this.state.mockBoilers, newBoil]})
-  }
+const MainBoiler = (props) => {
   
-  render (){
-    return (
-      <div className={styles.Main}>
-        <div className={styles.Container}>
-          <Header />
-          <Boilers boilers={this.state.mockBoilers} 
-          delBoiler={this.delBoiler} 
-          updateBoiler={this.updateBoiler} 
-          />
-          <AddBoilers addBoiler={this.addBoiler} />
-        </div>
+  return (
+    <div className={styles.Main}>
+      <div className={styles.Container}>
+        <Header />
+        <Boilers boilers={props.boilers} 
+        />
+        <AddBoiler />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default MainBoiler
+MainBoiler.propTypes = {
+  boilers: PropTypes.array.isRequired,
+}
+
+const mapStateToProps = ({boilers}) => {
+  return {boilers};
+}
+
+export default connect(mapStateToProps)(MainBoiler);
