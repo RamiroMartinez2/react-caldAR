@@ -6,7 +6,10 @@ import {
 
 export const addAppointment = (content) => ({
   type: ADD_APPOINTMENT,
-  payload: content,
+  payload: {
+    id: Math.floor(Math.random() * 101),
+    ...content
+  }
 });
 
 export const deleteAppointment = (id) => ({

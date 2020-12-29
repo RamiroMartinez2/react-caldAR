@@ -123,9 +123,9 @@ const ListAppointment = (props) => {
 };
 
 ListAppointment.propTypes = {
-  appointments: PropTypes.object.isRequired,
-  delAppointment: PropTypes.array.isRequired,
-  updAppoint: PropTypes.array.isRequired,
+  appointments: PropTypes.array.isRequired,
+  delAppointment: PropTypes.func.isRequired,
+  updAppoint: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {

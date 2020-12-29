@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "./AddAppointment.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addAppointment as addAppointAction } from "../../../redux/actions/actions";
+import { addAppointment } from "../../../redux/actions/actions";
 
 const AddAppointment = (props) => {
-  const [appointment, setNewAppointment] = useState({
+  const [appointments, setNewAppointment] = useState({
     id: "",
     buildingId: "",
     boilerId: "",
@@ -16,7 +16,7 @@ const AddAppointment = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addAppointAction(appointment);
+    props.addAppointment(appointments);
 
     setNewAppointment({
       id: "",
@@ -29,7 +29,7 @@ const AddAppointment = (props) => {
   };
 
   const onChange = (e) => {
-    setNewAppointment({ ...appointment, [e.target.name]: e.target.value });
+    setNewAppointment({ ...appointments, [e.target.name]: e.target.value });
   };
 
   return (
@@ -39,7 +39,7 @@ const AddAppointment = (props) => {
         type="number"
         name="id"
         placeholder="Id"
-        defaultValue={appointment.id}
+        defaultValue={appointments.id}
         onChange={onChange}
         required
       ></input>
@@ -48,7 +48,7 @@ const AddAppointment = (props) => {
         type="number"
         name="buildingId"
         placeholder="Building Id"
-        defaultValue={appointment.buildingId}
+        defaultValue={appointments.buildingId}
         onChange={onChange}
         required
       ></input>
@@ -57,7 +57,7 @@ const AddAppointment = (props) => {
         type="number"
         name="boilerId"
         placeholder="Boiler Id"
-        defaultValue={appointment.boilerId}
+        defaultValue={appointments.boilerId}
         onChange={onChange}
         required
       ></input>
@@ -66,7 +66,7 @@ const AddAppointment = (props) => {
         type="date"
         name="date"
         placeholder="Date"
-        defaultValue={appointment.date}
+        defaultValue={appointments.date}
         onChange={onChange}
         required
       ></input>
@@ -75,7 +75,7 @@ const AddAppointment = (props) => {
         type="number"
         name="estimatedTime"
         placeholder="Estimated Time"
-        defaultValue={appointment.estimatedTime}
+        defaultValue={appointments.estimatedTime}
         onChange={onChange}
         required
       ></input>
@@ -84,7 +84,7 @@ const AddAppointment = (props) => {
         type="text"
         name="maintenanceType"
         placeholder="Maintenance Type"
-        defaultValue={appointment.maintenanceType}
+        defaultValue={appointments.maintenanceType}
         onChange={onChange}
         required
       ></input>
@@ -98,18 +98,18 @@ const AddAppointment = (props) => {
 };
 
 AddAppointment.propTypes = {
-  addAppointAction: PropTypes.array.isRequired,
+  addAppointment: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addAppoint: (content) => dispatch(addAppointAction(content)),
+    addAppoint: (content) => dispatch(addAppointment(content)),
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    appointment: state.appointments,
+    appointments: state.appointment,
   };
 };
 
