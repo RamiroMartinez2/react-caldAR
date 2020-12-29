@@ -103,7 +103,7 @@ AddAppointment.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addAppoint: (content) => dispatch(addAppointment(content)),
+    addAppointment: (content) => dispatch(addAppointment(content)),
   };
 };
 

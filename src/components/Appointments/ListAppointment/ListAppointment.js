@@ -30,13 +30,13 @@ const ListAppointment = (props) => {
 
   if (isEditing) {
     return (
-      <ul>
+      <ul className="showForm">
         <input
           className="inputStyle"
           type="number"
           name="id"
           placeholder="Id"
-          defaultValue={appointments.id}
+          value={appointments.id}
           onChange={onChange}
           required
         ></input>
@@ -45,7 +45,7 @@ const ListAppointment = (props) => {
           type="number"
           name="buildingId"
           placeholder="Building Id"
-          defaultValue={appointments.buildingId}
+          value={appointments.buildingId}
           onChange={onChange}
           required
         ></input>
@@ -54,7 +54,7 @@ const ListAppointment = (props) => {
           type="number"
           name="boilerId"
           placeholder="Boiler Id"
-          defaultValue={appointments.boilerId}
+          value={appointments.boilerId}
           onChange={onChange}
           required
         ></input>
@@ -63,7 +63,7 @@ const ListAppointment = (props) => {
           type="date"
           name="date"
           placeholder="Date"
-          defaultValue={appointments.date}
+          value={appointments.date}
           onChange={onChange}
           required
         ></input>
@@ -72,7 +72,7 @@ const ListAppointment = (props) => {
           type="number"
           name="estimatedTime"
           placeholder="Estimated Time"
-          defaultValue={appointments.estimatedTime}
+          value={appointments.estimatedTime}
           onChange={onChange}
           required
         ></input>
@@ -81,7 +81,7 @@ const ListAppointment = (props) => {
           type="text"
           name="maintenanceType"
           placeholder="Maintenance Type"
-          defaultValue={appointments.maintenanceType}
+          value={appointments.maintenanceType}
           onChange={onChange}
           required
         ></input>
@@ -137,7 +137,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    appointments: state.appointments,
+    appointment: state.appointment,
   };
 };
 
