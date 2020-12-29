@@ -2,7 +2,9 @@ import { ADD_BOILER,
   DELETE_BOILER, 
   EDIT_BOILER, 
   GET_BOILERS_FETCHING, 
-  GET_BOILERS_FULFILLED } from "../types/boilerTypes";
+  GET_BOILERS_FULFILLED, 
+  GET_BOILERS_REJECTED
+ } from "../types/boilerTypes";
 
 const URL = 'mongodb+srv://radium-rocket:radium1234@caldar-cluster.763oz.mongodb.net/CaldAR?retryWrites=true&w=majority'
 
