@@ -1,7 +1,19 @@
-import { ADD_BOILER, DELETE_BOILER, EDIT_BOILER, GET_BOILERS_FETCHING, GET_BOILERS_FULFILLED, GET_BOILERS_REJECTED } from "../types/boilerTypes";
-//import boilers from "../../mocks/mockBoilers.json";
+import {  
+  GET_BOILERS_FETCHING, 
+  GET_BOILERS_FULFILLED, 
+  GET_BOILERS_REJECTED, 
+  ADD_BOILER_FETCHING, 
+  ADD_BOILER_FULFILLED, 
+  ADD_BOILER_REJECTED,
+  DELETE_BOILER_FETCHING,
+  DELETE_BOILER_FULFILLED,
+  DELETE_BOILER_REJECTED,
+  EDIT_BOILER_FETCHING,  
+  EDIT_BOILER_FULFILLED,
+  EDIT_BOILER_REJECTED, } from "../types/boilerTypes";
+
 const initialState = {
-  isLoading, 
+  isLoading: false, 
   list: [],
   error: false
 }
@@ -10,26 +22,39 @@ const boilerReducer = (state = initialState, action) => {
   switch(action.type) {
     case GET_BOILERS_FETCHING: {
       return {...state, isLoading: true,};
-    };
+    }
     case GET_BOILERS_FULFILLED: {
       return {...state, isLoading: false, list: action.payload};
-    };
+    }
     case GET_BOILERS_REJECTED: {
       return {...state, isLoading: false, error: true};
-    };
-    case ADD_BOILER: {
-      return [...state, action.payload];
     }
-    case DELETE_BOILER: {
-      return [...state.filter(boiler => boiler.id !== action.payload)]
+    case ADD_BOILER_FETCHING: {
+      return {...state, isLoading: true,};
     }
-    case EDIT_BOILER: {
-      return [...state.map(boiler => {
-        if(boiler.id === action.payload.id) {
-          boiler = action.payload;
-        }
-        return boiler;
-        })]
+    case ADD_BOILER_FULFILLED: {
+      return {...state, isLoading: false, list: [...state.list, action.payload]};
+    }
+    case ADD_BOILER_REJECTED: {
+      return {...state, isLoading: false, error: true};
+    }
+    case DELETE_BOILER_FETCHING: {
+      return {...state, isLoading: true,};
+    }
+    case DELETE_BOILER_FULFILLED: {
+      return {...state, isLoading: false, list: state.list.filter(content => content._id !== action.payload)}
+    }
+    case DELETE_BOILER_REJECTED: {
+      return {...state, isLoading: false, error: true};
+    }
+    case EDIT_BOILER_FETCHING: {
+      return {...state, isLoading: true,};
+    }
+    case EDIT_BOILER_FULFILLED: {
+      return {...state, isLoading: false, list: state.list.map(content => content._id === action.payload)};
+    }
+    case EDIT_BOILER_REJECTED: {
+      return {...state, isLoading: false, error: true};
     }
     default: {
       return state;
