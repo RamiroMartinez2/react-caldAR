@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AddAppointment.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addAppointment } from "../../../redux/actions/actions";
+import { addAppointment as addAppointAction } from "../../../redux/actions/actions";
 
 const AddAppointment = (props) => {
   const [appointment, setNewAppointment] = useState({
@@ -16,7 +16,7 @@ const AddAppointment = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addAppointment(appointment);
+    props.addAppointAction(appointment);
 
     setNewAppointment({
       id: "",
@@ -98,12 +98,12 @@ const AddAppointment = (props) => {
 };
 
 AddAppointment.propTypes = {
-  addAppointment: PropTypes.array.isRequired,
+  addAppointAction: PropTypes.array.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addAppoint: (content) => dispatch(addAppointment(content)),
+    addAppoint: (content) => dispatch(addAppointAction(content)),
   };
 };
 

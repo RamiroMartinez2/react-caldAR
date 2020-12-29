@@ -24,7 +24,7 @@ const ListAppointment = (props) => {
   };
 
   const saveChanges = () => {
-    toggleEditing();
+    toggleEdit();
     props.updAppoint(appointments);
   };
 
@@ -130,7 +130,7 @@ ListAppointment.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    delAppointment: (number) => dispatch(delAppointment(number)),
+    delAppointment: (id) => dispatch(delAppointment(id)),
     updAppoint: (content) => dispatch(updAppoint(content)),
   };
 };

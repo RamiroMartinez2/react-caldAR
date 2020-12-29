@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 const MainAppointment = (props) => {
   return (
     <div>
+      {" "}
       <Appointments appointments={props.appointments} />
       <AddAppointment />
     </div>
