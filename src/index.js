@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import ReactDOM from "react-dom";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createStore } from "redux";
@@ -18,7 +18,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
-    </Provider>
+     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,62 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
 import AddCustomer from "../AddCustomer/AddCustomer";
 import Customers from "../Customers/Customers";
-import customersBD from "../../../mocks/customers-data.json";
-import shortid from "shortid";
 import HeaderCustomer from "../HeaderCustomer/HeaderCustomer";
+import styles from "./MainCustomer.module.css";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-export default class MainCustomer extends Component {
-  state = {
-    customers: customersBD,
-  };
-
-  editMode = false;
-
-  delCustomer = (id) => {
-    this.setState({
-      customers: [
-        ...this.state.customers.filter((customer) => customer.id !== id),
-      ],
-    });
-  };
-
-  updateCustomer = (customerUpdated) => {
-    this.setState({
-      customers: [
-        ...this.state.customers.map((customer) => {
-          if (customer.id === customerUpdated.id) {
-            customer = customerUpdated;
-          }
-          return customer;
-        }),
-      ],
-    });
-  };
-
-  AddCustomer = (id, customerType, email, buildings, fiscal_address) => {
-    const newCustomer = {
-      id: shortid.generate(),
-      customerType,
-      email,
-      buildings,
-      fiscal_address,
-    };
-    this.setState({
-      customers: [...this.state.customers, newCustomer],
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <HeaderCustomer/>
-        <Customers
-          customers={this.state.customers}
-          delCustomer={this.delCustomer}
-          updateCustomer={this.updateCustomer}
-        />
-        <AddCustomer AddCustomer={this.AddCustomer} />
+const MainCustomer = (props) => {
+  return (
+    <div className={styles.Main}>
+      <div className={styles.Container}>
+        {" "}
+        <HeaderCustomer />
+        <Customers customers={props.customers} />
+        <AddCustomer />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+MainCustomer.propTypes = {
+  customers: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = ({ customers }) => {
+  return { customers };
+};
+
+export default connect(mapStateToProps)(MainCustomer);
