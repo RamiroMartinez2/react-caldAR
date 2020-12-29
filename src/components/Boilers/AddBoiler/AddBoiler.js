@@ -1,29 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
 import styles from "./AddBoiler.module.css";
-import PropTypes from "prop-types";
-import { addBoiler } from '../../../redux/actions/boilerActions';
+import { addBoiler, getBoilers, deleteBoiler } from '../../../redux/actions/boilerActions';
+import { bindActionCreators } from 'redux'
 
-const AddBoiler = (props) => {
+const AddBoiler = ({
+  boilers, 
+  isLoading,
+  error,
+  getBoilers,
+  addBoiler
+}) => {
+  const [showBoilerForm, toggleBoilerForm] = useState(false);
+  useEffect(() => {
+    getBoilers();
+  }, [getBoilers]);
 
-  const [boiler, setNewBoiler] = useState ({
-    typeId: "",
-    maintaince_rate: "",
-    hour_maintaince_cost: "",
-    hour_eventual_cost: "",
-  })
-
-  const onChange = (e) => setNewBoiler({...boiler, [e.target.name]: e.target.value });
-  const onSubmit = (e) => {
-    e.preventDefault();
-    props.addBoiler(boiler);
-    setNewBoiler({
-      typeId: "",
-      maintaince_rate: "",
-      hour_maintaince_cost: "",
-      hour_eventual_cost: "",
-    });
+  const AddNewBoiler = boilers => {
+    addBoiler(boilers);
+    toggleBoilerForm(!showBoilerForm);
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+  if (error) {
+    return <div>ERROR!!</div>
+  }
 
   return (
     <form className={styles.addForm} onSubmit={onSubmit}>
@@ -70,21 +73,22 @@ const AddBoiler = (props) => {
       />
     </form>
   );
+
 }
 
-AddBoiler.propTypes = {
-  addBoiler: PropTypes.func.isRequired,
-};
-
 const mapDispatchToProps = (dispatch) => {
-  return {
-    addBoiler: (content) => dispatch(addBoiler(content))
-  };
+  return bindActionCreators ({
+    addBoiler: addBoiler,
+    getBoilers: getBoilers, 
+    deleteBoiler: deleteBoiler
+  }, dispatch);
 }
 
 const mapStateToProps = state => {
   return{
-    boiler: state.boilers
+    isLoading: state.boilers.isLoading,
+    error: state.boilers.error,
+    boilers: state.boilers.list
   };
 }
 
