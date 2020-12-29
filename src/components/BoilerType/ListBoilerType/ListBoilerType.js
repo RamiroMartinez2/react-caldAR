@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { MdDelete } from "react-icons/md";
-import { AiOutlineCheckCircle, AiFillEdit } from "react-icons/ai";
+import { GoTrashcan } from "react-icons/go";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 import { FcCancel } from "react-icons/fc";
-import "./ListBoilerType.css";
+import { BiPencil } from "react-icons/bi"
+import style from "./ListBoilerType.module.css";
 
 export class ListBoilerType extends Component {
   state = { ...this.props.list, isEditing: false };
@@ -25,9 +26,9 @@ export class ListBoilerType extends Component {
     const { id } = this.props.list;
     if (this.state.isEditing) {
       return (
-        <ul className="showForm">
+        <ul className={style.showForm}>
           <input
-            className="inputStyle"
+            className={style.inputStyle}
             type="number"
             name="id"
             placeholder="Id"
@@ -36,7 +37,7 @@ export class ListBoilerType extends Component {
             required
           ></input>
           <input
-            className="inputStyle"
+            className={style.inputStyle}
             type="text"
             name="skillsId"
             placeholder="Skills ID"
@@ -44,7 +45,7 @@ export class ListBoilerType extends Component {
             onChange={this.onChange}
           ></input>
           <input
-            className="inputStyle"
+            className={style.inputStyle}
             type="text"
             name="description"
             placeholder="Description"
@@ -52,7 +53,7 @@ export class ListBoilerType extends Component {
             onChange={this.onChange}
           ></input>
           <input
-            className="inputStyle"
+            className={style.inputStyle}
             type="text"
             name="stock"
             placeholder="Stock"
@@ -60,10 +61,10 @@ export class ListBoilerType extends Component {
             onChange={this.onChange}
           ></input>
           <div>
-            <button onClick={this.toggleEdit} className="Btn">
+            <button onClick={this.toggleEdit} className={style.Btn}>
               <FcCancel />
             </button>
-            <button onClick={this.saveChanges} className="Btn">
+            <button onClick={this.saveChanges} className={style.Btn}>
               <AiOutlineCheckCircle />
             </button>
           </div>
@@ -73,16 +74,16 @@ export class ListBoilerType extends Component {
 
     return (
       <div>
-        <ul className="showForm">
-          <li className="liStyle">{this.props.list.id}</li>
-          <li className="liStyle">{this.props.list.skillsId}</li>
-          <li className="liStyle">{this.props.list.description}</li>
-          <li className="liStyle">{this.props.list.stock}</li>
-          <button onClick={this.props.delBoilerType.bind(this, id)} className="Btn">
-            <MdDelete />
+        <ul className={style.showForm}>
+          <li className={style.liStyle}>{this.props.list.id}</li>
+          <li className={style.liStyle}>{this.props.list.skillsId}</li>
+          <li className={style.liStyle}>{this.props.list.description}</li>
+          <li className={style.liStyle}>{this.props.list.stock}</li>          
+          <button onClick={this.toggleEdit} className={style.Btn}>
+            <BiPencil />
           </button>
-          <button onClick={this.toggleEdit} className="Btn">
-            <AiFillEdit />
+          <button onClick={this.props.delBoilerType.bind(this, id)} className={style.Btn}>
+            <GoTrashcan />
           </button>
         </ul>
       </div>
