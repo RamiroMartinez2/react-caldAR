@@ -1,75 +1,78 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { connect } from 'react-redux';
 import styles from "./AddBoiler.module.css";
 import PropTypes from "prop-types";
+import { addBoiler } from '../../../redux/actions/boilerActions';
 
-export class AddBoiler extends Component {
-  state = {
+const AddBoiler = (props) => {
+
+  const [boiler, setNewBoiler] = useState ({
     typeId: "",
     maintaince_rate: "",
     hour_maintaince_cost: "",
     hour_eventual_cost: "",
-  };
+  })
 
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
-  onSubmit = (e) => {
+  const onChange = (e) => setNewBoiler({...boiler, [e.target.name]: e.target.value });
+  const onSubmit = (e) => {
     e.preventDefault();
-    this.props.addBoiler(this.state);
-    this.setState({
+    props.addBoiler(boiler);
+    setNewBoiler({
       typeId: "",
       maintaince_rate: "",
       hour_maintaince_cost: "",
       hour_eventual_cost: "",
     });
   };
-  render() {
-    return (
-      <form className={styles.addForm} onSubmit={this.onSubmit}>
-        <input
-          className={styles.inputStyle}
-          type="text"
-          name="typeId"
-          placeholder="Add Type ID..."
-          value={this.state.typeId}
-          onChange={this.onChange}
-          required
-        />
-        <input
-          className={styles.inputStyle}
-          type="text"
-          name="maintaince_rate"
-          placeholder="Add Maintaince Rate:..."
-          value={this.state.maintaince_rate}
-          onChange={this.onChange}
-          required
-        />
-        <input
-          className={styles.inputStyle}
-          type="number"
-          name="hour_maintaince_cost"
-          placeholder="Add Hour Maintaince Cost..."
-          value={this.state.hour_maintaince_cost}
-          onChange={this.onChange}
-          required
-        />
-        <input
-          className={styles.inputStyle}
-          type="number"
-          name="hour_eventual_cost"
-          placeholder="Add Hour Eventual Cost..."
-          value={this.state.hour_eventual_cost}
-          onChange={this.onChange}
-          required
-        />
-        <input
-          className={styles.btnSubmit}
-          type="submit"
-          value="Add new boiler"
-        />
-      </form>
-    );
-  }
+
+  return (
+    <form className={styles.addForm} onSubmit={onSubmit}>
+      <input
+        className={styles.inputStyle}
+        type="text"
+        name="typeId"
+        placeholder="Add Type ID..."
+        value={boiler.typeId}
+        onChange={onChange}
+        required
+      />
+      <input
+        className={styles.inputStyle}
+        type="text"
+        name="maintaince_rate"
+        placeholder="Add Maintaince Rate:..."
+        value={boiler.maintaince_rate}
+        onChange={onChange}
+        required
+      />
+      <input
+        className={styles.inputStyle}
+        type="number"
+        name="hour_maintaince_cost"
+        placeholder="Add Hour Maintaince Cost..."
+        value={boiler.hour_maintaince_cost}
+        onChange={onChange}
+        required
+      />
+      <input
+        className={styles.inputStyle}
+        type="number"
+        name="hour_eventual_cost"
+        placeholder="Add Hour Eventual Cost..."
+        value={boiler.hour_eventual_cost}
+        onChange={onChange}
+        required
+      />
+      <input
+        className={styles.btnSubmit}
+        type="submit"
+        value="Add new boiler"
+      />
+    </form>
+  );
 }
+
 AddBoiler.propTypes = {
-  addBoiler: PropTypes.array.isRequired,
+  addBoiler: PropTypes.func.isRequired,
 };
-export default AddBoiler
+export default connect(null, { addBoiler })(AddBoiler)
