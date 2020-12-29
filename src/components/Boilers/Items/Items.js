@@ -108,4 +108,17 @@ Items.propTypes = {
   editBoiler: PropTypes.func.isRequired,
 };
 
-export default connect(null, { deleteBoiler, editBoiler })(Items);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteBoiler: (id) => dispatch (deleteBoiler(id)),
+    editBoiler: (content) => dispatch (editBoiler(content))
+  };
+}
+
+const mapStateToProps = state => {
+  return{
+    boilers: state.boilers
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Items);

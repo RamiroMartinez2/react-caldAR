@@ -75,4 +75,17 @@ const AddBoiler = (props) => {
 AddBoiler.propTypes = {
   addBoiler: PropTypes.func.isRequired,
 };
-export default connect(null, { addBoiler })(AddBoiler)
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addBoiler: (content) => dispatch(addBoiler(content))
+  };
+}
+
+const mapStateToProps = state => {
+  return{
+    boiler: state.boilers
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddBoiler);
