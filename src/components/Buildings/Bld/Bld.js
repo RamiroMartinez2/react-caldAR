@@ -4,6 +4,7 @@ import "./Bld.css";
 import PropTypes from "prop-types";
 
 const Bld = (props) => {
+  console.log("props bld", props);
   const build = props.buildings.map((building) => (
     <ListBuildings key={building.id} building={building} />
   ));

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { addBuilding as addBuildingAction } from "../../../redux/actions/buildingAction";
 import { connect } from "react-redux";
 
-const AddBuilding = () => {
+const AddBuilding = (props) => {
   const [building, setNewBuilding] = useState({
     address: "",
     boilersId: "",
@@ -17,7 +17,7 @@ const AddBuilding = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addBuilding(building);
+    props.addBuilding(building);
     setNewBuilding({
       address: "",
       boilersId: "",
@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    building: state.buildings,
+    buildings: state.buildings,
   };
 };
 

@@ -102,9 +102,9 @@ const ListBuildings = (props) => {
 };
 
 ListBuildings.propTypes = {
-  building: PropTypes.func,
-  delBuilding: PropTypes.func,
-  updateBuilding: PropTypes.func,
+  building: PropTypes.object.isRequired,
+  delBuilding: PropTypes.array.isRequired,
+  updateBuilding: PropTypes.array.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -116,7 +116,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    building: state.building,
+    buildings: state.buildings,
   };
 };
 
