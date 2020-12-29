@@ -1,21 +1,24 @@
-import React, { Component } from "react";
-import style from "./AddAppointment.module.css";
+import React, { useState } from "react";
+import "./AddAppointment.css";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addAppointment } from "../../../redux/actions/actions";
 
-export class AddAppointment extends Component {
-  state = {
+const AddAppointment = (props) => {
+  const [appointment, setNewAppointment] = useState({
     id: "",
     buildingId: "",
     boilerId: "",
     date: "",
     estimatedTime: "",
     maintenanceType: "",
-  };
+  });
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    this.props.addAppointment(this.state);
-    this.setState({
+    props.addAppointment(appointment);
+
+    setNewAppointment({
       id: "",
       buildingId: "",
       boilerId: "",
@@ -25,78 +28,89 @@ export class AddAppointment extends Component {
     });
   };
 
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  const onChange = (e) => {
+    setNewAppointment({ ...appointment, [e.target.name]: e.target.value });
   };
 
-  render() {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          className={style.inputStyle}
-          type="number"
-          name="id"
-          placeholder="Id"
-          value={this.state.id}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="number"
-          name="buildingId"
-          placeholder="Building Id"
-          value={this.state.buildingId}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="number"
-          name="boilerId"
-          placeholder="Boiler Id"
-          value={this.state.boilerId}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className={style.dateStyle}
-          type="date"
-          name="date"
-          placeholder="Date"
-          value={this.state.date}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="number"
-          name="estimatedTime"
-          placeholder="Estimated Time"
-          value={this.state.estimatedTime}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="maintenanceType"
-          placeholder="Maintenance Type"
-          value={this.state.maintenanceType}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className={style.btnSubmit}
-          type="submit"
-          value="Add Appointment"
-        ></input>
-      </form>
-    );
-  }
-}
+  return (
+    <form onSubmit={onSubmit}>
+      <input
+        className="inputStyle"
+        type="number"
+        name="id"
+        placeholder="Id"
+        defaultValue={appointment.id}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className="inputStyle"
+        type="number"
+        name="buildingId"
+        placeholder="Building Id"
+        defaultValue={appointment.buildingId}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className="inputStyle"
+        type="number"
+        name="boilerId"
+        placeholder="Boiler Id"
+        defaultValue={appointment.boilerId}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className="dateStyle"
+        type="date"
+        name="date"
+        placeholder="Date"
+        defaultValue={appointment.date}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className="inputStyle"
+        type="number"
+        name="estimatedTime"
+        placeholder="Estimated Time"
+        defaultValue={appointment.estimatedTime}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className="inputStyle"
+        type="text"
+        name="maintenanceType"
+        placeholder="Maintenance Type"
+        defaultValue={appointment.maintenanceType}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className="btnSubmit"
+        type="submit"
+        value="Add Appointment"
+      ></input>
+    </form>
+  );
+};
 
 AddAppointment.propTypes = {
   addAppointment: PropTypes.array.isRequired,
 };
-export default AddAppointment;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addAppoint: (content) => dispatch(addAppointment(content)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    appointment: state.appointments,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddAppointment);
