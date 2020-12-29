@@ -6,100 +6,113 @@ import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GoTrashcan } from "react-icons/go";
-import { delCustomer as delCustomerAction, updateCustomer as updateCustomerAction } from '../../../redux/actions/customerAction';
+import {
+  delCustomer as delCustomerAction,
+  updateCustomer as updateCustomerAction,
+} from "../../../redux/actions/customerAction";
 
-const Item =(props)=> {
-  
+const Item = (props) => {
   const [isEditing, toggleEditing] = useState(false);
-  const [customer, setCustomer] = useState({...props.customer});
+  const [customer, setCustomer] = useState({ ...props.customer });
 
   const toggleEdit = () => {
     setCustomer(props.customer);
     toggleEditing(!isEditing);
-  }
+  };
 
   const onChange = (e) => {
-    setCustomer({...customer, [e.target.name]: e.target.value});
-  }
-  
+    setCustomer({ ...customer, [e.target.name]: e.target.value });
+  };
+
   const saveChanges = () => {
     toggleEdit();
     props.updateCustomer(customer);
+  };
+
+  if (isEditing) {
+    return (
+      <ul className={styles.showForm}>
+        <input
+          className={styles.inputStyleEdt}
+          type="text"
+          name="id"
+          placeholder="Add a valid ID"
+          defaultValue={customer.id}
+          onChange={onChange}
+          required
+          readOnly
+        />
+        <input
+          className={styles.inputStyleEdt}
+          type="text"
+          name="customerType"
+          placeholder="Particular or Business"
+          defaultValue={customer.customerType}
+          onChange={onChange}
+          required
+        />
+        <input
+          className={styles.inputStyleEdt}
+          type="email"
+          name="email"
+          placeholder="ramiro@hotmail.com"
+          defaultValue={customer.email}
+          onChange={onChange}
+          required
+        />
+        <input
+          className={styles.inputStyleEdt}
+          type="text"
+          name="buildings"
+          placeholder="Add how many buildings you have"
+          defaultValue={customer.buildings}
+          onChange={onChange}
+          required
+        />
+        <input
+          className={styles.inputStyleEdt}
+          type="text"
+          name="fiscal_address"
+          placeholder="Cordoba 2020"
+          defaultValue={customer.fiscal_address}
+          onChange={onChange}
+          required
+        />
+        <div>
+          <button onClick={toggleEdit} className={styles.Btn}>
+            <FcCancel />
+          </button>
+          <button onClick={saveChanges} className={styles.Btn}>
+            <AiOutlineCheckCircle />
+          </button>
+        </div>
+      </ul>
+    );
   }
 
-    if (isEditing) {
-      return (
-        <ul className={styles.showForm}>
-          <input
-            className={styles.inputStyleEdt}
-            type="text"
-            name="id"
-            placeholder="Add a valid ID"
-            defaultValue={customer.id}
-            onChange={onChange}
-            required
-            readOnly
-          />
-          <input
-            className={styles.inputStyleEdt}
-            type="text"
-            name="customerType"
-            placeholder="Particular or Business"
-            defaultValue={customer.customerType}
-            onChange={onChange}
-            required
-          />
-          <input
-            className={styles.inputStyleEdt}
-            type="email"
-            name="email"
-            placeholder="ramiro@hotmail.com"
-            defaultValue={customer.email}
-            onChange={onChange}
-            required
-          />
-          <input
-            className={styles.inputStyleEdt}
-            type="text"
-            name="buildings"
-            placeholder="Add how many buildings you have"
-            defaultValue={customer.buildings}
-            onChange={onChange}
-            required
-          />
-          <input
-            className={styles.inputStyleEdt}
-            type="text"
-            name="fiscal_address"
-            placeholder="Cordoba 2020"
-            defaultValue={customer.fiscal_address}
-            onChange={onChange}
-            required
-          />
-          <div>
-          <button onClick={toggleEdit} className={styles.Btn}><FcCancel /></button>
-          <button onClick={saveChanges} className={styles.Btn}><AiOutlineCheckCircle/></button>
+  return (
+    <>
+      <ul className={styles.showForm}>
+        <li className={styles.liStyle}>{props.customer.id}</li>
+        <li className={styles.liStyle}>{props.customer.customerType}</li>
+        <li className={styles.liStyle}>{props.customer.email}</li>
+        <li className={styles.liStyle}>{props.customer.buildings}</li>
+        <li className={styles.liStyle}>{props.customer.fiscal_address}</li>
+        <div>
+          <button
+            onClick={() => props.delCustomer(props.customer.id)}
+            className={styles.Btn}
+          >
+            <GoTrashcan />
+          </button>
+          <button onClick={toggleEdit} className={styles.Btn}>
+            <BiPencil />
+          </button>
         </div>
-        </ul>
-      );
-    }
-
-    return (
-      <>
-        <ul  className={styles.showForm}>
-          <li className={styles.liStyle}>{props.customer.id}</li>
-          <li className={styles.liStyle}>{props.customer.customerType}</li>
-          <li className={styles.liStyle}>{props.customer.email}</li>
-          <li className={styles.liStyle}>{props.customer.buildings}</li>
-          <li className={styles.liStyle}>{props.customer.fiscal_address}</li>
-          <div>
-        <button onClick={() => props.delCustomer(props.customer.id)} className={styles.Btn}><GoTrashcan/></button>
-        <button onClick={toggleEdit} className={styles.Btn}><BiPencil/></button> 
-      </div>    
-        </ul>
-      </>
-    );
-}
+      </ul>
+    </>
+  );
+};
 
 Item.propTypes = {
   customer: PropTypes.object.isRequired,
@@ -109,15 +122,15 @@ Item.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    delCustomer: (number) => dispatch (delCustomerAction(number)),
-    updateCustomer: (content) => dispatch (updateCustomerAction(content))
+    delCustomer: (number) => dispatch(delCustomerAction(number)),
+    updateCustomer: (content) => dispatch(updateCustomerAction(content)),
   };
-}
+};
 
-const mapStateToProps = (state )=> {
-  return{
-    customers: state.customers
+const mapStateToProps = (state) => {
+  return {
+    customers: state.customers,
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);
