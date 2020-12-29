@@ -8,28 +8,9 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GoTrashcan } from "react-icons/go";
 import { deleteBoiler, editBoiler } from '../../../redux/actions/boilerActions'
 
-const Items = ({
-    boiler, 
-    isLoading,
-    error, 
-    addBoiler, 
-    deleteBoiler, 
-    editBoiler
-}) => {
+const Items = (props) => {
   const [isEditing, toggleEditing] = useState(false);
-  //const [boiler, setBoiler] = useState({...props.boiler});
-
-  useEffect(() => {
-    getBoilers();
-  }, [getBoilers]);
-
-  if (isLoading){
-    return <div>Loading...</div>
-  }
-
-  if (error){
-    return <div>ERROR!!</div>
-  }
+  const [boiler, setBoiler] = useState({...props.boiler});
 
   const toggleEdit = () => {
     setBoiler(props.boiler);
@@ -129,7 +110,7 @@ Items.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteBoiler: (number) => dispatch (deleteBoiler(number)),
+    deleteBoiler: (id) => dispatch (deleteBoiler(id)),
     editBoiler: (content) => dispatch (editBoiler(content))
   };
 }
