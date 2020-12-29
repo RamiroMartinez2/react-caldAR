@@ -22,8 +22,6 @@ const Bld = (props) => {
 };
 Bld.propTypes = {
   buildings: PropTypes.array.isRequired,
-  delBld: PropTypes.array.isRequired,
-  updateBuilding: PropTypes.array.isRequired,
 };
 
 export default Bld;

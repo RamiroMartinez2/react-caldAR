@@ -10,6 +10,7 @@ const Buildings = (props) => {
   return (
     <div className="App">
       <div className="container">
+        {" "}
         <HeaderBuilding />
         <Bld buildings={props.buildings} />
         <AddBuildings />

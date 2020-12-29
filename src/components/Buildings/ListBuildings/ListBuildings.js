@@ -12,6 +12,7 @@ import {
 } from "../../../redux/actions/buildingAction";
 
 const ListBuildings = (props) => {
+  console.log("listBuildings", props);
   const [isEditing, toggleEditing] = useState(false);
   const [building, setBuilding] = useState({ ...props.building });
 
@@ -101,9 +102,9 @@ const ListBuildings = (props) => {
 };
 
 ListBuildings.propTypes = {
-  building: PropTypes.object.isRequired,
-  delBuilding: PropTypes.array.isRequired,
-  updateBuilding: PropTypes.array.isRequired,
+  building: PropTypes.func,
+  delBuilding: PropTypes.func,
+  updateBuilding: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch) => {
