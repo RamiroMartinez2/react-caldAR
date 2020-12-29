@@ -108,14 +108,14 @@ AddTechnician.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTech: (content) => dispatch(addTechnician(content))
+    addTech: (content) => dispatch(addTechnician(content)),
   };
-}
+};
 
-const mapStateToProps = state => {
-  return{
-    technician: state.technicians
+const mapStateToProps = (state) => {
+  return {
+    technician: state.technicians,
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTechnician);
