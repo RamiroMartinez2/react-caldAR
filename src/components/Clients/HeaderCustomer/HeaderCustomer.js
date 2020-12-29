@@ -1,9 +1,9 @@
 import React from "react";
-import './HeaderCustomer.css'
+import styles from "./HeaderCustomer.module.css";
 
 function HeaderCustomer() {
   return (
-    <header className="headerStyle">
+    <header className={styles.headerStyle}>
       <h1>Customers</h1>
     </header>
   );

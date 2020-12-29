@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import Header from "../HeaderAppointment/HeaderAppointment"
 import Appointments from "../Appointment/Appointments";
 import mockAppointment from "../../../mocks/mocksAppointment.json";
 import AddAppointment from "../AddAppointment/AddAppointment";
+import style from "./MainAppointment.module.css"
 
 class MainAppointment extends Component {
   state = { mockAppointment };
@@ -50,13 +52,16 @@ class MainAppointment extends Component {
   };
   render() {
     return (
-      <div>
-        <Appointments
-          appointments={this.state.mockAppointment}
-          delAppointment={this.delAppointment}
-          updateAppointment={this.updateAppointment}
-        />
-        <AddAppointment addAppointment={this.addAppointment} />
+      <div className={style.App}>
+        <div className={style.container}>
+          <Header />
+          <Appointments
+            appointments={this.state.mockAppointment}
+            delAppointment={this.delAppointment}
+            updateAppointment={this.updateAppointment}
+          />
+          <AddAppointment addAppointment={this.addAppointment} />
+        </div>
       </div>
     );
   }

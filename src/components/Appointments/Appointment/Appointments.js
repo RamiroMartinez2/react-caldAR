@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import ListAppointment from "../ListAppointment/ListAppointment";
 import PropTypes from "prop-types";
-import "./Appointment.css";
+import style from"./Appointment.module.css";
 
 class Appointments extends Component {
   render() {
     return (
       <div>
-        <ul className="ulStyle">
-          <li className="liStyleHeader">Id</li>
-          <li className="liStyleHeader">Building Id</li>
-          <li className="liStyleHeader">Boiler Id</li>
-          <li className="liStyleHeader">Date</li>
-          <li className="liStyleHeader">Estimated Time</li>
-          <li className="liStyleHeader">Maintenance Type</li>
-          <li className="liStyleHeader">Actions</li>
+        <ul className={style.ulStyle}>
+          <li className={style.liStyleHeader}>Id</li>
+          <li className={style.liStyleHeader}>Building Id</li>
+          <li className={style.liStyleHeader}>Boiler Id</li>
+          <li className={style.liStyleHeader}>Date</li>
+          <li className={style.liStyleHeader}>Estimated Time</li>
+          <li className={style.liStyleHeader}>Maintenance Type</li>
+          <li className={style.liStyleHeader}>Actions</li>
         </ul>
         {this.props.appointments.map((appointments) => (
           <ListAppointment

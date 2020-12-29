@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import BoilerType from "../BoilerType/BoilerType";
 import mockBoilerType from "../../../mocks/mocksBoilerType.json";
 import AddBoilerType from "../AddBoilerType/AddBoilerType";
+import Header from "../HeaderBoilerType/HeaderBoilerType"
+import style from "./MainBoilerType.module.css"
 
 class MainBoilerType extends Component {
   state = { mockBoilerType };
@@ -43,13 +45,16 @@ class MainBoilerType extends Component {
 
   render() {
     return (
-      <div>
-        <BoilerType
-          boilerList={this.state.mockBoilerType}
-          delBoilerType={this.delBoilerType}
-          updateBoilerType={this.updateBoilerType}
-        />
-        <AddBoilerType addBoilerType={this.addBoilerType} />
+      <div className={style.App}>
+        <div className={style.container}>
+          <Header />
+          <BoilerType
+            boilerList={this.state.mockBoilerType}
+            delBoilerType={this.delBoilerType}
+            updateBoilerType={this.updateBoilerType}
+          />
+          <AddBoilerType addBoilerType={this.addBoilerType} />
+        </div>
       </div>
     );
   }
