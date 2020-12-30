@@ -8,7 +8,7 @@ import MainBoiler from "./components/Boilers/MainBoiler/MainBoiler";
 import MainTechnician from "./components/Technicians/MainTechnician/MainTechnician";
 import MainCustomers from "./components/Clients/MainCustomers/MainCustomers";
 import MainBoilerType from "./components/BoilerType/MainBoilerType/MainBoilerType";
-import Buildings from "../src/components/Buildings/Buildings/Buildings";
+import Buildings from "./components/Buildings/Buildings/Buildings";
 
 const App = () => {
   return (
@@ -21,10 +21,8 @@ const App = () => {
           <Route path="/technician" component={MainTechnician} />
           <Route path="/appointments" component={MainAppointment} />
           <Route path="/boilersTypes" component={MainBoilerType} />
+          <Route path="/buildings" component={Buildings} />
           <Route path="/" exact component={Main} />
-        </Switch>
-        <Switch>
-          <Route path="/buildings" exact component={Buildings} />
         </Switch>
       </div>
     </Router>
