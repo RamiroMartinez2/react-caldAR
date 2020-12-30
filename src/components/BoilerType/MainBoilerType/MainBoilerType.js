@@ -1,63 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
+import Header from "../HeaderBoilerType/HeaderBoilerType";
 import BoilerType from "../BoilerType/BoilerType";
-import mockBoilerType from "../../../mocks/mocksBoilerType.json";
 import AddBoilerType from "../AddBoilerType/AddBoilerType";
-import Header from "../HeaderBoilerType/HeaderBoilerType"
-import style from "./MainBoilerType.module.css"
+import { connect } from "react-redux";
+import style from "./MainBoilerType.module.css";
+import PropTypes from "prop-types";
 
-class MainBoilerType extends Component {
-  state = { mockBoilerType };
-
-  delBoilerType = (id) => {
-    this.setState({
-      mockBoilerType: [
-        ...this.state.mockBoilerType.filter(
-          (boilerType) => boilerType.id !== id
-        ),
-      ],
-    });
-  };
-
-  updateBoilerType = (boilerTypeUpdated) => {
-    this.setState({
-      mockBoilerType: [
-        ...this.state.mockBoilerType.map((boilerType) => {
-          if (boilerType.id === boilerTypeUpdated.id) {
-            boilerType = boilerTypeUpdated;
-          }
-          return boilerType;
-        }),
-      ],
-    });
-  };
-
-  addBoilerType = ({ id, skillsId, description, stock }) => {
-    const newBoilerType = {
-      id,
-      skillsId,
-      description,
-      stock,
-    };
-    this.setState({
-      mockBoilerType: [...this.state.mockBoilerType, newBoilerType],
-    });
-  };
-
-  render() {
-    return (
-      <div className={style.App}>
-        <div className={style.container}>
-          <Header />
-          <BoilerType
-            boilerList={this.state.mockBoilerType}
-            delBoilerType={this.delBoilerType}
-            updateBoilerType={this.updateBoilerType}
-          />
-          <AddBoilerType addBoilerType={this.addBoilerType} />
-        </div>
+const MainBoilerType = (props) => {
+  return (
+    <div className={style.App}>
+      <div className={style.container}>
+        <Header />
+        <BoilerType boilerTypes={props.boilerTypes} />
+        <AddBoilerType />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+MainBoilerType.propTypes = {
+  boilerTypes: PropTypes.array.isRequired,
+};
 
-export default MainBoilerType;
+const mapStateToProps = ({ boilerTypes }) => {
+  return { boilerTypes };
+};
+
+export default connect(mapStateToProps)(MainBoilerType);
