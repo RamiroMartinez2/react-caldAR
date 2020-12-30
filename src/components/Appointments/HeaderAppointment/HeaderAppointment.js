@@ -6,7 +6,7 @@ function Header() {
     <header className={style.headerStyle}>
       <h1>Appointments</h1>
     </header>
-  )
+  );
 }
 
 export default Header;

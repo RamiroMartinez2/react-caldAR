@@ -8,8 +8,8 @@ export const addAppointment = (content) => ({
   type: ADD_APPOINTMENT,
   payload: {
     id: Math.floor(Math.random() * 101),
-    ...content
-  }
+    ...content,
+  },
 });
 
 export const deleteAppointment = (id) => ({
