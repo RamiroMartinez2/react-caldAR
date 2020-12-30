@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import style from "./AddBoilerType.module.css";
 import PropTypes from "prop-types";
-import { addBoilerType } from '../../../redux/actions/boilerTypeActions';
+import { addBoilerType } from "../../../redux/actions/boilerTypeActions";
 
 const AddBoilerType = (props) => {
-  const [boilerType, setNewBoilerType] = useState ({
+  const [boilerType, setNewBoilerType] = useState({
     skillsId: "",
     description: "",
     stock: "",
   });
 
-  const onChange = (e) => setNewBoilerType({...boilerType, [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setNewBoilerType({ ...boilerType, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addBoilerType(boilerType)
+    props.addBoilerType(boilerType);
     setNewBoilerType({
       skillsId: "",
       description: "",
@@ -59,7 +60,7 @@ const AddBoilerType = (props) => {
       ></input>
     </form>
   );
-}
+};
 
 AddBoilerType.propTypes = {
   addBoilerType: PropTypes.func.isRequired,
@@ -67,14 +68,14 @@ AddBoilerType.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addBoilerType: (content) => dispatch(addBoilerType(content))
+    addBoilerType: (content) => dispatch(addBoilerType(content)),
   };
-}
+};
 
-const mapStateToProps = state => {
-  return{
-    boilerType: state.boilerTypes
+const mapStateToProps = (state) => {
+  return {
+    boilerType: state.boilerTypes,
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddBoilerType);

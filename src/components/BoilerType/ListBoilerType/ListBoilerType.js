@@ -1,24 +1,26 @@
 import React, { useState } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { GoTrashcan } from "react-icons/go";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { FcCancel } from "react-icons/fc";
-import { BiPencil } from "react-icons/bi"
+import { BiPencil } from "react-icons/bi";
 import style from "./ListBoilerType.module.css";
-import { deleteBoilerType, editBoilerType } from '../../../redux/actions/boilerTypeActions'
+import {
+  deleteBoilerType,
+  editBoilerType,
+} from "../../../redux/actions/boilerTypeActions";
 
 const ListBoilerType = (props) => {
-
   const [isEditing, toggleEditing] = useState(false);
-  const [boilerType, setBoilerType] = useState({...props.boilerType});
-  
+  const [boilerType, setBoilerType] = useState({ ...props.boilerType });
+
   const toggleEdit = () => {
     setBoilerType(props.boilerType);
     toggleEditing(!isEditing);
   };
   const onChange = (e) => {
-    setBoilerType({...boilerType, [e.target.name]: e.target.value });
+    setBoilerType({ ...boilerType, [e.target.name]: e.target.value });
   };
 
   const saveChanges = () => {
@@ -80,17 +82,20 @@ const ListBoilerType = (props) => {
         <li className={style.liStyle}>{props.boilerType.id}</li>
         <li className={style.liStyle}>{props.boilerType.skillsId}</li>
         <li className={style.liStyle}>{props.boilerType.description}</li>
-        <li className={style.liStyle}>{props.boilerType.stock}</li>          
+        <li className={style.liStyle}>{props.boilerType.stock}</li>
         <button onClick={toggleEdit} className={style.Btn}>
           <BiPencil />
         </button>
-        <button onClick={() => props.deleteBoilerType(props.boilerType.id)} className={style.Btn}>
+        <button
+          onClick={() => props.deleteBoilerType(props.boilerType.id)}
+          className={style.Btn}
+        >
           <GoTrashcan />
         </button>
       </ul>
     </div>
   );
-}
+};
 
 ListBoilerType.propTypes = {
   boilerType: PropTypes.object.isRequired,
@@ -100,15 +105,15 @@ ListBoilerType.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteBoilerType: (id) => dispatch (deleteBoilerType(id)),
-    editBoilerType: (content) => dispatch (editBoilerType(content))
+    deleteBoilerType: (id) => dispatch(deleteBoilerType(id)),
+    editBoilerType: (content) => dispatch(editBoilerType(content)),
   };
-}
+};
 
-const mapStateToProps = state => {
-  return{
-    boilerTypes: state.boilerTypes
+const mapStateToProps = (state) => {
+  return {
+    boilerTypes: state.boilerTypes,
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListBoilerType);
