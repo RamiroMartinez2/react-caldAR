@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { GoTrashcan } from "react-icons/go";
 import { FcCancel } from "react-icons/fc";
+import { GoTrashcan } from "react-icons/go";
 import { AiOutlineCheckCircle, AiFillEdit } from "react-icons/ai";
-import "./ListAppointment.css";
+import styles from "./ListAppointment.module.css";
 import { connect } from "react-redux";
 import {
   deleteAppointment as delAppointment,
@@ -30,9 +30,9 @@ const ListAppointment = (props) => {
 
   if (isEditing) {
     return (
-      <ul className="showForm">
+      <ul className={styles.showForm}>
         <input
-          className="inputStyle"
+          className={styles.inputStyle}
           type="number"
           name="id"
           placeholder="Id"
@@ -41,7 +41,7 @@ const ListAppointment = (props) => {
           required
         ></input>
         <input
-          className="inputStyle"
+          className={styles.inputStyle}
           type="number"
           name="buildingId"
           placeholder="Building Id"
@@ -50,7 +50,7 @@ const ListAppointment = (props) => {
           required
         ></input>
         <input
-          className="inputStyle"
+          className={styles.inputStyle}
           type="number"
           name="boilerId"
           placeholder="Boiler Id"
@@ -59,7 +59,7 @@ const ListAppointment = (props) => {
           required
         ></input>
         <input
-          className="inputStyle"
+          className={styles.dateStyle}
           type="date"
           name="date"
           placeholder="Date"
@@ -68,7 +68,7 @@ const ListAppointment = (props) => {
           required
         ></input>
         <input
-          className="inputStyle"
+          className={styles.inputStyle}
           type="number"
           name="estimatedTime"
           placeholder="Estimated Time"
@@ -77,7 +77,7 @@ const ListAppointment = (props) => {
           required
         ></input>
         <input
-          className="inputStyle"
+          className={styles.inputStyle}
           type="text"
           name="maintenanceType"
           placeholder="Maintenance Type"
@@ -86,10 +86,10 @@ const ListAppointment = (props) => {
           required
         ></input>
         <div>
-          <button onClick={toggleEdit} className="Btn">
+          <button onClick={toggleEdit} className={styles.Btn}>
             <FcCancel />
           </button>
-          <button onClick={saveChanges} className="Btn">
+          <button onClick={saveChanges} className={styles.Btn}>
             <AiOutlineCheckCircle />
           </button>
         </div>
@@ -100,20 +100,20 @@ const ListAppointment = (props) => {
   return (
     <div>
       <ul className="showForm">
-        <li className="liStyle">{props.appointments.id}</li>
-        <li className="liStyle">{props.appointments.buildingId}</li>
-        <li className="liStyle">{props.appointments.boilerId}</li>
-        <li className="liStyle">{props.appointments.date}</li>
-        <li className="liStyle">{props.appointments.estimatedTime}</li>
-        <li className="liStyle">{props.appointments.maintenanceType}</li>
+        <li className={styles.liStyle}>{props.appointments.id}</li>
+        <li className={styles.liStyle}>{props.appointments.buildingId}</li>
+        <li className={styles.liStyle}>{props.appointments.boilerId}</li>
+        <li className={styles.liStyle}>{props.appointments.date}</li>
+        <li className={styles.liStyle}>{props.appointments.estimatedTime}</li>
+        <li className={styles.liStyle}>{props.appointments.maintenanceType}</li>
         <div>
           <button
             onClick={() => props.delAppointment(props.appointments.id)}
-            className="Btn"
+            className={styles.Btn}
           >
-            <MdDelete />
+            <GoTrashcan />
           </button>
-          <button onClick={toggleEdit} className="Btn">
+          <button onClick={toggleEdit} className={styles.Btn}>
             <AiFillEdit />
           </button>
         </div>

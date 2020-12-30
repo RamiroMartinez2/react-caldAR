@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AddAppointment.css";
+import styles from "./AddAppointment.module.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addAppointment } from "../../../redux/actions/actions";
@@ -33,9 +33,9 @@ const AddAppointment = (props) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className={styles.addForm} onSubmit={onSubmit}>
       <input
-        className="inputStyle"
+        className={styles.inputStyle}
         type="number"
         name="id"
         placeholder="Id"
@@ -44,7 +44,7 @@ const AddAppointment = (props) => {
         required
       ></input>
       <input
-        className="inputStyle"
+        className={styles.inputStyle}
         type="number"
         name="buildingId"
         placeholder="Building Id"
@@ -53,7 +53,7 @@ const AddAppointment = (props) => {
         required
       ></input>
       <input
-        className="inputStyle"
+        className={styles.inputStyle}
         type="number"
         name="boilerId"
         placeholder="Boiler Id"
@@ -62,7 +62,7 @@ const AddAppointment = (props) => {
         required
       ></input>
       <input
-        className="dateStyle"
+        className={styles.dateStyles}
         type="date"
         name="date"
         placeholder="Date"
@@ -71,7 +71,7 @@ const AddAppointment = (props) => {
         required
       ></input>
       <input
-        className="inputStyle"
+        className={styles.inputStyle}
         type="number"
         name="estimatedTime"
         placeholder="Estimated Time"
@@ -80,7 +80,7 @@ const AddAppointment = (props) => {
         required
       ></input>
       <input
-        className="inputStyle"
+        className={styles.inputStyle}
         type="text"
         name="maintenanceType"
         placeholder="Maintenance Type"
@@ -89,7 +89,7 @@ const AddAppointment = (props) => {
         required
       ></input>
       <input
-        className="btnSubmit"
+        className={styles.btnSubmit}
         type="submit"
         value="Add Appointment"
       ></input>
