@@ -1,128 +1,144 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { GoTrashcan } from "react-icons/go";
 import { FcCancel } from "react-icons/fc";
-import { AiOutlineCheckCircle } from "react-icons/ai";
-import { BiPencil } from "react-icons/bi";
-import style from "./ListAppointment.module.css";
+import { GoTrashcan } from "react-icons/go";
+import { AiOutlineCheckCircle, AiFillEdit } from "react-icons/ai";
+import styles from "./ListAppointment.module.css";
+import { connect } from "react-redux";
+import {
+  deleteAppointment as delAppointment,
+  updateAppointment as updAppoint,
+} from "../../../redux/actions/actions";
 
-class ListAppointment extends Component {
-  state = { ...this.props.appointments, isEditing: false };
+const ListAppointment = (props) => {
+  const [isEditing, toggleEditing] = useState(false);
+  const [appointments, setAppointment] = useState({ ...props.appointments });
 
-  toggleEditing = () => {
-    this.setState({ isEditing: !this.state.isEditing });
+  const toggleEdit = () => {
+    setAppointment(props.appointments);
+    toggleEditing(!isEditing);
   };
 
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  const onChange = (e) => {
+    setAppointment({ ...appointments, [e.target.name]: e.target.value });
   };
 
-  saveChanges = () => {
-    this.toggleEditing();
-    this.props.updateAppointment(this.state);
+  const saveChanges = () => {
+    toggleEdit();
+    props.updAppoint(appointments);
   };
 
-  render() {
-    const { id } = this.props.appointments;
-    if (this.state.isEditing) {
-      return (
-        <ul onSubmit={this.onSubmit}>
-          <input
-            className={style.inputStyle}
-            type="number"
-            name="id"
-            placeholder="Id"
-            value={this.state.id}
-            onChange={this.onChange}
-            required
-          ></input>
-          <input
-            className={style.inputStyle}
-            type="number"
-            name="buildingId"
-            placeholder="Building Id"
-            value={this.state.buildingId}
-            onChange={this.onChange}
-            required
-          ></input>
-          <input
-            className={style.inputStyle}
-            type="number"
-            name="boilerId"
-            placeholder="Boiler Id"
-            value={this.state.boilerId}
-            onChange={this.onChange}
-            required
-          ></input>
-          <input
-            className={style.inputStyle}
-            type="date"
-            name="date"
-            placeholder="Date"
-            value={this.state.date}
-            onChange={this.onChange}
-            required
-          ></input>
-          <input
-            className={style.inputStyle}
-            type="number"
-            name="estimatedTime"
-            placeholder="Estimated Time"
-            value={this.state.estimatedTime}
-            onChange={this.onChange}
-            required
-          ></input>
-          <input
-            className={style.inputStyle}
-            type="text"
-            name="maintenanceType"
-            placeholder="Maintenance Type"
-            value={this.state.maintenanceType}
-            onChange={this.onChange}
-            required
-          ></input>
-          <div>
-            <button onClick={this.toggleEditing} className={style.Btn}>
-              <FcCancel />
-            </button>
-            <button onClick={this.saveChanges} className={style.Btn}>
-              <AiOutlineCheckCircle />
-            </button>
-          </div>
-        </ul>
-      );
-    }
-
+  if (isEditing) {
     return (
-      <div>
-        <ul className={style.showForm}>
-          <li className={style.liStyle}>{this.props.appointments.id}</li>
-          <li className={style.liStyle}>{this.props.appointments.buildingId}</li>
-          <li className={style.liStyle}>{this.props.appointments.boilerId}</li>
-          <li className={style.liStyle}>{this.props.appointments.date}</li>
-          <li className={style.liStyle}>{this.props.appointments.estimatedTime}</li>
-          <li className={style.liStyle}>{this.props.appointments.maintenanceType}</li>
-          <div>
-            <button
-              onClick={this.props.delAppointment.bind(this, id)}
-              className={style.Btn}
-            >
-              <GoTrashcan />
-            </button>
-            <button onClick={this.toggleEditing} className={style.Btn}>
-              <BiPencil />
-            </button>
-          </div>
-        </ul>
-      </div>
+      <ul className={styles.showForm}>
+        <input
+          className={styles.inputStyle}
+          type="number"
+          name="id"
+          placeholder="Id"
+          value={appointments.id}
+          onChange={onChange}
+          required
+        ></input>
+        <input
+          className={styles.inputStyle}
+          type="number"
+          name="buildingId"
+          placeholder="Building Id"
+          value={appointments.buildingId}
+          onChange={onChange}
+          required
+        ></input>
+        <input
+          className={styles.inputStyle}
+          type="number"
+          name="boilerId"
+          placeholder="Boiler Id"
+          value={appointments.boilerId}
+          onChange={onChange}
+          required
+        ></input>
+        <input
+          className={styles.dateStyle}
+          type="date"
+          name="date"
+          placeholder="Date"
+          value={appointments.date}
+          onChange={onChange}
+          required
+        ></input>
+        <input
+          className={styles.inputStyle}
+          type="number"
+          name="estimatedTime"
+          placeholder="Estimated Time"
+          value={appointments.estimatedTime}
+          onChange={onChange}
+          required
+        ></input>
+        <input
+          className={styles.inputStyle}
+          type="text"
+          name="maintenanceType"
+          placeholder="Maintenance Type"
+          value={appointments.maintenanceType}
+          onChange={onChange}
+          required
+        ></input>
+        <div>
+          <button onClick={toggleEdit} className={styles.Btn}>
+            <FcCancel />
+          </button>
+          <button onClick={saveChanges} className={styles.Btn}>
+            <AiOutlineCheckCircle />
+          </button>
+        </div>
+      </ul>
     );
   }
-}
 
-ListAppointment.propTypes = {
-  appointments: PropTypes.object.isRequired,
-  delAppointment: PropTypes.array.isRequired,
-  updateAppointment: PropTypes.array.isRequired,
+  return (
+    <div>
+      <ul className="showForm">
+        <li className={styles.liStyle}>{props.appointments.id}</li>
+        <li className={styles.liStyle}>{props.appointments.buildingId}</li>
+        <li className={styles.liStyle}>{props.appointments.boilerId}</li>
+        <li className={styles.liStyle}>{props.appointments.date}</li>
+        <li className={styles.liStyle}>{props.appointments.estimatedTime}</li>
+        <li className={styles.liStyle}>{props.appointments.maintenanceType}</li>
+        <div>
+          <button
+            onClick={() => props.delAppointment(props.appointments.id)}
+            className={styles.Btn}
+          >
+            <GoTrashcan />
+          </button>
+          <button onClick={toggleEdit} className={styles.Btn}>
+            <AiFillEdit />
+          </button>
+        </div>
+      </ul>
+    </div>
+  );
 };
 
-export default ListAppointment;
+ListAppointment.propTypes = {
+  appointments: PropTypes.array.isRequired,
+  delAppointment: PropTypes.func.isRequired,
+  updAppoint: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    delAppointment: (id) => dispatch(delAppointment(id)),
+    updAppoint: (content) => dispatch(updAppoint(content)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    appointment: state.appointment,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListAppointment);
