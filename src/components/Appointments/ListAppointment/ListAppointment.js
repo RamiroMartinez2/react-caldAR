@@ -25,7 +25,7 @@ const ListAppointment = (props) => {
 
   const saveChanges = () => {
     toggleEdit();
-    props.updAppoint(appointments);
+    props.updateAppointment(appointments);
   };
 
   if (isEditing) {
@@ -108,7 +108,7 @@ const ListAppointment = (props) => {
         <li className={styles.liStyle}>{props.appointments.maintenanceType}</li>
         <div>
           <button
-            onClick={() => props.delAppointment(props.appointments._id)}
+            onClick={() => props.deleteAppointment(props.appointments._id)}
             className={styles.Btn}
           >
             <GoTrashcan />
@@ -124,8 +124,8 @@ const ListAppointment = (props) => {
 
 ListAppointment.propTypes = {
   appointments: PropTypes.object.isRequired,
-  delAppointment: PropTypes.func.isRequired,
-  updAppoint: PropTypes.func.isRequired,
+  deleteAppointment: PropTypes.func.isRequired,
+  updateAppointment: PropTypes.func.isRequired,
 };
 
 export default ListAppointment;
