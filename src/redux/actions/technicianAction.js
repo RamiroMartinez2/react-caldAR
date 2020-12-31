@@ -12,7 +12,7 @@ import {
   UPDATE_TECH_FULLFILLED,
   UPDATE_TECH_REJECTED } from '../types/technicianTypes';
 
-const URL = "https://localhost:4000/technicians";
+const URL = "https://be-caldar.herokuapp.com/technicians";
 
 const getTechniciansFetching = () => ({
   type: GET_TECHNICIANS_FETCHING
