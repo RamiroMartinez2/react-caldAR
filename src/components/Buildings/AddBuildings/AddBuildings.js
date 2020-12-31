@@ -1,21 +1,24 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./AddBuilding.css";
 import PropTypes from "prop-types";
+import { addBuilding as addBuildingAction } from "../../../redux/actions/buildingAction";
+import { connect } from "react-redux";
 
-export class AddBuilding extends Component {
-  state = {
+const AddBuilding = (props) => {
+  const [building, setNewBuilding] = useState({
     address: "",
     boilersId: "",
     fullName: "",
     phone: "",
-  };
+  });
 
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setNewBuilding({ ...building, [e.target.name]: e.target.value });
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    this.props.addBld(this.state);
-    this.setState({
+    props.addBuilding(building);
+    setNewBuilding({
       address: "",
       boilersId: "",
       fullName: "",
@@ -23,49 +26,59 @@ export class AddBuilding extends Component {
     });
   };
 
-  render() {
-    return (
-      <form className="addForm" onSubmit={this.onSubmit}>
-        <input
-          className="inputStyle"
-          type="text"
-          name="address"
-          placeholder="Address"
-          value={this.state.address}
-          onChange={this.onChange}
-        ></input>
-        <input
-          className="inputStyle"
-          type="number"
-          name="boilersId"
-          placeholder="Boiler Type"
-          value={this.state.boilersId}
-          onChange={this.onChange}
-        ></input>
-        <input
-          className="inputStyle"
-          type="text"
-          name="fullName"
-          placeholder="Name"
-          value={this.state.fullName}
-          onChange={this.onChange}
-        ></input>
-        <input
-          className="inputStyle"
-          type="text"
-          name="phone"
-          placeholder="Phone"
-          value={this.state.phone}
-          onChange={this.onChange}
-        ></input>
-        <input className="btnSubmit" type="submit" value="Add New"></input>
-      </form>
-    );
-  }
-}
-
-AddBuilding.propTypes = {
-  addBld: PropTypes.array.isRequired,
+  return (
+    <form className="addForm" onSubmit={onSubmit}>
+      <input
+        className="inputStyle"
+        type="text"
+        name="address"
+        placeholder="Address"
+        value={building.address}
+        onChange={onChange}
+      ></input>
+      <input
+        className="inputStyle"
+        type="number"
+        name="boilersId"
+        placeholder="Boiler Type"
+        value={building.boilersId}
+        onChange={onChange}
+      ></input>
+      <input
+        className="inputStyle"
+        type="text"
+        name="fullName"
+        placeholder="Name"
+        value={building.fullName}
+        onChange={onChange}
+      ></input>
+      <input
+        className="inputStyle"
+        type="text"
+        name="phone"
+        placeholder="Phone"
+        value={building.phone}
+        onChange={onChange}
+      ></input>
+      <input className="btnSubmit" type="submit" value="Add New"></input>
+    </form>
+  );
 };
 
-export default AddBuilding;
+AddBuilding.propTypes = {
+  addBuilding: PropTypes.array.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addBuilding: (content) => dispatch(addBuildingAction(content)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    buildings: state.buildings,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddBuilding);

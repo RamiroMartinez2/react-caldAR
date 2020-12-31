@@ -1,5 +1,5 @@
 import React from "react";
-import style from"./HeaderBoilerType.module.css";
+import style from "./HeaderBoilerType.module.css";
 
 function Header() {
   return (

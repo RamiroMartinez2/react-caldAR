@@ -1,70 +1,25 @@
-import React, { Component } from "react";
-import Header from "../HeaderAppointment/HeaderAppointment"
+import React from "react";
 import Appointments from "../Appointment/Appointments";
-import mockAppointment from "../../../mocks/mocksAppointment.json";
 import AddAppointment from "../AddAppointment/AddAppointment";
-import style from "./MainAppointment.module.css"
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-class MainAppointment extends Component {
-  state = { mockAppointment };
-  delAppointment = (id) => {
-    this.setState({
-      mockAppointment: [
-        ...this.state.mockAppointment.filter(
-          (appointment) => appointment.id !== id
-        ),
-      ],
-    });
-  };
+const MainAppointment = (props) => {
+  return (
+    <div>
+      {" "}
+      <Appointments appointments={props.appointments} />
+      <AddAppointment />
+    </div>
+  );
+};
 
-  updateAppointment = (appointmentUpdated) => {
-    this.setState({
-      mockAppointment: [
-        ...this.state.mockAppointment.map((appointment) => {
-          if (appointment.id === appointmentUpdated.id) {
-            appointment = appointmentUpdated;
-          }
-          return appointment;
-        }),
-      ],
-    });
-  };
+MainAppointment.propTypes = {
+  appointments: PropTypes.array.isRequired,
+};
 
-  addAppointment = ({
-    id,
-    buildingId,
-    boilerId,
-    date,
-    estimatedTime,
-    maintenanceType,
-  }) => {
-    const newAppointment = {
-      id,
-      buildingId,
-      boilerId,
-      date,
-      estimatedTime,
-      maintenanceType,
-    };
-    this.setState({
-      mockAppointment: [...this.state.mockAppointment, newAppointment],
-    });
-  };
-  render() {
-    return (
-      <div className={style.App}>
-        <div className={style.container}>
-          <Header />
-          <Appointments
-            appointments={this.state.mockAppointment}
-            delAppointment={this.delAppointment}
-            updateAppointment={this.updateAppointment}
-          />
-          <AddAppointment addAppointment={this.addAppointment} />
-        </div>
-      </div>
-    );
-  }
-}
+const mapStateToProps = ({ appointments }) => {
+  return { appointments };
+};
 
-export default MainAppointment;
+export default connect(mapStateToProps)(MainAppointment);

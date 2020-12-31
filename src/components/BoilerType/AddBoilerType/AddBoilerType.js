@@ -1,66 +1,81 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import style from "./AddBoilerType.module.css";
 import PropTypes from "prop-types";
-export class AddBoilerType extends Component {
-  state = {
+import { addBoilerType } from "../../../redux/actions/boilerTypeActions";
+
+const AddBoilerType = (props) => {
+  const [boilerType, setNewBoilerType] = useState({
     skillsId: "",
     description: "",
     stock: "",
-  };
+  });
 
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setNewBoilerType({ ...boilerType, [e.target.name]: e.target.value });
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    this.props.addBoilerType(this.state);
-    this.setState({
+    props.addBoilerType(boilerType);
+    setNewBoilerType({
       skillsId: "",
       description: "",
       stock: "",
     });
   };
 
-  render() {
-    return (
-      <form className={style.addForm} onSubmit={this.onSubmit}>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="skillsId"
-          placeholder="Skills ID"
-          value={this.state.skillsId}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="description"
-          placeholder="Description"
-          value={this.state.description}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="stock"
-          placeholder="Stock"
-          value={this.state.stock}
-          onChange={this.onChange}
-          required
-        ></input>
-        <input
-          className={style.btnSubmit}
-          type="submit"
-          value="Add new Boiler Type"
-        ></input>
-      </form>
-    );
-  }
-}
+  return (
+    <form className={style.addForm} onSubmit={onSubmit}>
+      <input
+        className={style.inputStyle}
+        type="text"
+        name="skillsId"
+        placeholder="Skills ID"
+        value={boilerType.skillsId}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className={style.inputStyle}
+        type="text"
+        name="description"
+        placeholder="Description"
+        value={boilerType.description}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className={style.inputStyle}
+        type="text"
+        name="stock"
+        placeholder="Stock"
+        value={boilerType.stock}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        className={style.btnSubmit}
+        type="submit"
+        value="Add new Boiler Type"
+      ></input>
+    </form>
+  );
+};
 
 AddBoilerType.propTypes = {
-  addBoilerType: PropTypes.array.isRequired,
+  addBoilerType: PropTypes.func.isRequired,
 };
-export default AddBoilerType;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addBoilerType: (content) => dispatch(addBoilerType(content)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    boilerType: state.boilerTypes,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddBoilerType);
