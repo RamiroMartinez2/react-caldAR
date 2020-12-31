@@ -12,7 +12,7 @@ import {
   UPDATE_TECH_FULLFILLED,
   UPDATE_TECH_REJECTED } from '../types/technicianTypes';
 
-const URL = "https://be-caldar.herokuapp.com/technicians";
+const URL = "https://localhost:4000/technicians";
 
 const getTechniciansFetching = () => ({
   type: GET_TECHNICIANS_FETCHING
@@ -85,33 +85,26 @@ const deleteTechFetching = () => ({
   type: DELETE_TECH_FETCHING
 });
 
-const deleteTechFullfilled = content => ({
+const deleteTechFullfilled = (payload) => ({
   type: DELETE_TECH_FULLFILLED,
-  payload: content
+  payload,
 });
 
-const deleteTechRejected = error => ({
+const deleteTechRejected = () => ({
   type: DELETE_TECH_REJECTED,
-  payload: error
 });
 
-export const deleteTechAsync = id => dispatch => {
+export const deleteTechAsync = (id) => (dispatch) => {
   dispatch(deleteTechFetching());
   return fetch(`${URL}/${id}`, {method: 'DELETE'})
-      .then(data => data.json())
-      .then((json) => 
-      {
-          if (!json.code) 
-          {
-              dispatch(deleteTechFullfilled(id))
-          }
-          else
-          {
-              dispatch(deleteTechRejected(json))
-          }
-      })
-      .catch((error) => dispatch(deleteTechRejected(error)))
-}
+      .then((data) => data.json())
+      .then(() => {
+          dispatch(deleteTechFullfilled(id));
+  })
+  .catch(() => {
+    dispatch(deleteTechRejected());
+  });
+};
 
 const updateTechFetching = () => ({
   type: UPDATE_TECH_FETCHING

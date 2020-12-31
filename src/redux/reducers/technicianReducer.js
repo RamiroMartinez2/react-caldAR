@@ -73,7 +73,7 @@ switch(action.type) {
       return {
           ...state,
           isLoading: false,
-          list: [...state.list.filter(el => el._id !== action.payload)]
+          list: [...state.list.filter(technician => technician._id !== action.payload)]
       }
   }
   case DELETE_TECH_REJECTED: {
@@ -94,11 +94,11 @@ switch(action.type) {
       return {
           ...state,
           isLoading: false,
-          list: [...state.list.map(el => {
-              if (el._id === action.payload._id) {
-                  el = action.payload;
+          list: [...state.list.map(technician => {
+              if (technician._id === action.payload._id) {
+                technician = action.payload;
               }
-              return el;
+              return technician;
           })]
       }
   }
