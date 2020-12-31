@@ -1,14 +1,20 @@
-import React from "react";
-import TechItem from "../TechItem/TechItem";
-import style from "./ListTechnician.module.css";
-import PropTypes from "prop-types";
+import React from 'react';
+import TechItem from '../TechItem/TechItem';
+import style from './ListTechnician.module.css'
+import PropTypes from 'prop-types';
 
 const ListTechnicians = (props) => {
+
   const items = props.technicians.map((tech) => (
-    <TechItem key={tech.number} tech={tech} />
+    <TechItem
+      key={tech._id}
+      tech={tech}
+      deleteTechnician={props.deleteTechnician}
+      updateTechnician={props.updateTechnician}
+    />
   ));
 
-  return (
+  return(
     <div>
       <ul className={style.ulStyle}>
         <li className={style.liStyleHeader}>Id</li>
@@ -24,10 +30,12 @@ const ListTechnicians = (props) => {
       {items}
     </div>
   );
-};
+}
 
 ListTechnicians.propTypes = {
   technicians: PropTypes.array.isRequired,
-};
+  deleteTechnician: PropTypes.func.isRequired,
+  updateTechnician: PropTypes.func.isRequired,
+}
 
 export default ListTechnicians;
