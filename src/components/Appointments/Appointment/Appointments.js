@@ -1,7 +1,7 @@
 import React from "react";
 import ListAppointment from "../ListAppointment/ListAppointment";
 import PropTypes from "prop-types";
-import style from"./Appointment.module.css";
+//import style from"./Appointment.module.css";
 
 const Appointments = (props) => {
   const listAppointment = props.appointments.map((appointments) => (
