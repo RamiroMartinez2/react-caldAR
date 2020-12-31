@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Appointments from "../Appointment/Appointments";
 import AddAppointment from "../AddAppointment/AddAppointment";
+import Header from "../HeaderAppointment/HeaderAppointment";
+import style from "./MainAppointment.module.css"
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
