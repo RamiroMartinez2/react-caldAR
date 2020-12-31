@@ -2,7 +2,7 @@ import {
   ADD_APPOINTMENT,
   DELETE_APPOINTMENT,
   UPDATE_APPOINTMENT,
-} from "../types/types";
+} from "../types/appointmentTypes";
 import appointment from "../../mocks/mocksAppointment.json";
 
 const appointmentReducer = (state = appointment, action) => {

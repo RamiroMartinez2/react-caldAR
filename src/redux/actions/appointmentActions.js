@@ -2,7 +2,7 @@ import {
   ADD_APPOINTMENT,
   DELETE_APPOINTMENT,
   UPDATE_APPOINTMENT,
-} from "../types/types";
+} from "../types/appointmentTypes";
 
 export const addAppointment = (content) => ({
   type: ADD_APPOINTMENT,

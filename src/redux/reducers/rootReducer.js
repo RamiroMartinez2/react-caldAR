@@ -7,7 +7,6 @@ import boilerTypesReducer from './boilerTypesReducer'
 import appointmentReducer from "./appointmentsReducer";
 
 const rootReducer = combineReducers({
-  //here the reducers
   technicians: techReducer,
   customers: customerReducer,
   boilers: boilerReducer,

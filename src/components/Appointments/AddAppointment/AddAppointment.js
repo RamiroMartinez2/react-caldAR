@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./AddAppointment.module.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addAppointment } from "../../../redux/actions/actions";
+import { addAppointment } from "../../../redux/actions/appointmentActions";
 
 const AddAppointment = (props) => {
   const [appointments, setNewAppointment] = useState({

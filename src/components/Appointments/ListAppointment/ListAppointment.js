@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import {
   deleteAppointment as delAppointment,
   updateAppointment as updAppoint,
-} from "../../../redux/actions/actions";
+} from "../../../redux/actions/appointmentActions";
 
 const ListAppointment = (props) => {
   const [isEditing, toggleEditing] = useState(false);
