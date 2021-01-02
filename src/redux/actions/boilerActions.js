@@ -94,7 +94,6 @@ export const deleteBoiler = (id) => (dispatch) => {
   dispatch(deleteBoilerFetching());
   return fetch(`${URL}/${id}`, { method: "DELETE" })
     .then(function (data) {
-      console.log(data);
       return data.json;
     })
     .then(() => {
@@ -124,7 +123,7 @@ export const editBoiler = (content) => (dispatch) => {
   return fetch(`${URL}/${content._id}`, {
     method: "PUT",
     headers: {
-      Accept: "application/json",
+      'Accept': "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify(content),
