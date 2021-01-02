@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import styles from "./AddCustomer.module.css";
 import PropTypes from "prop-types";
-import { addCustomer as addCustomerAction } from "../../../redux/actions/customerAction";
-import { connect } from "react-redux";
+
 
 const AddCustomer = (props) => {
   const [customer, setNewCustomer] = useState({
@@ -82,16 +81,4 @@ AddCustomer.propTypes = {
   addCustomer: PropTypes.object.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addCustomer: (content) => dispatch(addCustomerAction(content)),
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    customer: state.customers,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddCustomer);
+export default AddCustomer;

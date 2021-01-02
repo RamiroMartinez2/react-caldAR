@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./Item.module.css";
 import { connect } from "react-redux";
@@ -17,14 +17,17 @@ const Item =(props)=> {
   const [isEditing, toggleEditing] = useState(false);
   const [customer, setCustomer] = useState({...props.customer});
 
-  const toggleEdit = () => {
+  const cancelClick = () => {
+    toggleEditing();
     setCustomer(props.customer);
+  }
+
+  const toggleEdit = () => {
     toggleEditing(!isEditing);
   };
 
 
   const saveChanges = () => {
-    toggleEdit();
     props.updateCustomer(customer);
   };
   
@@ -42,9 +45,7 @@ const Item =(props)=> {
             type="text"
             name="id"
             placeholder="Add a valid ID"
-            defaultValue={customer.id}
-            onChange={onChange}
-            required
+            defaultValue={customer._id}
             readOnly
           />
           <input
@@ -84,7 +85,7 @@ const Item =(props)=> {
             required
           />
           <div>
-          <button onClick={toggleEdit} className={styles.Btn}><FcCancel /></button>
+          <button onClick={cancelClick} className={styles.Btn}><FcCancel /></button>
           <button onClick={saveChanges} className={styles.Btn}><AiOutlineCheckCircle/></button>
         </div>
         </ul>

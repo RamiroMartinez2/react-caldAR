@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AddCustomer from "../AddCustomer/AddCustomer";
 import Customers from "../Customers/Customers";
 import HeaderCustomer from "../HeaderCustomer/HeaderCustomer";
