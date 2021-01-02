@@ -1,10 +1,7 @@
-<<<<<<< HEAD
+
 export const ADD_BOILER = "ADD_BOILER";
 export const DELETE_BOILER = "DELETE_BOILER";
 export const EDIT_BOILER = "EDIT_BOILER";
-=======
-  
-export const ADD_BOILER = "ADD_BOILER";
-export const DELETE_BOILER = "DELETE_BOILER";
-export const EDIT_BOILER = "EDIT_BOILER";
->>>>>>> 43c33db... add types, actions and reducers for boiler
+export const GET_BOILERS_FETCHING = "GET_BOILERS_FETCHING";
+export const GET_BOILERS_FULFILLED = "GET_BOILERS_FULFILLED";
+export const GET_BOILERS_REJECTED = "GET_BOILERS_REJECTED";
