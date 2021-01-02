@@ -9,6 +9,8 @@ const Boilers = (props) => {
     <Items
       key={boiler.id} 
       boiler={boiler}
+      deleteBoiler={props.deleteBoiler}
+      editBoiler={props.editBoiler}
     />
   ));
   return (
@@ -27,5 +29,8 @@ const Boilers = (props) => {
 
 Boilers.propTypes = {
   boilers: PropTypes.array.isRequired,
+  deleteBoiler: PropTypes.func.isRequired,
+  editBoiler: PropTypes.func.isRequired,
 };
+
 export default Boilers;
