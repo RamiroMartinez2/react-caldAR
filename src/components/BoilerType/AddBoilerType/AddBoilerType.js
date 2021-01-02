@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 import style from "./AddBoilerType.module.css";
 import PropTypes from "prop-types";
-import { addBoilerType } from "../../../redux/actions/boilerTypeActions";
 
 const AddBoilerType = (props) => {
   const [boilerType, setNewBoilerType] = useState({
     skillsId: "",
-    description: "",
+    descriptions: "",
     stock: "",
   });
 
@@ -16,10 +14,10 @@ const AddBoilerType = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addBoilerType(boilerType);
+    props.addBoilerType({...boilerType});
     setNewBoilerType({
       skillsId: "",
-      description: "",
+      descriptions: "",
       stock: "",
     });
   };
@@ -38,9 +36,9 @@ const AddBoilerType = (props) => {
       <input
         className={style.inputStyle}
         type="text"
-        name="description"
-        placeholder="Description"
-        value={boilerType.description}
+        name="descriptions"
+        placeholder="Descriptions"
+        value={boilerType.descriptions}
         onChange={onChange}
         required
       ></input>
@@ -66,16 +64,5 @@ AddBoilerType.propTypes = {
   addBoilerType: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addBoilerType: (content) => dispatch(addBoilerType(content)),
-  };
-};
 
-const mapStateToProps = (state) => {
-  return {
-    boilerType: state.boilerTypes,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddBoilerType);
+export default AddBoilerType;

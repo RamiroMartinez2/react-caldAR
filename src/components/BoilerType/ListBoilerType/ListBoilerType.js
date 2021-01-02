@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { GoTrashcan } from "react-icons/go";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { FcCancel } from "react-icons/fc";
 import { BiPencil } from "react-icons/bi";
 import style from "./ListBoilerType.module.css";
-import {
-  deleteBoilerType,
-  editBoilerType,
-} from "../../../redux/actions/boilerTypeActions";
 
 const ListBoilerType = (props) => {
   const [isEditing, toggleEditing] = useState(false);
   const [boilerType, setBoilerType] = useState({ ...props.boilerType });
 
-  const toggleEdit = () => {
+  const cancelClick = () => {
+    toggleEditing();
     setBoilerType(props.boilerType);
+  }
+  const toggleEdit = () => {
     toggleEditing(!isEditing);
   };
   const onChange = (e) => {
@@ -36,7 +34,7 @@ const ListBoilerType = (props) => {
           type="number"
           name="id"
           placeholder="Id"
-          value={boilerType.id}
+          value={boilerType._id}
           onChange={onChange}
           required
         ></input>
@@ -51,9 +49,9 @@ const ListBoilerType = (props) => {
         <input
           className={style.inputStyle}
           type="text"
-          name="description"
+          name="descriptions"
           placeholder="Description"
-          value={boilerType.description}
+          value={boilerType.descriptions}
           onChange={onChange}
         ></input>
         <input
@@ -65,7 +63,7 @@ const ListBoilerType = (props) => {
           onChange={onChange}
         ></input>
         <div>
-          <button onClick={toggleEdit} className={style.Btn}>
+          <button onClick={cancelClick} className={style.Btn}>
             <FcCancel />
           </button>
           <button onClick={saveChanges} className={style.Btn}>
@@ -81,13 +79,13 @@ const ListBoilerType = (props) => {
       <ul className={style.showForm}>
         <li className={style.liStyle}>{props.boilerType.id}</li>
         <li className={style.liStyle}>{props.boilerType.skillsId}</li>
-        <li className={style.liStyle}>{props.boilerType.description}</li>
+        <li className={style.liStyle}>{props.boilerType.descriptions}</li>
         <li className={style.liStyle}>{props.boilerType.stock}</li>
         <button onClick={toggleEdit} className={style.Btn}>
           <BiPencil />
         </button>
         <button
-          onClick={() => props.deleteBoilerType(props.boilerType.id)}
+          onClick={() => props.deleteBoilerType(props.boilerType._id)}
           className={style.Btn}
         >
           <GoTrashcan />
@@ -103,17 +101,5 @@ ListBoilerType.propTypes = {
   editBoilerType: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    deleteBoilerType: (id) => dispatch(deleteBoilerType(id)),
-    editBoilerType: (content) => dispatch(editBoilerType(content)),
-  };
-};
 
-const mapStateToProps = (state) => {
-  return {
-    boilerTypes: state.boilerTypes,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListBoilerType);
+export default ListBoilerType;
