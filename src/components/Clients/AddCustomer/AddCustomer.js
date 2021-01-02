@@ -16,7 +16,7 @@ const AddCustomer = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addCustomer(customer);
+    props.addCustomer({...customer});
 
     setNewCustomer({
       customerType: "",
@@ -78,7 +78,7 @@ const AddCustomer = (props) => {
 };
 
 AddCustomer.propTypes = {
-  addCustomer: PropTypes.object.isRequired,
+  addCustomer: PropTypes.func.isRequired,
 };
 
 export default AddCustomer;

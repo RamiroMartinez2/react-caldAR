@@ -31,14 +31,14 @@ const getCustomersRejected = (error) => ({
   payload: error,
 });
 
-export const getCustomersAsync = (error) => (dispatch) => {
+export const getCustomersAsync = () => (dispatch) => {
   dispatch(getCustomersFetching());
   return fetch(`${URL}`, { method: "GET" })
     .then((data) => data.json())
-    .then((response) => {
-      getCustomersFulfilled(response);
+    .then((json) => {
+      getCustomersFulfilled(json);
     })
-    .catch(() => {
+    .catch((error) => {
       dispatch(getCustomersRejected(error));
     });
 };

@@ -32,7 +32,7 @@ const customerReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        list: action.payload,
+        list: action.payload
       };
     }
     case GET_CUSTOMERS_REJECTED: {

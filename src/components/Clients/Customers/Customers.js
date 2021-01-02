@@ -29,8 +29,8 @@ const Customers = (props) => {
 
 Customers.propTypes = {
   customers: PropTypes.array.isRequired,
-  updateCustomer: PropTypes.array.isRequired,
- deleteCustomer: PropTypes.array.isRequired,
+  updateCustomer: PropTypes.func.isRequired,
+ deleteCustomer: PropTypes.func.isRequired,
 };
 
 export default Customers;

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./Item.module.css";
-import { connect } from "react-redux";
 import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
@@ -119,8 +118,8 @@ const Item =(props)=> {
 
 Item.propTypes = {
   customer: PropTypes.object.isRequired,
-  delCustomer: PropTypes.array.isRequired,
-  updateCustomer: PropTypes.array.isRequired,
+  deleteCustomer: PropTypes.func.isRequired,
+  updateCustomer: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
