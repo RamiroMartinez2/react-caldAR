@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FcCancel } from "react-icons/fc";
 import { GoTrashcan } from "react-icons/go";
-import { AiOutlineCheckCircle, AiFillEdit } from "react-icons/ai";
+import { BiPencil } from "react-icons/bi";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 import styles from "./ListAppointment.module.css";
 
 
@@ -106,15 +107,15 @@ const ListAppointment = (props) => {
         <li className={styles.liStyle}>{props.appointments.date}</li>
         <li className={styles.liStyle}>{props.appointments.estimatedTime}</li>
         <li className={styles.liStyle}>{props.appointments.maintenanceType}</li>
-        <div>
+        <div>          
+          <button onClick={toggleEdit} className={styles.Btn}>
+            <BiPencil />
+          </button>
           <button
             onClick={() => props.deleteAppointment(props.appointments._id)}
             className={styles.Btn}
           >
             <GoTrashcan />
-          </button>
-          <button onClick={toggleEdit} className={styles.Btn}>
-            <AiFillEdit />
           </button>
         </div>
       </ul>
