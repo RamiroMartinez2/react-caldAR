@@ -63,11 +63,11 @@ const ListBoilerType = (props) => {
           onChange={onChange}
         ></input>
         <div>
-          <button onClick={cancelClick} className={style.Btn}>
-            <FcCancel />
-          </button>
           <button onClick={saveChanges} className={style.Btn}>
             <AiOutlineCheckCircle />
+          </button>
+          <button onClick={cancelClick} className={style.Btn}>
+            <FcCancel />
           </button>
         </div>
       </ul>
