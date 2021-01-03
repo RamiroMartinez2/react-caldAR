@@ -21,6 +21,7 @@ const Boilers = (props) => {
         <li className={styles.liStyleHeader}>Maintaince Rate</li>
         <li className={styles.liStyleHeader}>Hour Maintaince Cost</li>
         <li className={styles.liStyleHeader}>Hour Eventual Cost</li>
+        <li className={styles.liStyleHeader}>Actions</li>
       </ul>
       {items}
     </div>
