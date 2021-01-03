@@ -15,12 +15,6 @@ import {
 
 const URL = "https://be-caldar.herokuapp.com/appointments";
 
-const initialState = {
-  isLoading: false,
-  error: false,
-  list: []
-}
-
 const getAppointmentsFetching = () => ({
   type: GET_APPOINTMENT_FETCHING,
 });
@@ -153,5 +147,5 @@ export const updateAppointmentAsync = (content) => (dispatch) => {
             dispatch(updateAppointmentsRejected(json));
         }
     })
-    .catch((error) => dispatch(updateAppointmentRejected(error)))
+    .catch((error) => dispatch(updateAppointmentsRejected(error)))
 }
