@@ -19,6 +19,7 @@ const BoilerType = (props) => {
         <li className={style.liStyleHeader}>Skills Id</li>
         <li className={style.liStyleHeader}>Description</li>
         <li className={style.liStyleHeader}>Stock</li>
+        <li className={style.liStyleHeader}>Actions</li>
       </ul>
       {listBoilerType}
     </div>
