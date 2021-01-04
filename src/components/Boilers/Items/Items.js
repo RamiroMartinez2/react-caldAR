@@ -1,27 +1,30 @@
 import React, { useState } from "react";
-import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import styles from "./Items.module.css";
 import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GoTrashcan } from "react-icons/go";
-import { deleteBoiler, editBoiler } from '../../../redux/actions/boilerActions'
 
 const Items = (props) => {
   const [isEditing, toggleEditing] = useState(false);
   const [boiler, setBoiler] = useState({...props.boiler});
 
-  const toggleEdit = () => {
+  const cancelClick = () => {
+    toggleEditing();
     setBoiler(props.boiler);
+  }
+
+  const toggleEdit = () => {
     toggleEditing(!isEditing);
   }
+
   const onChange = (e) => {
     setBoiler({...boiler, [e.target.name]: e.target.value });
   };
   const saveChanges = () => {
-    toggleEdit();
     props.editBoiler(boiler);
+    toggleEdit();
   }
 
   if (isEditing) {
@@ -31,7 +34,7 @@ const Items = (props) => {
           className={styles.inputStyleEdt}
           type="text"
           name="id"
-          value={boiler.id}
+          value={boiler._id}
           readOnly
         ></input>
         <input
@@ -67,7 +70,7 @@ const Items = (props) => {
           required
         ></input>
         <div>
-          <button onClick={toggleEdit} className={styles.Btn}>
+          <button onClick={cancelClick} className={styles.Btn}>
             <FcCancel />
           </button>
           <button onClick={saveChanges} className={styles.Btn}>
@@ -79,18 +82,14 @@ const Items = (props) => {
   }
   return (
     <ul className={styles.showForm}>
-      <li className={styles.liStyle}>{props.boiler.id}</li>
+      <li className={styles.liStyle}>{props.boiler._id}</li>
       <li className={styles.liStyle}>{props.boiler.typeId}</li>
       <li className={styles.liStyle}>{props.boiler.maintaince_rate}</li>
-      <li className={styles.liStyle}>
-        ${props.boiler.hour_maintaince_cost}
-      </li>
-      <li className={styles.liStyle}>
-        ${props.boiler.hour_eventual_cost}
-      </li>
+      <li className={styles.liStyle}>{props.boiler.hour_maintaince_cost}</li>
+      <li className={styles.liStyle}>{props.boiler.hour_eventual_cost}</li>
       <div>
         <button
-          onClick={() => props.deleteBoiler(props.boiler.id)}
+          onClick={() => props.deleteBoiler(props.boiler._id)}
           className={styles.Btn}
         >
           <GoTrashcan />
@@ -108,17 +107,4 @@ Items.propTypes = {
   editBoiler: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    deleteBoiler: (id) => dispatch (deleteBoiler(id)),
-    editBoiler: (content) => dispatch (editBoiler(content))
-  };
-}
-
-const mapStateToProps = state => {
-  return{
-    boilers: state.boilers
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Items);
+export default Items;
