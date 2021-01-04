@@ -1,0 +1,10 @@
+.textInput{
+    width: 100px;
+}
+.textInputLabel{
+    margin-right: 20px;
+}
+.error{
+    color: brown;
+    font-weight: 600    ;
+}
