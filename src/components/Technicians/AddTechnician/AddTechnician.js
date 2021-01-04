@@ -34,6 +34,7 @@ import {required, email, composeValidators} from '../../../utils/validations';
 //   };
 const AddTechnician = (props) =>{
   const onSubmitTech = (values) =>{
+    console.log(values);
     props.addTechnician (values);
   };
 
@@ -116,8 +117,8 @@ const AddTechnician = (props) =>{
               </div>
             </div>
             <div>
-              <button className= {style.btnSubmit}  type="submit" onSubmit={onSubmitTech} disabled={submitting || pristine}>Submit</button>
-              <button className= {style.btnSubmit} type="button" onClick={form.reset} disabled={submitting || pristine}>Reset</button>
+              <button  type="submit" disabled={submitting || pristine}>Submit</button>
+              <button  type="button" onClick={form.reset} disabled={submitting || pristine}>Reset</button>
             </div> 
           </form>
         )}>

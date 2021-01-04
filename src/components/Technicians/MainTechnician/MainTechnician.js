@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ListTechnicians from "../ListTechnician/ListTechnician";
 import AddTechnician from "../AddTechnician/AddTechnician";
 import HeaderTechnician from "../HeaderTechnician/HeaderTechnician";
@@ -17,6 +17,7 @@ const MainTechnician = (props) => {
   useEffect(() => {
     props.getTechnicians();
   }, [props.getTechnicians]);
+  const [isAdding, toggleAdding] = useState(false);
 
   if (props.technicians.isLoading) {
     return <p>Loading...</p>;
@@ -24,6 +25,15 @@ const MainTechnician = (props) => {
 
   if (props.technicians.error) {
     return <p>Error...</p>;
+  }
+  const addForm = () => {
+    toggleAdding(!isAdding);
+  }
+  
+  if (isAdding){
+    return (
+      <AddTechnician addTechnician={props.addTechnician}/>
+    )
   }
   return (
     <div className="App">
@@ -35,7 +45,7 @@ const MainTechnician = (props) => {
           deleteTechnician={props.deleteTechnician}
           updateTechnician={props.updateTechnician}
         />
-        <AddTechnician addTechnician={props.addTechnician} />
+        <button onClick={addForm} >ADD</button>
       </div>
     </div>
   );

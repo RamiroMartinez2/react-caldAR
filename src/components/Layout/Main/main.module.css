@@ -1,0 +1,14 @@
+.title{
+    color:rgb(19,84,76);
+    border-top: 10px solid rgb(19,84,76);
+    border-bottom: 10px solid rgb(19,84,76);
+    margin-left: 1%;
+    margin-top: 60px;
+    left: 5%;
+    width: 98%;
+    font-size: 85px;
+    text-align: center;
+}
+h1{
+    border-bottom: 10px solid rgb(19,84,76);
+}
