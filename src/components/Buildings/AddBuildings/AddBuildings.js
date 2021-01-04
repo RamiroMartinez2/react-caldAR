@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import "./AddBuilding.css";
 import PropTypes from "prop-types";
-import { addBuilding as addBuildingAction } from "../../../redux/actions/buildingAction";
-import { connect } from "react-redux";
 
 const AddBuilding = (props) => {
   const [building, setNewBuilding] = useState({
     address: "",
-    boilersId: "",
-    fullName: "",
+    boilerID: "",
+    fullname: "",
     phone: "",
   });
 
@@ -17,11 +15,11 @@ const AddBuilding = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addBuilding(building);
+    props.addBuilding({ ...building });
     setNewBuilding({
       address: "",
-      boilersId: "",
-      fullName: "",
+      boilerID: "",
+      fullname: "",
       phone: "",
     });
   };
@@ -39,17 +37,17 @@ const AddBuilding = (props) => {
       <input
         className="inputStyle"
         type="number"
-        name="boilersId"
+        name="boilerID"
         placeholder="Boiler Type"
-        value={building.boilersId}
+        value={building.boilerID}
         onChange={onChange}
       ></input>
       <input
         className="inputStyle"
         type="text"
-        name="fullName"
+        name="fullname"
         placeholder="Name"
-        value={building.fullName}
+        value={building.fullname}
         onChange={onChange}
       ></input>
       <input
@@ -66,19 +64,7 @@ const AddBuilding = (props) => {
 };
 
 AddBuilding.propTypes = {
-  addBuilding: PropTypes.array.isRequired,
+  addBuilding: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addBuilding: (content) => dispatch(addBuildingAction(content)),
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    buildings: state.buildings,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddBuilding);
+export default AddBuilding;

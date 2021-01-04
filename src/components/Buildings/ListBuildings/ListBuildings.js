@@ -5,14 +5,8 @@ import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GoTrashcan } from "react-icons/go";
-import { connect } from "react-redux";
-import {
-  delBuilding as delBuildingAction,
-  updateBuilding as updateBuildingAction,
-} from "../../../redux/actions/buildingAction";
 
 const ListBuildings = (props) => {
-  console.log("listBuildings", props);
   const [isEditing, toggleEditing] = useState(false);
   const [building, setBuilding] = useState({ ...props.building });
 
@@ -44,17 +38,17 @@ const ListBuildings = (props) => {
         <input
           className="inputStyle"
           type="number"
-          name="boilersId"
+          name="boilerID"
           placeholder="Boiler Type"
-          value={building.boilersId}
+          value={building.boilerID}
           onChange={onChange}
         ></input>
         <input
           className="inputStyle"
           type="text"
-          name="fullName"
+          name="fullname"
           placeholder="Name"
-          value={building.fullName}
+          value={building.fullname}
           onChange={onChange}
         ></input>
         <input
@@ -80,14 +74,14 @@ const ListBuildings = (props) => {
   return (
     <div>
       <ul className="showForm">
-        <li className="liStyle">{props.building.id}</li>
+        <li className="liStyle">{props.building._id}</li>
         <li className="liStyle">{props.building.address}</li>
-        <li className="liStyle">{props.building.boilersId}</li>
-        <li className="liStyle">{props.building.fullName}</li>
+        <li className="liStyle">{props.building.boilerID}</li>
+        <li className="liStyle">{props.building.fullname}</li>
         <li className="liStyle">{props.building.phone}</li>
         <div>
           <button
-            onClick={() => props.delBuilding(props.building.id)}
+            onClick={() => props.delBuilding(props.building._id)}
             className="Btn"
           >
             <GoTrashcan />
@@ -107,17 +101,4 @@ ListBuildings.propTypes = {
   updateBuilding: PropTypes.array.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    delBuilding: (number) => dispatch(delBuildingAction(number)),
-    updateBuilding: (content) => dispatch(updateBuildingAction(content)),
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    buildings: state.buildings,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListBuildings);
+export default ListBuildings;
