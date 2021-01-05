@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ListTechnicians from "../ListTechnician/ListTechnician";
 import AddTechnician from "../AddTechnician/AddTechnician";
 import HeaderTechnician from "../HeaderTechnician/HeaderTechnician";
@@ -12,11 +12,14 @@ import {
   updateTechAsync,
   addTechAsync,
 } from "../../../redux/actions/technicianAction";
+import Modal from "../../Modal/Modal";
 
 const MainTechnician = (props) => {
   useEffect(() => {
     props.getTechnicians();
   }, [props.getTechnicians]);
+
+  const [openModal, setOpenModal] = useState(false);
 
   if (props.technicians.isLoading) {
     return <p>Loading...</p>;
@@ -25,6 +28,7 @@ const MainTechnician = (props) => {
   if (props.technicians.error) {
     return <p>Error...</p>;
   }
+
   return (
     <div className="App">
       <div className={style.container}>
@@ -35,7 +39,16 @@ const MainTechnician = (props) => {
           deleteTechnician={props.deleteTechnician}
           updateTechnician={props.updateTechnician}
         />
-        <AddTechnician addTechnician={props.addTechnician} />
+        <button className={style.btnAdd} onClick={() => setOpenModal(true)}>
+          Add New Technician
+        </button>
+        <Modal
+          title="Add New Technician"
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        >
+          <AddTechnician addTechnician={props.addTechnician} />
+        </Modal>
       </div>
     </div>
   );

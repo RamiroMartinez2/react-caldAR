@@ -1,27 +1,25 @@
 import React, { useState } from "react";
-import { connect } from 'react-redux';
 import styles from "./AddBoiler.module.css";
-import PropTypes from "prop-types";
-import { addBoiler } from '../../../redux/actions/boilerActions';
+import PropTypes from 'prop-types';
 
 const AddBoiler = (props) => {
-
   const [boiler, setNewBoiler] = useState ({
-    typeId: "",
-    maintaince_rate: "",
-    hour_maintaince_cost: "",
-    hour_eventual_cost: "",
-  })
+    typeId: '',
+    maintaince_rate: '',
+    hour_maintaince_cost: '',
+    hour_eventual_cost: '',
+  });
 
-  const onChange = (e) => setNewBoiler({...boiler, [e.target.name]: e.target.value });
+  const onChange = (e) => setNewBoiler({...boiler, [e.target.name]: e.target.value});
+
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addBoiler(boiler);
+    props.addBoiler({...boiler});
     setNewBoiler({
-      typeId: "",
-      maintaince_rate: "",
-      hour_maintaince_cost: "",
-      hour_eventual_cost: "",
+      typeId: '',
+      maintaince_rate: '',
+      hour_maintaince_cost: '',
+      hour_eventual_cost: '',
     });
   };
 
@@ -74,18 +72,6 @@ const AddBoiler = (props) => {
 
 AddBoiler.propTypes = {
   addBoiler: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addBoiler: (content) => dispatch(addBoiler(content))
-  };
 }
 
-const mapStateToProps = state => {
-  return{
-    boiler: state.boilers
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddBoiler);
+export default AddBoiler;
