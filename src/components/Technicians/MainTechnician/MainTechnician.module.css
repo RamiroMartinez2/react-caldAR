@@ -17,3 +17,15 @@ body {
 .btn:hover {
   background: #666;
 }
+.btnAdd{
+  width: 15%;
+  color: rgb(239, 232, 216);
+  margin-left: 560px;
+  margin-top: 50px;
+  padding: 5px;
+  background-color: rgb(19, 84, 76);
+  border: 1px solid #333;
+  font-weight: 600;
+  flex: 1;
+  cursor: pointer;
+}
