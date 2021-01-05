@@ -8,7 +8,7 @@
   margin-bottom: 7px;
   display: block;
   padding: 3px;
-  width: 80%;
+  width: 100%;
 }
 .btnSubmit {
   width: 15%;
@@ -20,5 +20,29 @@
   font-weight: 600;
   flex: 1;
   cursor: pointer;
+}
+.btnCancel{
+  width: 15%;
+  color: rgb(239, 232, 216);
+  margin-top: 10px;
+  padding: 5px;
+  background-color: rgb(19, 84, 76);
+  border: 1px solid #333;
+  font-weight: 600;
+  flex: 1;
+  cursor: pointer;
+  float:right;
+}
+.errorMsg{
+  color: brown;
+  font-weight: 600;
+}
+select{
+  font-size: 15px;
+  width: 92%;
+  height: 26px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  margin-left: 7px;
 }
 

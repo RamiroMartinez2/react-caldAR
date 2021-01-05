@@ -39,7 +39,7 @@ const MainTechnician = (props) => {
           deleteTechnician={props.deleteTechnician}
           updateTechnician={props.updateTechnician}
         />
-        <button className={style.btnAdd} onClick= {() => setOpenModal(true)}>Add NEW</button>
+        <button className={style.btnAdd} onClick= {() => setOpenModal(true)}>Add New Technician</button>
         <Modal
           title = "Add New Technician"
           openModal = {openModal}

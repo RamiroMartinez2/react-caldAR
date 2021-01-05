@@ -20,16 +20,18 @@ function Modal (props) {
 
     return (
         <Dialog open = {openModal} maxWidth="md" classes={{paper: classes.dialogWrapper}}>
-            <DialogTitle>
+            <DialogTitle className={style.title}>
                 <div style={{display:"flex"}}>
                     <Typography variant ='h6' component ="div" style={{flexGrow:1}}>
                         {title}
                     </Typography>
-                    <button onClick={() => {setOpenModal(false)}} className={style.btnModal}>X</button>
                 </div>
             </DialogTitle>
             <DialogContent dividers>
-                {children}
+                <div>
+                    {children}
+                    <button onClick={() => {setOpenModal(false)}} className={style.btnModal}>Cancel</button>
+                </div>
             </DialogContent>
         </Dialog>
     )
