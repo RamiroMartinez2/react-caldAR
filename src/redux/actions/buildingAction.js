@@ -13,7 +13,7 @@ import {
   UPDATE_BUILDING_REJECTED,
 } from "../types/buildingTypes";
 
-const URL = "http://localhost:4000/buildings";
+const URL = "https://be-caldar.herokuapp.com/buildings";
 
 const getBuildingsFetching = () => ({
   type: GET_BUILDINGS_FETCHING,
