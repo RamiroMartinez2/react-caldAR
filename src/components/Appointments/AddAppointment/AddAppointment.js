@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 const AddAppointment = (props) => {
   const [appointments, setNewAppointment] = useState({
-    id: "",
     buildingId: "",
     boilerId: "",
     date: "",
@@ -16,8 +15,7 @@ const AddAppointment = (props) => {
     e.preventDefault();
     props.addAppointment({...appointments});
 
-    setNewAppointment({
-      id: "",
+    setNewAppointment({      
       buildingId: "",
       boilerId: "",
       date: "",
@@ -31,16 +29,7 @@ const AddAppointment = (props) => {
   };
 
   return (
-    <form className={styles.addForm} onSubmit={onSubmit}>
-      <input
-        className={styles.inputStyle}
-        type="number"
-        name="id"
-        placeholder="Id"
-        defaultValue={appointments.id}
-        onChange={onChange}
-        required
-      ></input>
+    <form className={styles.addForm} onSubmit={onSubmit}>      
       <input
         className={styles.inputStyle}
         type="number"
