@@ -12,12 +12,14 @@ import {
   updateTechAsync,
   addTechAsync,
 } from "../../../redux/actions/technicianAction";
+import Modal from "../../Modal/Modal";
 
 const MainTechnician = (props) => {
   useEffect(() => {
     props.getTechnicians();
   }, [props.getTechnicians]);
-  const [isAdding, toggleAdding] = useState(false);
+
+  const [openModal, setOpenModal] = useState (false);
 
   if (props.technicians.isLoading) {
     return <p>Loading...</p>;
@@ -26,15 +28,7 @@ const MainTechnician = (props) => {
   if (props.technicians.error) {
     return <p>Error...</p>;
   }
-  const addForm = () => {
-    toggleAdding(!isAdding);
-  }
-  
-  if (isAdding){
-    return (
-      <AddTechnician addTechnician={props.addTechnician}/>
-    )
-  }
+
   return (
     <div className="App">
       <div className={style.container}>
@@ -45,7 +39,13 @@ const MainTechnician = (props) => {
           deleteTechnician={props.deleteTechnician}
           updateTechnician={props.updateTechnician}
         />
-        <button onClick={addForm} >ADD</button>
+        <button className={style.btnAdd} onClick= {() => setOpenModal(true)}>Add NEW</button>
+        <Modal
+          title = "Add New Technician"
+          openModal = {openModal}
+          setOpenModal= {setOpenModal}>
+          <AddTechnician addTechnician={props.addTechnician}/>
+        </Modal>
       </div>
     </div>
   );
@@ -76,3 +76,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainTechnician);
+
