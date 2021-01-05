@@ -1,99 +1,101 @@
-import React, {useState} from 'react';
+/* eslint react/prop-types: 0 */
+import React from 'react';
 import style from './AddTechnician.module.css';
 import PropTypes from 'prop-types';
+import {Form, Field} from 'react-final-form';
 
 const AddTechnician = (props) => {
-  const [technician, setNewTechnician] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    statusActive: '',
-    trained: '',
-    assignedClients: '',
-    spareHoursAvailable: ''
-  });
-    
-  const onChange = (e) => setNewTechnician({...technician, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    props.addTechnician({...technician});
-    setNewTechnician({
-      fullName: "",
-      email: "",
-      phone: "",
-      statusActive: "",
-      trained: "",
-      assignedClients: "",
-      spareHoursAvailable: "",
-    });
+  const required = value => (value ? undefined : 'Required');
+  const onSubmit = (values) => {
+    props.addTechnician(values);
   };
 
-  return (
-    <form className={style.addForm} onSubmit={onSubmit} >
-      <input className={style.inputStyle}
-        type="text" 
-        name="fullName" 
-        placeholder=" Add Name"
-        value={technician.fullName}
-        onChange={onChange}
-        required
-      ></input>
-      <input className={style.inputStyle}
-        type="email" 
-        name="email" 
-        placeholder=" Add Email"
-        value={technician.email}
-        onChange={onChange}
-        required
-      ></input>
-      <input className={style.inputStyle}
-        type="number" 
-        name="phone" 
-        placeholder=" Add Phone"
-        value={technician.phone}
-        onChange={onChange}
-        required
-      ></input>
-      <input className={style.inputStyle}
-        type="text" 
-        name="statusActive" 
-        placeholder=" Add Status"
-        value={technician.statusActive}
-        onChange={onChange}
-        required
-      ></input>
-      <input className={style.inputStyle}
-        type="text" 
-        name="trained" 
-        placeholder=" Add Trained Skills"
-        value={technician.trained}
-        onChange={onChange}
-        required
-      ></input>
-      <input className={style.inputStyle}
-        type="number" 
-        name="assignedClients" 
-        placeholder=" Add Asigned Clients"
-        value={technician.assignedClients}
-        onChange={onChange}
-        required
-      ></input>
-      <input className={style.inputStyle}
-        type="number" 
-        name="spareHoursAvailable" 
-        placeholder="Add Spare Hours"
-        value={technician.spareHoursAvailable}
-        onChange={onChange}
-        required
-      ></input>
-      <input className={style.btnSubmit}
-        type="submit" 
-        value="Add New"
-      ></input>
-    </form>
-  )
-  }
+  return(
+    <div>
+      <Form onSubmit={onSubmit}>
+      {/* eslint-disable-next-line no-unused-vars */}
+        {({handleSubmit,meta,  values, submitting}) => (
+          <form onSubmit={handleSubmit}>
+            <div>
+              <Field name="fullName" placeholder="Full Name" validate = {required}>
+                {({input,meta,placeholder}) => (
+                  <div >
+                    <label>Full Name</label>
+                    <input {...input} className={style.inputStyle} placeholder={placeholder} />
+                    {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+            </div>
+              <div>
+                <Field name="email" placeholder="Email" validate = {required}>
+                  {({input,meta,placeholder}) => (
+                    <div>
+                      <label>Email</label>
+                      <input {...input} className={style.inputStyle} placeholder={placeholder} />
+                      {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                    </div>
+                  )}
+                  </Field>
+              </div>
+              <div >
+                <Field name="phone" placeholder="Phone" validate = {required}>
+                  {({input,meta,placeholder}) => (
+                    <div>
+                      <label>Phone</label>
+                      <input {...input} className={style.inputStyle} placeholder={placeholder} />
+                      {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                    </div>
+                  )}
+                  </Field>
+              </div>
+              <div >
+                <label>Status</label>
+                <Field name="statusActive" component="select">
+                    <option>Active</option>
+                    <option>Inactive</option>
+                  </Field>
+              </div>
+              <div >
+                <Field name="trained" placeholder="Trained Skills" validate = {required}>
+                  {({input,meta,placeholder}) => (
+                    <div>
+                      <label>Trained Skills</label>
+                      <input {...input} className={style.inputStyle} placeholder={placeholder} />
+                      {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                    </div>
+                  )}
+                  </Field>
+              </div>
+              <div >
+                <Field name="assignedClients" placeholder="Assigned Clients" validate = {required}>
+                  {({input,meta,placeholder}) => (
+                    <div>
+                      <label>Assigned Clients</label>
+                      <input {...input} className={style.inputStyle} placeholder={placeholder} />
+                      {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                    </div>
+                  )}
+                  </Field>
+              </div>
+              <div >
+                <Field name="spareHoursAvailable" placeholder="Hours Available" validate = {required}>
+                  {({input,meta,placeholder}) => (
+                    <div>
+                      <label>Hours Available</label>
+                      <input {...input} className={style.inputStyle} placeholder={placeholder} />
+                      {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                    </div>
+                  )}
+                  </Field>
+              </div>
+            <button type="submit" className={style.btnSubmit} disabled={submitting}>Submit</button>
+          </form>
+        )}
+      </Form>
+    </div>
+  )}
 
 AddTechnician.propTypes = {
   addTechnician: PropTypes.func.isRequired,
