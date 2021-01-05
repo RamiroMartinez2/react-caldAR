@@ -19,7 +19,7 @@ const MainTechnician = (props) => {
     props.getTechnicians();
   }, [props.getTechnicians]);
 
-  const [openModal, setOpenModal] = useState (false);
+  const [openModal, setOpenModal] = useState(false);
 
   if (props.technicians.isLoading) {
     return <p>Loading...</p>;
@@ -39,12 +39,15 @@ const MainTechnician = (props) => {
           deleteTechnician={props.deleteTechnician}
           updateTechnician={props.updateTechnician}
         />
-        <button className={style.btnAdd} onClick= {() => setOpenModal(true)}>Add New Technician</button>
+        <button className={style.btnAdd} onClick={() => setOpenModal(true)}>
+          Add New Technician
+        </button>
         <Modal
-          title = "Add New Technician"
-          openModal = {openModal}
-          setOpenModal= {setOpenModal}>
-          <AddTechnician addTechnician={props.addTechnician}/>
+          title="Add New Technician"
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        >
+          <AddTechnician addTechnician={props.addTechnician} />
         </Modal>
       </div>
     </div>
@@ -76,4 +79,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainTechnician);
-
