@@ -13,7 +13,7 @@ import {
   UPDATE_BUILDING_REJECTED,
 } from "../types/buildingTypes";
 
-const URL = "https://be-caldar.herokuapp.com/buildings";
+const URL = "http://localhost:4000/buildings";
 
 const getBuildingsFetching = () => ({
   type: GET_BUILDINGS_FETCHING,
@@ -34,9 +34,7 @@ export const getBuildingsAsync = () => (dispatch) => {
   return fetch(`${URL}`, {
     method: "GET",
   })
-    .then((data) => {
-      return data.json();
-    })
+    .then((data) => data.json())
     .then((json) => {
       dispatch(getBuildingsFullfilled(json));
     })
