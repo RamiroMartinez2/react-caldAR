@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Appointments from "../Appointment/Appointments";
 import AddAppointment from "../AddAppointment/AddAppointment";
 import Header from "../HeaderAppointment/HeaderAppointment";
-import style from "./MainAppointment.module.css"
+import style from "./MainAppointment.module.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
@@ -11,12 +11,15 @@ import {
   deleteAppointmentAsync,
   updateAppointmentAsync,
   addAppointmentAsync,
-} from "../../../redux/actions/appointmentActions"
+} from "../../../redux/actions/appointmentActions";
+import Modal from "../../Modal/Modal";
 
 const MainAppointment = (props) => {
   useEffect(() => {
     props.getAppointment();
   }, [props.getAppointment]);
+
+  const [openModal, setOpenModal] = useState(false);
 
   if (props.appointments.isLoading) {
     return <p>Loading...</p>;
@@ -25,16 +28,25 @@ const MainAppointment = (props) => {
     return <p>Error...</p>;
   }
   return (
-    <div>
+    <div className="App">
       <div className={style.container}>
         <Header />
-        <Appointments 
+        <Appointments
           appointments={props.appointments.list}
           isLoading={props.appointments.isLoading}
           deleteAppointment={props.deleteAppointment}
           updateAppointment={props.updateAppointment}
         />
-        <AddAppointment addAppointment={props.addAppointment} />
+        <button className={style.btnAdd} onClick={() => setOpenModal(true)}>
+          Add new appointment
+        </button>
+        <Modal
+          title="Add New Appointment"
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        >
+          <AddAppointment addAppointment={props.addAppointment} />
+        </Modal>
       </div>
     </div>
   );

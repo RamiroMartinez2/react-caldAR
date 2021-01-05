@@ -39,7 +39,7 @@ const ListAppointment = (props) => {
           placeholder="Id"
           value={appointments._id}
           onChange={onChange}
-          required
+          readOnly
         ></input>
         <input
           className={styles.inputStyle}
@@ -47,8 +47,7 @@ const ListAppointment = (props) => {
           name="buildingId"
           placeholder="Building Id"
           value={appointments.buildingId}
-          onChange={onChange}
-          required
+          onChange={onChange}          
         ></input>
         <input
           className={styles.inputStyle}
@@ -56,8 +55,7 @@ const ListAppointment = (props) => {
           name="boilerId"
           placeholder="Boiler Id"
           value={appointments.boilerId}
-          onChange={onChange}
-          required
+          onChange={onChange}          
         ></input>
         <input
           className={styles.dateStyle}
@@ -66,7 +64,6 @@ const ListAppointment = (props) => {
           placeholder="Date"
           value={appointments.date}
           onChange={onChange}
-          required
         ></input>
         <input
           className={styles.inputStyle}
@@ -75,7 +72,6 @@ const ListAppointment = (props) => {
           placeholder="Estimated Time"
           value={appointments.estimatedTime}
           onChange={onChange}
-          required
         ></input>
         <input
           className={styles.inputStyle}
@@ -84,7 +80,6 @@ const ListAppointment = (props) => {
           placeholder="Maintenance Type"
           value={appointments.maintenanceType}
           onChange={onChange}
-          required
         ></input>
         <div>
           <button onClick={cancelClick} className={styles.Btn}>
