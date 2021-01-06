@@ -1,18 +1,47 @@
-.ulStyle {
+.inputStyle {
+  flex: 1;
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 4px;
+  width: 136px;
+  height: 40px;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-top: 10px;
+  border: none;
+}
+.showForm {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: rgb(239, 232, 216);
-  border-bottom: 1px solid #333;
 }
-.liStyleHeader {
+.btnGroup{
+  margin-right: 60px;
+}
+.Btn {
+  background-color: rgb(239, 232, 216);
+  border: none;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  float: right;
+  margin-left: 8px;
+  margin-right: 12px;
+  margin-top: 5px;
+}
+.liStyle {
   float: left;
   display: block;
   width: 20%;
-  color: rgb(19, 84, 76);
-  font-weight: 800;
-  font-size: 12;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  font-size: 12px;
   text-align: center;
-  padding: 16px 16px 16px;
+  padding: 16px 10px 16px;
+  border-bottom: 1px solid #333;
 }

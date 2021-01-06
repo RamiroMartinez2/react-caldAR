@@ -1,103 +1,37 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { GoTrashcan } from "react-icons/go";
-import { AiOutlineCheckCircle } from "react-icons/ai";
-import { FcCancel } from "react-icons/fc";
-import { BiPencil } from "react-icons/bi";
+import React from "react";
+import BoilerType from "../BoilerType/BoilerType";
 import style from "./ListBoilerType.module.css";
+import PropTypes from "prop-types";
 
-const ListBoilerType = (props) => {
-  const [isEditing, toggleEditing] = useState(false);
-  const [boilerType, setBoilerType] = useState({ ...props.boilerType });
+const ListBoilerTypes = (props) => {
 
-  const cancelClick = () => {
-    toggleEditing();
-    setBoilerType(props.boilerType);
-  }
-  const toggleEdit = () => {
-    toggleEditing(!isEditing);
-  };
-  const onChange = (e) => {
-    setBoilerType({ ...boilerType, [e.target.name]: e.target.value });
-  };
-
-  const saveChanges = () => {
-    toggleEdit();
-    props.editBoilerType(boilerType);
-  };
-
-  if (isEditing) {
-    return (
-      <ul className={style.showForm}>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="id"
-          value={boilerType._id}
-          readOnly
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="skillsId"
-          placeholder="Skills ID"
-          value={boilerType.skillsId}
-          onChange={onChange}
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="descriptions"
-          placeholder="Description"
-          value={boilerType.descriptions}
-          onChange={onChange}
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="stock"
-          placeholder="Stock"
-          value={boilerType.stock}
-          onChange={onChange}
-        ></input>
-        <div>
-          <button onClick={saveChanges} className={style.Btn}>
-            <AiOutlineCheckCircle />
-          </button>
-          <button onClick={cancelClick} className={style.Btn}>
-            <FcCancel />
-          </button>
-        </div>
-      </ul>
-    );
-  }
-
+  const listBoilerType = props.boilerTypes.map((boilerType) => (
+    <BoilerType 
+      key={boilerType.id} 
+      boilerType={boilerType} 
+      deleteBoilerType={props.deleteBoilerType}
+      editBoilerType={props.editBoilerType}
+    />
+  ));
   return (
     <div>
-      <ul className={style.showForm}>
-        <li className={style.liStyle}>{props.boilerType._id}</li>
-        <li className={style.liStyle}>{props.boilerType.skillsId}</li>
-        <li className={style.liStyle}>{props.boilerType.descriptions}</li>
-        <li className={style.liStyle}>{props.boilerType.stock}</li>
-        <button onClick={toggleEdit} className={style.Btn}>
-          <BiPencil />
-        </button>
-        <button
-          onClick={() => props.deleteBoilerType(props.boilerType._id)}
-          className={style.Btn}
-        >
-          <GoTrashcan />
-        </button>
+      <ul className={style.ulStyle}>
+        <li className={style.liStyleHeader}>Id</li>
+        <li className={style.liStyleHeader}>Skills Id</li>
+        <li className={style.liStyleHeader}>Description</li>
+        <li className={style.liStyleHeader}>Stock</li>
+        <li className={style.liStyleHeader}>Actions</li>
       </ul>
+      {listBoilerType}
     </div>
   );
 };
 
-ListBoilerType.propTypes = {
-  boilerType: PropTypes.object.isRequired,
+ListBoilerTypes.propTypes = {
+  boilerTypes: PropTypes.array.isRequired,
   deleteBoilerType: PropTypes.func.isRequired,
   editBoilerType: PropTypes.func.isRequired,
 };
 
+export default ListBoilerTypes;
 
-export default ListBoilerType;
