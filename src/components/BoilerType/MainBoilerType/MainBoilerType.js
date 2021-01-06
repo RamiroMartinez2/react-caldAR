@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../HeaderBoilerType/HeaderBoilerType";
-import BoilerType from "../BoilerType/BoilerType";
+import ListBoilerType from "../ListBoilerType/ListBoilerType";
 import AddBoilerType from "../AddBoilerType/AddBoilerType";
-import { connect } from "react-redux";
 import style from "./MainBoilerType.module.css";
+import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import {
@@ -11,12 +11,15 @@ import {
   addBoilerType,
   deleteBoilerType,
   editBoilerType
-} from '../../../redux/actions/boilerTypeActions'
+} from '../../../redux/actions/boilerTypeActions';
+import Modal from "../../Modal/Modal";
 
 const MainBoilerType = (props) => {
   useEffect(()=>{
     props.getBoilersTypes();
   }, [props.getBoilersTypes]);
+
+  const [openModal, setOpenModal] = useState(false);
 
   if (props.boilerTypes.isLoading){
     return <p>Loading...</p>
@@ -30,13 +33,22 @@ const MainBoilerType = (props) => {
     <div className={style.App}>
       <div className={style.container}>
         <Header />
-        <BoilerType 
+        <ListBoilerType 
           boilerTypes={props.boilerTypes.list} 
           isLoading={props.boilerTypes.isLoading}
           deleteBoilerType={props.deleteBoilerType}
           editBoilerType={props.editBoilerType}
         />
-        <AddBoilerType addBoilerType={props.addBoilerType}/>
+        <button className={style.btnAdd} onClick={() => setOpenModal(true)}>
+          Add New Boiler Type
+        </button>
+        <Modal
+          title="Add New Boiler Type"
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        >
+          <AddBoilerType addBoilerType={props.addBoilerType}/>
+        </Modal>
       </div>
     </div>
   );

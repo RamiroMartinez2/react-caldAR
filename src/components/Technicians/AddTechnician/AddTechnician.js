@@ -3,10 +3,15 @@ import React from 'react';
 import style from './AddTechnician.module.css';
 import PropTypes from 'prop-types';
 import {Form, Field} from 'react-final-form';
+import {required,
+        composeValidators,
+        email,
+        fullName,
+        phone,
+        hours} from '../../../utils/validations';
 
 const AddTechnician = (props) => {
 
-  const required = value => (value ? undefined : 'Required');
   const onSubmit = (values) => {
     props.addTechnician(values);
   };
@@ -18,7 +23,7 @@ const AddTechnician = (props) => {
         {({handleSubmit,meta,  values, submitting}) => (
           <form onSubmit={handleSubmit}>
             <div>
-              <Field name="fullName" placeholder="Full Name" validate = {required}>
+              <Field name="fullName" placeholder="Full Name" validate = {composeValidators(required,fullName)}>
                 {({input,meta,placeholder}) => (
                   <div >
                     <label>Full Name</label>
@@ -29,7 +34,7 @@ const AddTechnician = (props) => {
               </Field>
             </div>
               <div>
-                <Field name="email" placeholder="Email" validate = {required}>
+                <Field name="email" placeholder="Email" validate = {composeValidators(required,email)}>
                   {({input,meta,placeholder}) => (
                     <div>
                       <label>Email</label>
@@ -40,7 +45,7 @@ const AddTechnician = (props) => {
                   </Field>
               </div>
               <div >
-                <Field name="phone" placeholder="Phone" validate = {required}>
+                <Field name="phone" placeholder="Phone" validate = {composeValidators(required,phone)}>
                   {({input,meta,placeholder}) => (
                     <div>
                       <label>Phone</label>
@@ -80,7 +85,7 @@ const AddTechnician = (props) => {
                   </Field>
               </div>
               <div >
-                <Field name="spareHoursAvailable" placeholder="Hours Available" validate = {required}>
+                <Field name="spareHoursAvailable" placeholder="Hours Available" validate = {composeValidators(required,hours)}>
                   {({input,meta,placeholder}) => (
                     <div>
                       <label>Hours Available</label>

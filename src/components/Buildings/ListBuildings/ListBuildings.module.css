@@ -7,8 +7,15 @@
 }
 .inputStyle {
   flex: 1;
-  padding: 5px;
-  margin: 3px;
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 4px;
+  width: 15%;
+  height: 40px;
+  margin-right: 10px;
+  margin-top: 10px;
+  border: none;
 }
 .dateStyle {
   flex: 1;
@@ -18,7 +25,7 @@
 .liStyle {
   float: left;
   display: block;
-  width: 14%;
+  width: 16%;
   color: rgb(0, 0, 0);
   font-weight: 600;
   font-size: 12px;
@@ -33,7 +40,13 @@
   height: 50px;
   padding: 10px;
   cursor: pointer;
-  margin-left: 5px;
-  margin-right: 5px;
+  border-radius: 50%;
+  float: right;
+  margin-left: 8px;
+  margin-right: 40px;
   margin-top: 5px;
+}
+.btnGroup{
+  text-align: center;
+  margin-right: 35px;
 }
