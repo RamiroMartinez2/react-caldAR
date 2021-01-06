@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../HeaderBoiler/Header";
 import Boilers from "../Boilers/Boilers";
 import AddBoiler from "../AddBoiler/AddBoiler";
@@ -11,12 +11,15 @@ import {
   addBoiler,
   deleteBoiler,
   editBoiler
-} from '../../../redux/actions/boilerActions'
+} from '../../../redux/actions/boilerActions';
+import Modal from "../../Modal/Modal";
 
 const MainBoiler = (props) => {
   useEffect(()=>{
     props.getBoilers();
   }, [props.getBoilers]);
+
+  const [openModal, setOpenModal] = useState(false);
 
   if (props.boilers.isLoading){
     return <p>Loading...</p>
@@ -27,7 +30,7 @@ const MainBoiler = (props) => {
   }
 
   return (
-    <div className={styles.Main}>
+    <div className="App">
       <div className={styles.Container}>
         <Header />
         <Boilers 
@@ -36,7 +39,16 @@ const MainBoiler = (props) => {
           deleteBoiler={props.deleteBoiler}
           editBoiler={props.editBoiler}
         />
-        <AddBoiler addBoiler={props.addBoiler}/>
+        <button className={styles.btnAdd} onClick={() => setOpenModal(true)}>
+          Add New Boiler
+        </button>
+        <Modal
+          title="Add New Boiler"
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        >
+          <AddBoiler addBoiler={props.addBoiler}/>
+        </Modal>
       </div>
     </div>
   );
