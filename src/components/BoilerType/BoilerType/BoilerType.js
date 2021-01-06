@@ -5,7 +5,12 @@ import style from "./BoilerType.module.css";
 
 const BoilerType = (props) => {
   const listBoilerType = props.boilerTypes.map((boilerType) => (
-    <ListBoilerType key={boilerType.id} boilerType={boilerType} />
+    <ListBoilerType 
+      key={boilerType.id} 
+      boilerType={boilerType} 
+      deleteBoilerType={props.deleteBoilerType}
+      editBoilerType={props.editBoilerType}
+    />
   ));
   return (
     <div>
@@ -14,6 +19,7 @@ const BoilerType = (props) => {
         <li className={style.liStyleHeader}>Skills Id</li>
         <li className={style.liStyleHeader}>Description</li>
         <li className={style.liStyleHeader}>Stock</li>
+        <li className={style.liStyleHeader}>Actions</li>
       </ul>
       {listBoilerType}
     </div>
@@ -22,6 +28,8 @@ const BoilerType = (props) => {
 
 BoilerType.propTypes = {
   boilerTypes: PropTypes.array.isRequired,
+  deleteBoilerType: PropTypes.func.isRequired,
+  editBoilerType: PropTypes.func.isRequired,
 };
 
 export default BoilerType;
