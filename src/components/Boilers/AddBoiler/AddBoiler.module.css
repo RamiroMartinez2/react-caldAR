@@ -53,3 +53,7 @@ select{
   margin-left: 0px;
   width: 100%;
 }
+label{
+  font-size: 17px;
+  font-weight: 600;
+}

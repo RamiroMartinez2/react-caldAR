@@ -3,11 +3,14 @@ import React from "react";
 import styles from "./AddBoiler.module.css";
 import PropTypes from 'prop-types';
 import {Form, Field} from 'react-final-form';
+import {required,
+  composeValidators,
+  hour_maintaince_cost,
+  hour_eventual_cost} from '../../../utils/validations';
 
 
 const AddBoiler = (props) => {
 
-  const required = value => (value ? undefined : 'Required');
   const onSubmit = (values) => {
     props.addBoiler(values);
   };
@@ -39,7 +42,7 @@ const AddBoiler = (props) => {
               </Field>
             </div>
             <div >
-              <Field name="hour_maintaince_cost" placeholder="Hour Maintaince Cost" validate = {required}>
+              <Field name="hour_maintaince_cost" placeholder="Hour Maintaince Cost" validate = {composeValidators(required,hour_maintaince_cost)}>
                 {({input,meta,placeholder}) => (
                   <div>
                     <label>Hour Maintaince Cost</label>
@@ -50,7 +53,7 @@ const AddBoiler = (props) => {
               </Field>
             </div>
             <div >
-              <Field name="hour_eventual_cost" placeholder="Hour Eventual Cost" validate = {required}>
+              <Field name="hour_eventual_cost" placeholder="Hour Eventual Cost" validate = {composeValidators(required,hour_eventual_cost)}>
                 {({input,meta,placeholder}) => (
                   <div>
                     <label>Hour Eventual Cost</label>
