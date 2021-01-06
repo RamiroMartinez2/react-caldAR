@@ -3,10 +3,13 @@ import React from 'react';
 import style from './AddBoilerType.module.css';
 import PropTypes from 'prop-types';
 import {Form, Field} from 'react-final-form';
+import {required,
+  composeValidators,
+  skill,
+  stock,} from '../../../utils/validations';
 
 const AddBoilerType = (props) => {
 
-  const required = value => (value ? undefined : 'Required');
   const onSubmit = (values) => {
     props.addBoilerType(values);
   };
@@ -18,7 +21,7 @@ const AddBoilerType = (props) => {
         {({handleSubmit,meta,  values, submitting}) => (
           <form onSubmit={handleSubmit}>
             <div>
-              <Field name="skillsId" placeholder="Skills ID" validate = {required}>
+              <Field name="skillsId" placeholder="Skills ID" validate = {composeValidators(required,skill)}>
                 {({input,meta,placeholder}) => (
                   <div >
                     <label>Skills ID</label>
@@ -38,7 +41,7 @@ const AddBoilerType = (props) => {
                   </Field>
               </div>
               <div >
-                <Field name="stock" placeholder="Stock" validate = {required}>
+                <Field name="stock" placeholder="Stock" validate = {composeValidators(required,stock)}>
                   {({input,meta,placeholder}) => (
                     <div>
                       <label>Stock</label>
