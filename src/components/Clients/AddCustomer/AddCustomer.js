@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {useState} from "react";
 import styles from "./AddCustomer.module.css";
 import PropTypes from "prop-types";
 

@@ -1,38 +1,22 @@
-<<<<<<< HEAD:src/components/Clients/Item/Item.module.css
 .showForm {
-=======
-.showForm{
->>>>>>> c9ab34d (Add css module):src/components/Clients/Item/Item.css
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: rgb(239,232,216);
 }
-<<<<<<< HEAD:src/components/Clients/Item/Item.module.css
 .liStyle {
   float: left;
   display: block;
   width: 17%;
   color: rgb(0, 0, 0);
-=======
-.liStyle{
-  float: left;
-  display: block;
-  width: 17%;
-  color: rgb(0,0,0);
->>>>>>> c9ab34d (Add css module):src/components/Clients/Item/Item.css
   font-weight: 600;
   font-size: 12px;
   text-align: center;
   padding: 16px 10px 16px;
   border-bottom: 1px solid #333;
 }
-<<<<<<< HEAD:src/components/Clients/Item/Item.module.css
 .inputStyleEdt {
-=======
-.inputStyleEdt{
->>>>>>> c9ab34d (Add css module):src/components/Clients/Item/Item.css
   flex: 1;
   float: left;
   display: block;
@@ -44,13 +28,8 @@
   margin-top: 10px;
   border: none;
 }
-<<<<<<< HEAD:src/components/Clients/Item/Item.module.css
 .Btn {
   background-color: rgb(239, 232, 216);
-=======
-.Btn{
-  background-color: rgb(239,232,216);
->>>>>>> c9ab34d (Add css module):src/components/Clients/Item/Item.css
   border: none;
   width: 50px;
   height: 50px;

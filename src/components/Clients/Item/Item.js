@@ -5,10 +5,6 @@ import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GoTrashcan } from "react-icons/go";
-import {
-  delCustomer as delCustomerAction,
-  updateCustomer as updateCustomerAction,
-} from "../../../redux/actions/customerAction";
 
 
 const Item =(props)=> {
@@ -27,7 +23,7 @@ const Item =(props)=> {
 
 
   const saveChanges = () => {
-    props.updateCustomer(customer);
+    props.editCustomer(customer);
   };
   
 
@@ -101,7 +97,7 @@ const Item =(props)=> {
         <li className={styles.liStyle}>{props.customer.fiscal_address}</li>
         <div>
           <button
-            onClick={() => props.delCustomer(props.customer.id)}
+            onClick={() => props.deleteCustomer(props.customer.id)}
             className={styles.Btn}
           >
             <GoTrashcan />
@@ -119,21 +115,7 @@ const Item =(props)=> {
 Item.propTypes = {
   customer: PropTypes.object.isRequired,
   deleteCustomer: PropTypes.func.isRequired,
-  updateCustomer: PropTypes.func.isRequired,
+  editCustomer: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    delCustomer: (number) => dispatch(delCustomerAction(number)),
-    updateCustomer: (content) => dispatch(updateCustomerAction(content)),
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    customers: state.customers,
-  };
-};
-   
-
-export default connect(mapStateToProps, mapDispatchToProps)(Item);
+export default Item;

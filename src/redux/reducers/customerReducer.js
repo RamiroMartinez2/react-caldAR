@@ -1,131 +1,73 @@
-import {
-  GET_CUSTOMERS_FETCHING,
-  GET_CUSTOMERS_FULFILLED,
-  GET_CUSTOMERS_REJECTED,
-  ADD_CUSTOMER_FETCHING,
-  ADD_CUSTOMER_FULFILLED,
+import {  
+  GET_CUSTOMERS_FETCHING, 
+  GET_CUSTOMERS_FULFILLED, 
+  GET_CUSTOMERS_REJECTED, 
+  ADD_CUSTOMER_FETCHING, 
+  ADD_CUSTOMER_FULFILLED, 
   ADD_CUSTOMER_REJECTED,
   DELETE_CUSTOMER_FETCHING,
   DELETE_CUSTOMER_FULFILLED,
   DELETE_CUSTOMER_REJECTED,
-  UPDATE_CUSTOMER_FETCHING,
-  UPDATE_CUSTOMER_FULFILLED,
-  UPDATE_CUSTOMER_REJECTED,
-} from "../types/customerTypes";
+  EDIT_CUSTOMER_FETCHING,  
+  EDIT_CUSTOMER_FULFILLED,
+  EDIT_CUSTOMER_REJECTED, } from "../types/customerTypes";
 
 const initialState = {
-  isLoading: false,
-  error: false,
+  isLoading: false, 
   list: [],
-};
+  error: false
+}
 
 const customerReducer = (state = initialState, action) => {
-  switch (action.type) {
+  switch(action.type) {
     case GET_CUSTOMERS_FETCHING: {
-      return {
-        ...state,
-        isLoading: true,
-        error: false,
-      };
+      return {...state, isLoading: true,};
     }
     case GET_CUSTOMERS_FULFILLED: {
-      return {
-        ...state,
-        isLoading: false,
-        list: action.payload
-      };
+      return {...state, isLoading: false, list: action.payload};
     }
     case GET_CUSTOMERS_REJECTED: {
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload,
-      };
+      return {...state, isLoading: false, error: action.payload};
     }
     case ADD_CUSTOMER_FETCHING: {
-      return {
-        ...state,
-        isLoading: true,
-        error: false,
-      };
+      return {...state, isLoading: true,};
     }
-
     case ADD_CUSTOMER_FULFILLED: {
-      return {
-        ...state,
-        isLoading: false,
-        list: [...state.list, action.payload],
-      };
+      return {...state, isLoading: false, list: [...state.list, action.payload]};
     }
-
     case ADD_CUSTOMER_REJECTED: {
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload,
-      };
+      return {...state, isLoading: false, error: action.payload};
     }
-
-    case UPDATE_CUSTOMER_FETCHING: {
-      return {
-        ...state,
-        isLoading: true,
-        error: false,
-      };
-    }
-
-    case UPDATE_CUSTOMER_FULFILLED: {
-      return {
-        ...state,
-        isLoading: false,
-        list: [
-          ...state.list.map((customer) => {
-            if (customer._id === action.payload._id) {
-              customer = action.payload;
-            }
-            return customer;
-          }),
-        ],
-      };
-    }
-
-    case UPDATE_CUSTOMER_REJECTED: {
-      return {
-        ...state,
-        isLoading: false,
-        error: true,
-      };
-    }
-
     case DELETE_CUSTOMER_FETCHING: {
-      return {
-        ...state,
-        isLoading: true,
-        error: false,
-      };
+      return {...state, isLoading: true,};
     }
-
     case DELETE_CUSTOMER_FULFILLED: {
-      return {
-        ...state,
-        isLoading: false,
-        list: [
-          ...state.list.filter((customer) => customer._id !== action.payload),
-        ],
-      };
+      return {...state, isLoading: false, list: [...state.list.filter(boiler => boiler._id !== action.payload)]}
     }
     case DELETE_CUSTOMER_REJECTED: {
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload,
-      };
+      return {...state, isLoading: false, error: action.payload};
     }
-
+    case EDIT_CUSTOMER_FETCHING: {
+      return {...state, isLoading: true,};
+    }
+    case EDIT_CUSTOMER_FULFILLED: {
+      return {
+        ...state, 
+        isLoading: false, 
+        list: [...state.list.map(customer => { 
+          if (customer._id === action.payload._id){
+            customer = action.payload;
+          }return customer;
+        })]
+      }
+    }
+    case EDIT_CUSTOMER_REJECTED: {
+      return {...state, isLoading: false, error: action.payload};
+    }
     default: {
       return state;
     }
   }
-};
+}
 
 export default customerReducer;
