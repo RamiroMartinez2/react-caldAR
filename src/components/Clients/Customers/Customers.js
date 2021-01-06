@@ -4,12 +4,13 @@ import PropTypes from "prop-types";
 import styles from "./Customers.module.css";
 
 const Customers = (props) => {
-
   const items = props.customers.map((customer) => (
-    <Item  key={customer._id}
-   customer={customer}
-    deleteCustomer={props.deleteCustomer}
-    updateCustomer={props.updateCustomer} />
+    <Item
+      key={customer._id}
+      customer={customer}
+      deleteCustomer={props.deleteCustomer}
+      editCustomer={props.editCustomer}
+    />
   ));
 
   return (
@@ -29,8 +30,8 @@ const Customers = (props) => {
 
 Customers.propTypes = {
   customers: PropTypes.array.isRequired,
-  updateCustomer: PropTypes.func.isRequired,
- deleteCustomer: PropTypes.func.isRequired,
+  editCustomer: PropTypes.func.isRequired,
+  deleteCustomer: PropTypes.func.isRequired,
 };
 
 export default Customers;

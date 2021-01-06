@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./AddCustomer.module.css";
 import PropTypes from "prop-types";
-
 
 const AddCustomer = (props) => {
   const [customer, setNewCustomer] = useState({
@@ -16,8 +15,7 @@ const AddCustomer = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addCustomer({...customer});
-
+    props.addCustomer({ ...customer });
     setNewCustomer({
       customerType: "",
       email: "",
@@ -34,7 +32,7 @@ const AddCustomer = (props) => {
           type="text"
           name="customerType"
           placeholder="Particular or Business"
-          defaultValue={customer.customerType}
+          value={customer.customerType}
           onChange={onChange}
           required
         />
@@ -42,8 +40,8 @@ const AddCustomer = (props) => {
           className={styles.inputStyle}
           type="email"
           name="email"
-          placeholder="ramiro@hotmail.com"
-          defaultValue={customer.email}
+          placeholder="Add your email"
+          value={customer.email}
           onChange={onChange}
           required
         />
@@ -53,7 +51,7 @@ const AddCustomer = (props) => {
           type="text"
           name="buildings"
           placeholder="Add how many buildings you have"
-          defaultValue={customer.buildings}
+          value={customer.buildings}
           onChange={onChange}
           required
         />
@@ -61,8 +59,8 @@ const AddCustomer = (props) => {
           className={styles.inputStyle}
           type="text"
           name="fiscal_address"
-          placeholder="Cordoba 2020"
-          defaultValue={customer.fiscal_address}
+          placeholder="Add your address"
+          value={customer.fiscal_address}
           onChange={onChange}
           required
         />
