@@ -4,11 +4,10 @@ import style from "./ListBoilerType.module.css";
 import PropTypes from "prop-types";
 
 const ListBoilerTypes = (props) => {
-
   const listBoilerType = props.boilerTypes.map((boilerType) => (
-    <BoilerType 
-      key={boilerType.id} 
-      boilerType={boilerType} 
+    <BoilerType
+      key={boilerType.id}
+      boilerType={boilerType}
       deleteBoilerType={props.deleteBoilerType}
       editBoilerType={props.editBoilerType}
     />
@@ -34,4 +33,3 @@ ListBoilerTypes.propTypes = {
 };
 
 export default ListBoilerTypes;
-
