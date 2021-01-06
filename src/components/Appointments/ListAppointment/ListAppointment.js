@@ -2,30 +2,31 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FcCancel } from "react-icons/fc";
 import { GoTrashcan } from "react-icons/go";
-import { AiOutlineCheckCircle, AiFillEdit } from "react-icons/ai";
+import { BiPencil } from "react-icons/bi";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 import styles from "./ListAppointment.module.css";
-import { connect } from "react-redux";
-import {
-  deleteAppointment as delAppointment,
-  updateAppointment as updAppoint,
-} from "../../../redux/actions/appointmentActions";
+
 
 const ListAppointment = (props) => {
   const [isEditing, toggleEditing] = useState(false);
-  const [appointments, setAppointment] = useState({ ...props.appointments });
+  const [appointments, setAppointment] = useState({...props.appointments});
+
+  const cancelClick = () => {
+    toggleEditing();
+    setAppointment(props.appointments)
+  }
 
   const toggleEdit = () => {
-    setAppointment(props.appointments);
     toggleEditing(!isEditing);
   };
 
   const onChange = (e) => {
-    setAppointment({ ...appointments, [e.target.name]: e.target.value });
+    setAppointment({...appointments, [e.target.name]: e.target.value});
   };
 
   const saveChanges = () => {
     toggleEdit();
-    props.updAppoint(appointments);
+    props.updateAppointment(appointments);
   };
 
   if (isEditing) {
@@ -36,7 +37,7 @@ const ListAppointment = (props) => {
           type="number"
           name="id"
           placeholder="Id"
-          value={appointments.id}
+          value={appointments._id}
           onChange={onChange}
           required
         ></input>
@@ -86,7 +87,7 @@ const ListAppointment = (props) => {
           required
         ></input>
         <div>
-          <button onClick={toggleEdit} className={styles.Btn}>
+          <button onClick={cancelClick} className={styles.Btn}>
             <FcCancel />
           </button>
           <button onClick={saveChanges} className={styles.Btn}>
@@ -100,21 +101,21 @@ const ListAppointment = (props) => {
   return (
     <div>
       <ul className="showForm">
-        <li className={styles.liStyle}>{props.appointments.id}</li>
+        <li className={styles.liStyle}>{props.appointments._id}</li>
         <li className={styles.liStyle}>{props.appointments.buildingId}</li>
         <li className={styles.liStyle}>{props.appointments.boilerId}</li>
         <li className={styles.liStyle}>{props.appointments.date}</li>
         <li className={styles.liStyle}>{props.appointments.estimatedTime}</li>
         <li className={styles.liStyle}>{props.appointments.maintenanceType}</li>
-        <div>
+        <div>          
+          <button onClick={toggleEdit} className={styles.Btn}>
+            <BiPencil />
+          </button>
           <button
-            onClick={() => props.delAppointment(props.appointments.id)}
+            onClick={() => props.deleteAppointment(props.appointments._id)}
             className={styles.Btn}
           >
             <GoTrashcan />
-          </button>
-          <button onClick={toggleEdit} className={styles.Btn}>
-            <AiFillEdit />
           </button>
         </div>
       </ul>
@@ -123,22 +124,9 @@ const ListAppointment = (props) => {
 };
 
 ListAppointment.propTypes = {
-  appointments: PropTypes.array.isRequired,
-  delAppointment: PropTypes.func.isRequired,
-  updAppoint: PropTypes.func.isRequired,
+  appointments: PropTypes.object.isRequired,
+  deleteAppointment: PropTypes.func.isRequired,
+  updateAppointment: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    delAppointment: (id) => dispatch(delAppointment(id)),
-    updAppoint: (content) => dispatch(updAppoint(content)),
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    appointment: state.appointment,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListAppointment);
+export default ListAppointment;

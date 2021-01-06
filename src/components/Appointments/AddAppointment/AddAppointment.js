@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import styles from "./AddAppointment.module.css";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { addAppointment } from "../../../redux/actions/appointmentActions";
 
 const AddAppointment = (props) => {
   const [appointments, setNewAppointment] = useState({
-    id: "",
     buildingId: "",
     boilerId: "",
     date: "",
@@ -16,10 +13,9 @@ const AddAppointment = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addAppointment(appointments);
+    props.addAppointment({...appointments});
 
-    setNewAppointment({
-      id: "",
+    setNewAppointment({      
       buildingId: "",
       boilerId: "",
       date: "",
@@ -33,16 +29,7 @@ const AddAppointment = (props) => {
   };
 
   return (
-    <form className={styles.addForm} onSubmit={onSubmit}>
-      <input
-        className={styles.inputStyle}
-        type="number"
-        name="id"
-        placeholder="Id"
-        defaultValue={appointments.id}
-        onChange={onChange}
-        required
-      ></input>
+    <form className={styles.addForm} onSubmit={onSubmit}>      
       <input
         className={styles.inputStyle}
         type="number"
@@ -101,16 +88,4 @@ AddAppointment.propTypes = {
   addAppointment: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addAppointment: (content) => dispatch(addAppointment(content)),
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    appointments: state.appointment,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddAppointment);
+export default AddAppointment;

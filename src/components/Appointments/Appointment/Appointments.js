@@ -5,7 +5,12 @@ import styles from"./Appointment.module.css";
 
 const Appointments = (props) => {
   const listAppointment = props.appointments.map((appointments) => (
-    <ListAppointment key={appointments.id} appointments={appointments} />
+    <ListAppointment 
+      key={appointments._id} 
+      appointments={appointments}
+      deleteAppointment={props.deleteAppointment}
+      updateAppointment={props.updateAppointment}
+    />
   ));
   return (
     <div>
@@ -25,6 +30,8 @@ const Appointments = (props) => {
 
 Appointments.propTypes = {
   appointments: PropTypes.array.isRequired,
+  deleteAppointment: PropTypes.func.isRequired,
+  updateAppointment: PropTypes.func.isRequired,
 };
 
 export default Appointments;
