@@ -31,12 +31,10 @@ const ListBoilerType = (props) => {
       <ul className={style.showForm}>
         <input
           className={style.inputStyle}
-          type="number"
+          type="text"
           name="id"
-          placeholder="Id"
           value={boilerType._id}
-          onChange={onChange}
-          required
+          readOnly
         ></input>
         <input
           className={style.inputStyle}
@@ -77,7 +75,7 @@ const ListBoilerType = (props) => {
   return (
     <div>
       <ul className={style.showForm}>
-        <li className={style.liStyle}>{props.boilerType.id}</li>
+        <li className={style.liStyle}>{props.boilerType._id}</li>
         <li className={style.liStyle}>{props.boilerType.skillsId}</li>
         <li className={style.liStyle}>{props.boilerType.descriptions}</li>
         <li className={style.liStyle}>{props.boilerType.stock}</li>
