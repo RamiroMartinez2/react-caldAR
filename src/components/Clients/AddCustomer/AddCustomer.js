@@ -48,7 +48,7 @@ const AddCustomer = (props) => {
 
         <input
           className={styles.inputStyle}
-          type="text"
+          type="number"
           name="buildings"
           placeholder="Add how many buildings you have"
           value={customer.buildings}
