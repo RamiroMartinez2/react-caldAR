@@ -13,7 +13,7 @@ const Appointments = (props) => {
     />
   ));
   return (
-    <div>
+    <div className={styles.wrapUl}>
       <ul className={styles.ulStyle}>
         <li className={styles.liStyleHeader}>Id</li>
         <li className={styles.liStyleHeader}>Building Id</li>

@@ -100,8 +100,9 @@ const AddAppointment = (props) => {
               </Field>
             </div>
             <div>
-              <label>Maintenance Type</label>
-              <Field name="maintenanceType" component="select">
+              <label>Maintenance Type*</label>
+              <Field className={style.inputSelectStyle} name="maintenanceType" component="select">
+                <option></option>
                 <option>Regular</option>
                 <option>Eventual</option>
               </Field>

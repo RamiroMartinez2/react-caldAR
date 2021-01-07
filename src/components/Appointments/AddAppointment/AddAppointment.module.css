@@ -39,10 +39,21 @@
 }
 select{
   font-size: 15px;
-  width: 92%;
+  width: 100%;
   height: 26px;
   margin-top: 7px;
   margin-bottom: 7px;
-  margin-left: 7px;
+  margin-left: 0px;
 }
-
+.inputSelectStyle {
+  align-content:  center;
+  margin-bottom: 7px;
+  display: block;
+  padding: 3px;
+  margin-left: 0px;
+  width: 100%;
+}
+label{
+  font-size: 17px;
+  font-weight: 600;
+}

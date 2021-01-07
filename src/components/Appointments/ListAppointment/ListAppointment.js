@@ -6,22 +6,21 @@ import { BiPencil } from "react-icons/bi";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import styles from "./ListAppointment.module.css";
 
-
 const ListAppointment = (props) => {
   const [isEditing, toggleEditing] = useState(false);
-  const [appointments, setAppointment] = useState({...props.appointments});
+  const [appointments, setAppointment] = useState({ ...props.appointments });
 
   const cancelClick = () => {
     toggleEditing();
-    setAppointment(props.appointments)
-  }
+    setAppointment(props.appointments);
+  };
 
   const toggleEdit = () => {
     toggleEditing(!isEditing);
   };
 
   const onChange = (e) => {
-    setAppointment({...appointments, [e.target.name]: e.target.value});
+    setAppointment({ ...appointments, [e.target.name]: e.target.value });
   };
 
   const saveChanges = () => {
@@ -34,11 +33,9 @@ const ListAppointment = (props) => {
       <ul className={styles.showForm}>
         <input
           className={styles.inputStyle}
-          type="number"
+          type="text"
           name="id"
-          placeholder="Id"
           value={appointments._id}
-          onChange={onChange}
           readOnly
         ></input>
         <input
@@ -47,7 +44,7 @@ const ListAppointment = (props) => {
           name="buildingId"
           placeholder="Building Id"
           value={appointments.buildingId}
-          onChange={onChange}          
+          onChange={onChange}
         ></input>
         <input
           className={styles.inputStyle}
@@ -55,7 +52,7 @@ const ListAppointment = (props) => {
           name="boilerId"
           placeholder="Boiler Id"
           value={appointments.boilerId}
-          onChange={onChange}          
+          onChange={onChange}
         ></input>
         <input
           className={styles.dateStyle}
@@ -102,7 +99,7 @@ const ListAppointment = (props) => {
         <li className={styles.liStyle}>{props.appointments.date}</li>
         <li className={styles.liStyle}>{props.appointments.estimatedTime}</li>
         <li className={styles.liStyle}>{props.appointments.maintenanceType}</li>
-        <div>          
+        <div>
           <button onClick={toggleEdit} className={styles.Btn}>
             <BiPencil />
           </button>
