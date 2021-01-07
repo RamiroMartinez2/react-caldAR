@@ -1,110 +1,154 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styles from "./Item.module.css";
+import style from "./Item.module.css";
 import { BiPencil } from "react-icons/bi";
-import { FcCancel } from "react-icons/fc";
-import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GoTrashcan } from "react-icons/go";
+import Modal from "../../Modal/Modal";
+import { Form, Field } from "react-final-form";
+import {
+  required,
+  composeValidators,
+  email,
+  phone,
+ } from "../../../utils/validations";
 
 const Item = (props) => {
   const [isEditing, toggleEditing] = useState(false);
   const [customer, setCustomer] = useState({ ...props.customer });
+  const [openModal, setOpenModal] = useState(false);
 
   const cancelClick = () => {
     toggleEditing();
     setCustomer(props.customer);
+    setOpenModal(false)
   };
 
   const toggleEdit = () => {
     toggleEditing(!isEditing);
+    setOpenModal(true);
   };
 
   const onChange = (e) => {
     setCustomer({ ...customer, [e.target.name]: e.target.value });
   };
+
+  const onSubmit = () => {
+    props.setOpenModal(false);
+  };
+
   const saveChanges = () => {
-    props.editCustomer(customer);
+    props.updateCustomer(customer);
     toggleEdit();
   };
 
   if (isEditing) {
     return (
-      <ul className={styles.showForm}>
-        <input
-          className={styles.inputStyleEdt}
-          type="text"
-          name="id"
-          value={customer._id}
-          readOnly
-        ></input>
-        <input
-          className={styles.inputStyleEdt}
-          type="text"
-          name="customerType"
-          value={customer.customerType}
-          onChange={onChange}
-          required
-        ></input>
-        <input
-          className={styles.inputStyleEdt}
-          type="email"
-          name="email"
-          value={customer.email}
-          onChange={onChange}
-          required
-        ></input>
-        <input
-          className={styles.inputStyleEdt}
-          type="number"
-          name="buildings"
-          value={customer.buildings}
-          onChange={onChange}
-          required
-        ></input>
-        <input
-          className={styles.inputStyleEdt}
-          type="text"
-          name="fiscal_address"
-          value={customer.fiscal_address}
-          onChange={onChange}
-          required
-        ></input>
-        <div>
-          <button onClick={cancelClick} className={styles.Btn}>
-            <FcCancel />
-          </button>
-          <button onClick={saveChanges} className={styles.Btn}>
-            <AiOutlineCheckCircle />
-          </button>
-        </div>
-      </ul>
+      <Modal title="Editing Customer" openModal={openModal} setOpenModal={setOpenModal}>
+        <Form onSubmit={onSubmit}>
+          {/* eslint-disable-next-line no-unused-vars */}
+          {({ handleSubmit, meta, values, submitting }) => (
+            <form className={style.formStyle} onSubmit={handleSubmit}>
+              <div className={style.columnfile}>
+                <div className={style.columnA}>
+                  <div className={style.lineGroup}>
+                    <label>Customer Type</label>
+                    <Field name="statusActive" component="select" >
+                      <option></option>
+                      <option>Particular</option>
+                      <option>Business</option>
+                    </Field>
+                  </div>
+                  <div className={style.lineGroup}>
+                    <Field name="email" placeholder="Email" validate={composeValidators(required,email)}>
+                      {({ input, meta, placeholder }) => (
+                        <div>
+                          <label>Email</label>
+                          <input {...input} className={style.inputStyle} placeholder={placeholder} value={customer.email}
+                            onChange={(e) => {
+                              input.onChange(e);
+                              if (onChange) {
+                                onChange(e);
+                              }
+                            }}
+                          />
+                          {meta.error && meta.dirty && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                        </div>
+                      )}
+                    </Field>
+                  </div>
+                  <div className={style.lineGroup}>
+                    <Field name="buildings" placeholder="Add number of builidings" validate={composeValidators(required, phone)}>
+                      {({ input, meta, placeholder }) => (
+                        <div>
+                          <label>Buildings</label>
+                          <input {...input} className={style.inputStyle} placeholder={placeholder} value={customer.buildings}
+                            onChange={(e) => {
+                              input.onChange(e);
+                              if (onChange) {
+                                onChange(e);
+                              }
+                            }}
+                          />
+                          {meta.error && meta.dirty && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                        </div>
+                      )}
+                    </Field>
+                  </div>
+                </div>
+                <div className={style.columnA}>
+                  <div className={style.lineGroup}>
+                    <Field name="fiscal_address" placeholder="Fiscal Address" validate={required}>
+                      {({ input, meta, placeholder }) => (
+                        <div>
+                          <label>Fiscal Address</label>
+                          <input {...input} className={style.inputStyle} placeholder={placeholder} value={customer.fiscal_address}
+                            onChange={(e) => {
+                              input.onChange(e);
+                              if (onChange) {
+                                onChange(e);
+                              }
+                            }}
+                          />
+                          {meta.error && meta.dirty && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                        </div>
+                      )}
+                    </Field>
+                  </div>
+                  <button type="submit" disabled={submitting} className={style.BtnModCheck} onClick={saveChanges}>Confirm</button>
+                  <button className={style.BtnModCancel} onClick={cancelClick}>Cancel</button>
+                </div>
+              </div>
+            </form>
+          )}
+        </Form>
+      </Modal>
     );
   }
   return (
-    <ul className={styles.showForm}>
-      <li className={styles.liStyle}>{props.customer._id}</li>
-      <li className={styles.liStyle}>{props.customer.customerType}</li>
-      <li className={styles.liStyle}>{props.customer.email}</li>
-      <li className={styles.liStyle}>{props.customer.buildings}</li>
-      <li className={styles.liStyle}>{props.customer.fiscal_address}</li>
+    <ul className={style.showForm}>
+      <li className={style.liStyle}>{props.customer._id}</li>
+      <li className={style.liStyle}>{props.customer.customerType}</li>
+      <li className={style.liStyle}>{props.customer.email}</li>
+      <li className={style.liStyle}>{props.customer.buildings}</li>
+      <li className={style.liStyle}>{props.customer.fiscal_address}</li>
       <div>
-        <button
-          onClick={() => props.deleteCustomer(props.customer._id)}
-          className={styles.Btn}
-        >
-          <GoTrashcan />
-        </button>
-        <button onClick={toggleEdit} className={styles.Btn}>
-          <BiPencil />
-        </button>
+        <button onClick={toggleEdit} className={style.Btn}><BiPencil/></button>
+        <button className={style.Btn} onClick={() => setOpenModal(true)}><GoTrashcan /></button>
+          <Modal openModal={openModal} setOpenModal={setOpenModal}>
+            <p className={style.msgConfirm}>Are you sure you want to delete ?</p>
+            <button className={style.btnSubmit} onClick={() => props.deleteCustomer(props.customer._id)}>{" "}Confirm{" "}</button>
+            <button className={style.btnSubmit} onClick={() => setOpenModal(false)}>{" "}Cancel{" "}</button>
+          </Modal>
       </div>
     </ul>
   );
 };
+
 Item.propTypes = {
   customer: PropTypes.object.isRequired,
   deleteCustomer: PropTypes.func.isRequired,
-  editCustomer: PropTypes.func.isRequired,
+  updateCustomer: PropTypes.func.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
 };
 
 export default Item;
