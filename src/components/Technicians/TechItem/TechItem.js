@@ -5,10 +5,12 @@ import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GoTrashcan } from "react-icons/go";
+import Modal from "../../Modal/Modal";
 
 const TechItem = (props) => {
   const [isEditing, toggleEditing] = useState(false);
   const [tech, setTech] = useState({ ...props.tech });
+  const [openModal, setOpenModal] = useState(false);
 
   const cancelClick = () => {
     toggleEditing();
@@ -116,15 +118,13 @@ const TechItem = (props) => {
       <li className={style.liStyle}>{props.tech.assignedClients}</li>
       <li className={style.liStyle}>{props.tech.spareHoursAvailable}</li>
       <div>
-        <button
-          onClick={() => props.deleteTechnician(props.tech._id)}
-          className={style.Btn}
-        >
-          <GoTrashcan />
-        </button>
-        <button onClick={toggleEdit} className={style.Btn}>
-          <BiPencil />
-        </button>
+      <button className={style.Btn} onClick={() => setOpenModal(true)}><GoTrashcan /></button>
+        <Modal openModal={openModal} setOpenModal={setOpenModal}>
+          <p className={style.msgConfirm}>Are you sure you want to delete ?</p>
+          <button className={style.btnSubmit} onClick={() => props.deleteTechnician(props.tech._id)}>{" "}Confirm{" "}</button>
+          <button className={style.btnSubmit} onClick={() => setOpenModal(false)}>{" "}Cancel{" "}</button>
+        </Modal>
+      <button onClick={toggleEdit} className={style.Btn}><BiPencil/></button>
       </div>
     </ul>
   );
@@ -134,6 +134,7 @@ TechItem.propTypes = {
   tech: PropTypes.object.isRequired,
   deleteTechnician: PropTypes.func.isRequired,
   updateTechnician: PropTypes.func.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
 };
 
 export default TechItem;
