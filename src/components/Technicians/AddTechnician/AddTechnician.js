@@ -6,7 +6,6 @@ import {Form, Field} from 'react-final-form';
 import {required,
         composeValidators,
         email,
-        fullName,
         phone,
         hours} from '../../../utils/validations';
 
@@ -14,6 +13,7 @@ const AddTechnician = (props) => {
 
   const onSubmit = (values) => {
     props.addTechnician(values);
+    props.setOpenModal(false);
   };
 
   return(
@@ -23,7 +23,7 @@ const AddTechnician = (props) => {
         {({handleSubmit,meta,  values, submitting}) => (
           <form onSubmit={handleSubmit}>
             <div>
-              <Field name="fullName" placeholder="Full Name" validate = {composeValidators(required,fullName)}>
+              <Field name="fullName" placeholder="Full Name" validate = {composeValidators(required)}>
                 {({input,meta,placeholder}) => (
                   <div >
                     <label>Full Name</label>
@@ -58,8 +58,9 @@ const AddTechnician = (props) => {
               <div >
                 <label>Status</label>
                 <Field name="statusActive" component="select">
-                    <option>Active</option>
-                    <option>Inactive</option>
+                  <option>-</option>
+                  <option>Active</option>
+                  <option>Inactive</option>
                   </Field>
               </div>
               <div >
@@ -95,7 +96,8 @@ const AddTechnician = (props) => {
                   )}
                   </Field>
               </div>
-            <button type="submit" className={style.btnSubmit} disabled={submitting}>Submit</button>
+              <button type="submit" className={style.btnSubmit} disabled={submitting}>Submit</button>
+              <button  onClick={() => props.setOpenModal(false)} className={style.btnSubmit} >Cancel</button>
           </form>
         )}
       </Form>
