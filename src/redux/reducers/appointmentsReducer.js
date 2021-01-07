@@ -10,13 +10,13 @@ import {
   DELETE_APPOINTMENT_REJECTED,
   UPDATE_APPOINTMENT_FULFILLED,
   UPDATE_APPOINTMENT_REJECTED,
-  UPDATE_APPOINTMENT_FETCHING
+  UPDATE_APPOINTMENT_FETCHING,
 } from "../types/appointmentTypes";
 
 const initialState = {
   isLoading: false,
   list: [],
-  error: false
+  error: false,
 };
 
 const appointmentReducer = (state = initialState, action) => {
@@ -25,86 +25,92 @@ const appointmentReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
-        error: false
+        error: false,
       };
     }
-    case GET_APPOINTMENT_FULFILLED: 
+    case GET_APPOINTMENT_FULFILLED:
       return {
         ...state,
         isLoading: false,
-        list: action.payload
-    };
-    case GET_APPOINTMENT_REJECTED: 
+        list: action.payload,
+      };
+    case GET_APPOINTMENT_REJECTED:
       return {
         ...state,
         isLoading: false,
-        error: action.payload
-    };
+        error: action.payload,
+      };
     case ADD_APPOINTMENT_FETCHING:
-      return  {
+      return {
         ...state,
         isLoading: true,
-        error: false
+        error: false,
       };
     case ADD_APPOINTMENT_FULFILLED:
       return {
         ...state,
         isLoading: false,
-        list: [...state.list, action.payload]
+        list: [...state.list, action.payload],
       };
     case ADD_APPOINTMENT_REJECTED:
       return {
         ...state,
         isLoading: false,
-        error: action.payload
-      }
+        error: action.payload,
+      };
     case DELETE_APPOINTMENT_FETCHING:
       return {
         ...state,
         isLoading: true,
-        error: false
+        error: false,
       };
     case DELETE_APPOINTMENT_FULFILLED:
       return {
         ...state,
         isLoading: false,
-        list: [...state.list.filter(appointments => appointments._id !== action.payload)]
+        list: [
+          ...state.list.filter(
+            (appointments) => appointments._id !== action.payload
+          ),
+        ],
       };
     case DELETE_APPOINTMENT_REJECTED:
       return {
         ...state,
         isLoading: false,
-        error: action.payload
+        error: action.payload,
       };
     case UPDATE_APPOINTMENT_FETCHING: {
       return {
-          ...state,
-          isLoading: true,
-          error: false,
-      }
+        ...state,
+        isLoading: true,
+        error: false,
+      };
     }
     case UPDATE_APPOINTMENT_FULFILLED: {
-        return {
-            ...state,
-            isLoading: false,
-            list: [...state.list.map(appointments => {
-                if (appointments._id === action.payload._id) {
-                  appointments = action.payload;
-                }
-                return appointments;
-            })]
-        }
+      return {
+        ...state,
+        isLoading: false,
+        list: [
+          ...state.list.map((appointments) => {
+            if (appointments._id === action.payload._id) {
+              appointments = action.payload;
+            }
+            return appointments;
+          }),
+        ],
+      };
     }
     case UPDATE_APPOINTMENT_REJECTED: {
-        return {
-            ...state,
-            isLoading: false,
-            error: action.payload
-        }
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
     }
 
     default:
-      return state ;
+      return state;
   }
 };
 

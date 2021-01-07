@@ -17,3 +17,7 @@
   padding: 16px 16px 16px;
 }
 
+.wrapUl{
+  display: flex;
+  flex-direction: column;
+}

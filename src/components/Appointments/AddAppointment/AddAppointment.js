@@ -1,86 +1,123 @@
-import React, { useState } from "react";
-import styles from "./AddAppointment.module.css";
+import React from "react";
+import style from "./AddAppointment.module.css";
 import PropTypes from "prop-types";
+import { Form, Field } from "react-final-form";
 
 const AddAppointment = (props) => {
-  const [appointments, setNewAppointment] = useState({
-    buildingId: "",
-    boilerId: "",
-    date: "",
-    estimatedTime: "",
-    maintenanceType: "",
-  });
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    props.addAppointment({...appointments});
-
-    setNewAppointment({      
-      buildingId: "",
-      boilerId: "",
-      date: "",
-      estimatedTime: "",
-      maintenanceType: "",
-    });
+  const required = (value) => (value ? undefined : "Required");
+  const onSubmit = (values) => {
+    props.addAppointment(values);
   };
-
-  const onChange = (e) => {
-    setNewAppointment({ ...appointments, [e.target.name]: e.target.value });
-  };
-
   return (
-    <form className={styles.addForm} onSubmit={onSubmit}>      
-      <input
-        className={styles.inputStyle}
-        type="number"
-        name="buildingId"
-        placeholder="Building Id"
-        defaultValue={appointments.buildingId}
-        onChange={onChange}
-        required
-      ></input>
-      <input
-        className={styles.inputStyle}
-        type="number"
-        name="boilerId"
-        placeholder="Boiler Id"
-        defaultValue={appointments.boilerId}
-        onChange={onChange}
-        required
-      ></input>
-      <input
-        className={styles.dateStyles}
-        type="date"
-        name="date"
-        placeholder="Date"
-        defaultValue={appointments.date}
-        onChange={onChange}
-        required
-      ></input>
-      <input
-        className={styles.inputStyle}
-        type="number"
-        name="estimatedTime"
-        placeholder="Estimated Time"
-        defaultValue={appointments.estimatedTime}
-        onChange={onChange}
-        required
-      ></input>
-      <input
-        className={styles.inputStyle}
-        type="text"
-        name="maintenanceType"
-        placeholder="Maintenance Type"
-        defaultValue={appointments.maintenanceType}
-        onChange={onChange}
-        required
-      ></input>
-      <input
-        className={styles.btnSubmit}
-        type="submit"
-        value="Add Appointment"
-      ></input>
-    </form>
+    <div>
+      <Form onSubmit={onSubmit}>
+        {/* eslint-disable-next-line no-unused-vars */}
+        {({ handleSubmit, meta, values, submitting }) => (
+          <form onSubmit={handleSubmit}>
+            <div>
+              <Field
+                name="buildingId"
+                placeholder="Building Id"
+                validate={required}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Building Id</label>
+                    <input
+                      {...input}
+                      className={style.inputStyle}
+                      placeholder={placeholder}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className={style.errorMsg}>{meta.error}</span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="boilerId"
+                placeholder="Boiler Id"
+                validate={required}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Boiler Id</label>
+                    <input
+                      {...input}
+                      className={style.inputStyle}
+                      placeholder={placeholder}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className={style.errorMsg}>{meta.error}</span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="date"
+                placeholder="Date"
+                validate={required}
+                component="date"
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Date</label>
+                    <input
+                      {...input}
+                      className={style.inputStyle}
+                      placeholder={placeholder}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className={style.errorMsg}>{meta.error}</span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="estimatedTime"
+                placeholder="Estimated Time"
+                validate={required}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Estimated Time</label>
+                    <input
+                      {...input}
+                      className={style.inputStyle}
+                      placeholder={placeholder}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className={style.errorMsg}>{meta.error}</span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <label>Maintenance Type*</label>
+              <Field className={style.inputSelectStyle} name="maintenanceType" component="select">
+                <option></option>
+                <option>Regular</option>
+                <option>Eventual</option>
+              </Field>
+            </div>
+            <button
+              type="submit"
+              className={style.btnSubmit}
+              disabled={submitting}
+            >
+              Submit
+            </button>
+          </form>
+        )}
+      </Form>
+    </div>
   );
 };
 

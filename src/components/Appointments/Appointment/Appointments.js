@@ -1,19 +1,19 @@
 import React from "react";
 import ListAppointment from "../ListAppointment/ListAppointment";
 import PropTypes from "prop-types";
-import styles from"./Appointment.module.css";
+import styles from "./Appointment.module.css";
 
 const Appointments = (props) => {
   const listAppointment = props.appointments.map((appointments) => (
-    <ListAppointment 
-      key={appointments._id} 
+    <ListAppointment
+      key={appointments._id}
       appointments={appointments}
       deleteAppointment={props.deleteAppointment}
       updateAppointment={props.updateAppointment}
     />
   ));
   return (
-    <div>
+    <div className={styles.wrapUl}>
       <ul className={styles.ulStyle}>
         <li className={styles.liStyleHeader}>Id</li>
         <li className={styles.liStyleHeader}>Building Id</li>
