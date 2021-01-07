@@ -5,10 +5,12 @@ import { GoTrashcan } from "react-icons/go";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { FcCancel } from "react-icons/fc";
 import { BiPencil } from "react-icons/bi";
+import Modal from "../../Modal/Modal";
 
 const BoilerType = (props) => {
   const [isEditing, toggleEditing] = useState(false);
   const [boilerType, setBoilerType] = useState({ ...props.boilerType });
+  const [openModal, setOpenModal] = useState(false);
 
   const cancelClick = () => {
     toggleEditing();
@@ -81,17 +83,15 @@ const BoilerType = (props) => {
         <li className={style.liStyle}>{props.boilerType.skillsId}</li>
         <li className={style.liStyle}>{props.boilerType.descriptions}</li>
         <li className={style.liStyle}>{props.boilerType.stock}</li>
-        <div className={style.btnGroup}>
-          <button
-            onClick={() => props.deleteBoilerType(props.boilerType._id)}
-            className={style.Btn}
-          >
-            <GoTrashcan />
-          </button>
-          <button onClick={toggleEdit} className={style.Btn}>
-            <BiPencil />
-          </button>
-        </div>
+        <div>
+        <button className={style.Btn} onClick={() => setOpenModal(true)}><GoTrashcan /></button>
+          <Modal openModal={openModal} setOpenModal={setOpenModal}>
+            <p className={style.msgConfirm}>Are you sure you want to delete ?</p>
+            <button className={style.btnSubmit} onClick={() => props.deleteBoilerType(props.boilerType._id)}>{" "}Confirm{" "}</button>
+            <button className={style.btnSubmit} onClick={() => setOpenModal(false)}>{" "}Cancel{" "}</button>
+          </Modal>
+      <button onClick={toggleEdit} className={style.Btn}><BiPencil/></button>
+      </div>
       </ul>
     </div>
   );

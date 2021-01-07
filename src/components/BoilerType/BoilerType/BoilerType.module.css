@@ -34,6 +34,19 @@
   margin-right: 12px;
   margin-top: 5px;
 }
+.btnSubmit {
+  width: 40%;
+  color: rgb(239, 222, 216);
+  margin-left: 5%;
+  margin-top: 10px;
+  padding: 15px;
+  background-color: rgb(19, 84, 76);
+  border: 2px solid rgb(19, 84, 76) ;
+  font-weight: 600;
+  flex: 1;
+  font-size: 15px;
+  cursor: pointer;
+}
 .liStyle {
   float: left;
   display: block;
@@ -44,4 +57,10 @@
   text-align: center;
   padding: 16px 10px 16px;
   border-bottom: 1px solid #333;
+}
+.msgConfirm{
+  font-size: 25px;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
 }
