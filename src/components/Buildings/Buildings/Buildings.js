@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Bld from "../Bld/Bld";
 import AddBuildings from "../AddBuildings/AddBuildings";
 import HeaderBuilding from "../HeaderBuildings/HeaderBuildings";
@@ -12,11 +12,14 @@ import {
   updateBuildingAsync,
   addBuildingAsync,
 } from "../../../redux/actions/buildingAction";
+import Modal from "../../Modal/Modal";
 
 const Buildings = (props) => {
   useEffect(() => {
     props.getBuildings();
   }, [props.getBuildings]);
+
+  const [openModal, setOpenModal] = useState(false);
 
   if (props.buildings.isLoading) {
     return <p>Loading...</p>;
@@ -35,7 +38,16 @@ const Buildings = (props) => {
           delBuilding={props.delBuilding}
           updateBuilding={props.updateBuilding}
         />
-        <AddBuildings addBuilding={props.addBuilding} />
+        <button className={style.btnAdd} onClick={() => setOpenModal(true)}>
+          Add New Building
+        </button>
+        <Modal
+          title="Add New Building"
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        >
+          <AddBuildings addBuilding={props.addBuilding} />
+        </Modal>
       </div>
     </div>
   );
