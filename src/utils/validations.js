@@ -31,6 +31,7 @@ export const skill = (value) =>
 
 export const stock = (value) =>
   value <= 20 && value >= 0 ? undefined : "Must be a number between 0-20";
+  
 export const hour_maintaince_cost = (value) =>
   /^[0-9]+(\.[0-9]{1,2})?$/.test(value)
     ? undefined
