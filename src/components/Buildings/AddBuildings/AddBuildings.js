@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AddBuilding.css";
+import style from "./AddBuilding.module.css";
 import PropTypes from "prop-types";
 
 const AddBuilding = (props) => {
@@ -25,9 +25,9 @@ const AddBuilding = (props) => {
   };
 
   return (
-    <form className="addForm" onSubmit={onSubmit}>
+    <form className={style.addForm} onSubmit={onSubmit}>
       <input
-        className="inputStyle"
+        className={style.inputStyle}
         type="text"
         name="address"
         placeholder="Address"
@@ -35,7 +35,7 @@ const AddBuilding = (props) => {
         onChange={onChange}
       ></input>
       <input
-        className="inputStyle"
+        className={style.inputStyle}
         type="number"
         name="boilerID"
         placeholder="Boiler Type"
@@ -43,7 +43,7 @@ const AddBuilding = (props) => {
         onChange={onChange}
       ></input>
       <input
-        className="inputStyle"
+        className={style.inputStyle}
         type="text"
         name="fullname"
         placeholder="Name"
@@ -51,14 +51,14 @@ const AddBuilding = (props) => {
         onChange={onChange}
       ></input>
       <input
-        className="inputStyle"
+        className={style.inputStyle}
         type="text"
         name="phone"
         placeholder="Phone"
         value={building.phone}
         onChange={onChange}
       ></input>
-      <input className="btnSubmit" type="submit" value="Add New"></input>
+      <input className={style.btnSubmit} type="submit" value="Add New"></input>
     </form>
   );
 };

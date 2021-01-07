@@ -17,11 +17,6 @@
   margin-top: 10px;
   border: none;
 }
-.dateStyle {
-  flex: 1;
-  padding: 3px;
-  margin: 3px;
-}
 .liStyle {
   float: left;
   display: block;
@@ -46,7 +41,7 @@
   margin-right: 40px;
   margin-top: 5px;
 }
-.btnGroup{
+.btnGroup {
   text-align: center;
   margin-right: 35px;
 }

@@ -5,7 +5,7 @@ import HeaderBuilding from "../HeaderBuildings/HeaderBuildings";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
-import "./Buildings.css";
+import style from "./Buildings.module.css";
 import {
   getBuildingsAsync,
   deleteBuildingAsync,
@@ -27,7 +27,7 @@ const Buildings = (props) => {
   }
   return (
     <div className="App">
-      <div className="container">
+      <div className={style.container}>
         <HeaderBuilding />
         <Bld
           buildings={props.buildings.list}
