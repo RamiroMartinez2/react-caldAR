@@ -1,68 +1,65 @@
-import React, { useState } from "react";
-import style from "./AddBoilerType.module.css";
-import PropTypes from "prop-types";
+/* eslint react/prop-types: 0 */
+import React from 'react';
+import style from './AddBoilerType.module.css';
+import PropTypes from 'prop-types';
+import {Form, Field} from 'react-final-form';
+import {required,
+  composeValidators,
+  skill,
+  stock,} from '../../../utils/validations';
 
 const AddBoilerType = (props) => {
-  const [boilerType, setNewBoilerType] = useState({
-    skillsId: "",
-    descriptions: "",
-    stock: "",
-  });
 
-  const onChange = (e) =>
-    setNewBoilerType({ ...boilerType, [e.target.name]: e.target.value });
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    props.addBoilerType({...boilerType});
-    setNewBoilerType({
-      skillsId: "",
-      descriptions: "",
-      stock: "",
-    });
+  const onSubmit = (values) => {
+    props.addBoilerType(values);
   };
 
-  return (
-    <form className={style.addForm} onSubmit={onSubmit}>
-      <input
-        className={style.inputStyle}
-        type="text"
-        name="skillsId"
-        placeholder="Skills ID"
-        value={boilerType.skillsId}
-        onChange={onChange}
-        required
-      ></input>
-      <input
-        className={style.inputStyle}
-        type="text"
-        name="descriptions"
-        placeholder="Descriptions"
-        value={boilerType.descriptions}
-        onChange={onChange}
-        required
-      ></input>
-      <input
-        className={style.inputStyle}
-        type="text"
-        name="stock"
-        placeholder="Stock"
-        value={boilerType.stock}
-        onChange={onChange}
-        required
-      ></input>
-      <input
-        className={style.btnSubmit}
-        type="submit"
-        value="Add new Boiler Type"
-      ></input>
-    </form>
-  );
-};
+  return(
+    <div className={style.addForm}>
+      <Form onSubmit={onSubmit}>
+      {/* eslint-disable-next-line no-unused-vars */}
+        {({handleSubmit,meta,  values, submitting}) => (
+          <form onSubmit={handleSubmit}>
+            <div>
+              <Field name="skillsId" placeholder="Skills ID" validate = {composeValidators(required,skill)}>
+                {({input,meta,placeholder}) => (
+                  <div >
+                    <label>Skills ID</label>
+                    <input {...input} className={style.inputStyle} placeholder={placeholder} />
+                    {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+            </div>
+              <div >
+                <label>Descriptions</label>
+                <Field className={style.slection} name="descriptions" component="select">
+                    <option>Orange</option>
+                    <option>Turquoise</option>
+                    <option>Pink</option>
+                    <option>Puce</option>
+                  </Field>
+              </div>
+              <div >
+                <Field name="stock" placeholder="Stock" validate = {composeValidators(required,stock)}>
+                  {({input,meta,placeholder}) => (
+                    <div>
+                      <label>Stock</label>
+                      <input {...input} className={style.inputStyle} placeholder={placeholder} />
+                      {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                    </div>
+                  )}
+                  </Field>
+              </div>
+            <button type="submit" className={style.btnSubmit} disabled={submitting}>Submit</button>
+          </form>
+        )}
+      </Form>
+    </div>
+  )}
 
 AddBoilerType.propTypes = {
   addBoilerType: PropTypes.func.isRequired,
-};
-
+}
 
 export default AddBoilerType;

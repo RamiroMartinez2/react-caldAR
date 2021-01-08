@@ -19,9 +19,9 @@ const getAppointmentsFetching = () => ({
   type: GET_APPOINTMENT_FETCHING,
 });
 
-const getAppointmentsFulfilled = list => ({
+const getAppointmentsFulfilled = (list) => ({
   type: GET_APPOINTMENT_FULFILLED,
-  payload: list
+  payload: list,
 });
 
 const getAppointmentsRejected = (error) => ({
@@ -31,12 +31,12 @@ const getAppointmentsRejected = (error) => ({
 
 export const getAppointmentAsync = () => (dispatch) => {
   dispatch(getAppointmentsFetching());
-  return fetch(`${URL}`, { method: 'GET' })
+  return fetch(`${URL}`, { method: "GET" })
     .then((data) => data.json())
     .then((json) => {
       dispatch(getAppointmentsFulfilled(json));
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch(getAppointmentsRejected(error));
     });
 };
@@ -45,9 +45,9 @@ const addAppointmentsFetching = () => ({
   type: ADD_APPOINTMENT_FETCHING,
 });
 
-const addAppointmentsFulfilled = content => ({
+const addAppointmentsFulfilled = (content) => ({
   type: ADD_APPOINTMENT_FULFILLED,
-  payload: content
+  payload: content,
 });
 
 const addAppointmentsRejected = (error) => ({
@@ -55,7 +55,7 @@ const addAppointmentsRejected = (error) => ({
   payload: error,
 });
 
-export const addAppointmentAsync = content => (dispatch) => {
+export const addAppointmentAsync = (content) => (dispatch) => {
   dispatch(addAppointmentsFetching());
   const body = JSON.stringify(content);
   return fetch(`${URL}/`, {
@@ -63,24 +63,18 @@ export const addAppointmentAsync = content => (dispatch) => {
     body: body,
     headers: {
       "Content-Type": "application/json",
-      'Accept': 'application/json'
+      Accept: "application/json",
     },
-    
   })
-    .then(data => data.json())
-    .then((json) =>
-    { 
-      if (!json.code)
-      {
+    .then((data) => data.json())
+    .then((json) => {
+      if (!json.code) {
         dispatch(addAppointmentsFulfilled(json));
-      }
-      else
-      {
+      } else {
         dispatch(addAppointmentsRejected(json));
       }
     })
-    .catch((error) => 
-      dispatch(addAppointmentsRejected(error)))
+    .catch((error) => dispatch(addAppointmentsRejected(error)));
 };
 
 const deleteAppointmentsFetching = () => ({
@@ -94,30 +88,30 @@ const deleteAppointmentsFulfilled = (payload) => ({
 
 const deleteAppointmentsRejected = () => ({
   type: DELETE_APPOINTMENT_REJECTED,
- });
+});
 
 export const deleteAppointmentAsync = (id) => (dispatch) => {
   dispatch(deleteAppointmentsFetching());
   return fetch(`${URL}/${id}`, { method: "DELETE" })
-    .then(function(data){
-      console.log(data)
-      return data.json
+    .then(function (data) {
+      console.log(data);
+      return data.json;
     })
     .then(() => {
       dispatch(deleteAppointmentsFulfilled(id));
-  })
-  .catch(() => {
-    dispatch(deleteAppointmentsRejected());
-  });
+    })
+    .catch(() => {
+      dispatch(deleteAppointmentsRejected());
+    });
 };
 
 const updateAppointmentsFetching = () => ({
   type: UPDATE_APPOINTMENT_FETCHING,
 });
 
-const updateAppointmentsFulfilled = content => ({
+const updateAppointmentsFulfilled = (content) => ({
   type: UPDATE_APPOINTMENT_FULFILLED,
-  payload: content
+  payload: content,
 });
 
 const updateAppointmentsRejected = (error) => ({
@@ -131,21 +125,17 @@ export const updateAppointmentAsync = (content) => (dispatch) => {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json"
+      Accept: "application/json",
     },
     body: JSON.stringify(content),
   })
-    .then(data => data.json())
-    .then((json) =>
-      {
-        if (!json.code)
-        {
-            dispatch(updateAppointmentsFulfilled(content))
-        }
-        else
-        {
-            dispatch(updateAppointmentsRejected(json));
-        }
+    .then((data) => data.json())
+    .then((json) => {
+      if (!json.code) {
+        dispatch(updateAppointmentsFulfilled(content));
+      } else {
+        dispatch(updateAppointmentsRejected(json));
+      }
     })
-    .catch((error) => dispatch(updateAppointmentsRejected(error)))
-}
+    .catch((error) => dispatch(updateAppointmentsRejected(error)));
+};

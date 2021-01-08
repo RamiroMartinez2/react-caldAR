@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ListBuildings.css";
+import style from "./ListBuildings.module.css";
 import PropTypes from "prop-types";
 import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
@@ -26,9 +26,16 @@ const ListBuildings = (props) => {
 
   if (isEditing) {
     return (
-      <ul className="showForm">
+      <ul className={style.showForm}>
         <input
-          className="inputStyle"
+          className={style.inputStyle}
+          type="text"
+          name="id"
+          value={building._id}
+          readOnly
+        ></input>
+        <input
+          className={style.inputStyle}
           type="text"
           name="address"
           placeholder="Address"
@@ -36,7 +43,7 @@ const ListBuildings = (props) => {
           onChange={onChange}
         ></input>
         <input
-          className="inputStyle"
+          className={style.inputStyle}
           type="number"
           name="boilerID"
           placeholder="Boiler Type"
@@ -44,7 +51,7 @@ const ListBuildings = (props) => {
           onChange={onChange}
         ></input>
         <input
-          className="inputStyle"
+          className={style.inputStyle}
           type="text"
           name="fullname"
           placeholder="Name"
@@ -52,18 +59,18 @@ const ListBuildings = (props) => {
           onChange={onChange}
         ></input>
         <input
-          className="inputStyle"
+          className={style.inputStyle}
           type="text"
           name="phone"
           placeholder="Phone"
           value={building.phone}
           onChange={onChange}
         ></input>
-        <div>
-          <button onClick={toggleEdit} className="Btn">
+        <div className={style.btnGroup}>
+          <button onClick={toggleEdit} className={style.Btn}>
             <FcCancel />
           </button>
-          <button onClick={saveChanges} className="Btn">
+          <button onClick={saveChanges} className={style.Btn}>
             <AiOutlineCheckCircle />
           </button>
         </div>
@@ -73,20 +80,20 @@ const ListBuildings = (props) => {
 
   return (
     <div>
-      <ul className="showForm">
-        <li className="liStyle">{props.building._id}</li>
-        <li className="liStyle">{props.building.address}</li>
-        <li className="liStyle">{props.building.boilerID}</li>
-        <li className="liStyle">{props.building.fullname}</li>
-        <li className="liStyle">{props.building.phone}</li>
-        <div>
+      <ul className={style.showForm}>
+        <li className={style.liStyle}>{props.building._id}</li>
+        <li className={style.liStyle}>{props.building.address}</li>
+        <li className={style.liStyle}>{props.building.boilerID}</li>
+        <li className={style.liStyle}>{props.building.fullname}</li>
+        <li className={style.liStyle}>{props.building.phone}</li>
+        <div className={style.btnGroup}>
           <button
             onClick={() => props.delBuilding(props.building._id)}
-            className="Btn"
+            className={style.Btn}
           >
             <GoTrashcan />
           </button>
-          <button onClick={toggleEdit} className="Btn">
+          <button onClick={toggleEdit} className={style.Btn}>
             <BiPencil />
           </button>
         </div>

@@ -98,10 +98,8 @@ export const deleteTechAsync = (id) => (dispatch) => {
   dispatch(deleteTechFetching());
   return fetch(`${URL}/${id}`, {method: 'DELETE'})
       .then(function(data){
-        console.log(data)
         return data.json
       })
-      //.then((data) => data.json())
       .then(() => {
           dispatch(deleteTechFullfilled(id));
   })
