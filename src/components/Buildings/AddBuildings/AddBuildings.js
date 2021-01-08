@@ -6,13 +6,14 @@ import {
   required,
   address,
   fullName,
-  composeValidators,
   phone,
+  composeValidators,
 } from "../../../utils/validations";
 
 const AddBuilding = (props) => {
   const onSubmit = (values) => {
     props.addBuilding(values);
+    props.setOpenModal(false);
   };
 
   return (
@@ -112,6 +113,12 @@ const AddBuilding = (props) => {
             >
               Submit
             </button>
+            <button
+              onClick={() => props.setOpenModal(false)}
+              className={style.btnSubmit}
+            >
+              Cancel
+            </button>
           </form>
         )}
       </Form>
@@ -121,6 +128,7 @@ const AddBuilding = (props) => {
 
 AddBuilding.propTypes = {
   addBuilding: PropTypes.func.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
 };
 
 export default AddBuilding;

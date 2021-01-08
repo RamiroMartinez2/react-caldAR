@@ -46,7 +46,10 @@ const Buildings = (props) => {
           openModal={openModal}
           setOpenModal={setOpenModal}
         >
-          <AddBuildings addBuilding={props.addBuilding} />
+          <AddBuildings
+            addBuilding={props.addBuilding}
+            setOpenModal={setOpenModal}
+          />
         </Modal>
       </div>
     </div>

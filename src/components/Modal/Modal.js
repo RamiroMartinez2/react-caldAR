@@ -27,6 +27,7 @@ function Modal(props) {
   return (
     <Dialog
       open={openModal}
+      modal={setOpenModal}
       maxWidth="md"
       classes={{ paper: classes.dialogWrapper }}
     >
@@ -38,17 +39,7 @@ function Modal(props) {
         </div>
       </DialogTitle>
       <DialogContent dividers>
-        <div>
-          {children}
-          <button
-            onClick={() => {
-              setOpenModal(false);
-            }}
-            className={style.btnModal}
-          >
-            Cancel
-          </button>
-        </div>
+        <div>{children}</div>
       </DialogContent>
     </Dialog>
   );
