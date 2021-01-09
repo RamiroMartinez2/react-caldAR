@@ -8,24 +8,24 @@ import { GoTrashcan } from "react-icons/go";
 
 const Item = (props) => {
   const [isEditing, toggleEditing] = useState(false);
-  const [customer, setCustomer] = useState({...props.customer});
+  const [customer, setCustomer] = useState({ ...props.customer });
 
   const cancelClick = () => {
     toggleEditing();
     setCustomer(props.customer);
-  }
+  };
 
   const toggleEdit = () => {
     toggleEditing(!isEditing);
-  }
+  };
 
   const onChange = (e) => {
-    setCustomer({...customer, [e.target.name]: e.target.value });
+    setCustomer({ ...customer, [e.target.name]: e.target.value });
   };
   const saveChanges = () => {
     props.editCustomer(customer);
     toggleEdit();
-  }
+  };
 
   if (isEditing) {
     return (
@@ -100,7 +100,7 @@ const Item = (props) => {
       </div>
     </ul>
   );
-}
+};
 Item.propTypes = {
   customer: PropTypes.object.isRequired,
   deleteCustomer: PropTypes.func.isRequired,

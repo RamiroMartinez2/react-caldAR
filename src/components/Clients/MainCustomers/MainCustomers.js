@@ -10,23 +10,20 @@ import {
   getCustomers,
   addCustomer,
   deleteCustomer,
-  editCustomer
-} from '../../../redux/actions/customerAction'
-
+  editCustomer,
+} from "../../../redux/actions/customerAction";
 
 const MainCustomers = (props) => {
-
-  
-  useEffect(()=>{
+  useEffect(() => {
     props.getCustomers();
   }, [props.getCustomers]);
 
-  if (props.customers.isLoading){
-    return <p>Loading...</p>
+  if (props.customers.isLoading) {
+    return <p>Loading...</p>;
   }
 
-  if (props.customers.error){
-    return <p>ERROR!</p>
+  if (props.customers.error) {
+    return <p>ERROR!</p>;
   }
 
   return (
@@ -34,12 +31,12 @@ const MainCustomers = (props) => {
       <div className={styles.Container}>
         <HeaderCustomer />
         <Customers
-          customers={props.customers.list} 
+          customers={props.customers.list}
           isLoading={props.customers.isLoading}
           deleteCustomer={props.deleteCustomer}
           editCustomer={props.editCustomer}
         />
-        <AddCustomer addCustomer={props.addCustomer}/>
+        <AddCustomer addCustomer={props.addCustomer} />
       </div>
     </div>
   );
