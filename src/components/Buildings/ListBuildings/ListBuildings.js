@@ -71,7 +71,7 @@ const ListBuildings = (props) => {
                           }
                         }}
                       />
-                      {meta.error && meta.touched && (
+                      {meta.error && meta.dirty && (
                         <span className={style.errorMsg}> {meta.error} </span>
                       )}
                     </div>
@@ -99,7 +99,7 @@ const ListBuildings = (props) => {
                           }
                         }}
                       />
-                      {meta.error && meta.touched && (
+                      {meta.error && meta.dirty && (
                         <span className={style.errorMsg}> {meta.error} </span>
                       )}
                     </div>
@@ -127,7 +127,7 @@ const ListBuildings = (props) => {
                           }
                         }}
                       />
-                      {meta.error && meta.touched && (
+                      {meta.error && meta.dirty && (
                         <span className={style.errorMsg}> {meta.error} </span>
                       )}
                     </div>
@@ -155,7 +155,7 @@ const ListBuildings = (props) => {
                           }
                         }}
                       />
-                      {meta.error && meta.touched && (
+                      {meta.error && meta.dirty && (
                         <span className={style.errorMsg}> {meta.error} </span>
                       )}
                     </div>
