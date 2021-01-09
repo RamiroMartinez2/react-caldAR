@@ -38,6 +38,14 @@ label{
   background-color: white;
   font-weight: 600;
 }
+select{
+  font-size: 15px;
+  width: 96%;
+  height: 26px;
+  margin-top: 7px;
+  text-align-last:center;
+  height: 30px; 
+}
 .showForm {
   list-style-type: none;
   margin: 0;

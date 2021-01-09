@@ -107,8 +107,8 @@ const TechItem = (props) => {
                   </div>
                   <div>
                     <label>Status</label>
-                    <Field name="statusActive" component="select">
-                      <option>-</option>
+                    <Field name="statusActive" component="select" >
+                      <option></option>
                       <option>Active</option>
                       <option>Inactive</option>
                     </Field>

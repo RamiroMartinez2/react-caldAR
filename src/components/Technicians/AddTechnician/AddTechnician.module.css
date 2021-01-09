@@ -72,5 +72,7 @@ select{
   font-size: 15px;
   width: 96%;
   height: 26px;
-  margin-top: 7px; 
+  margin-top: 7px;
+  text-align-last:center;
+  height: 30px; 
 }

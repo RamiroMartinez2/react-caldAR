@@ -61,7 +61,7 @@ const AddTechnician = (props) => {
                 <div>
                   <label>Status</label>
                   <Field name="statusActive" component="select">
-                    <option>-</option>
+                    <option></option>
                     <option>Active</option>
                     <option>Inactive</option>
                     </Field>
