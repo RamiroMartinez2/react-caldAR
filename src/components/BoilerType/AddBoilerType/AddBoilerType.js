@@ -12,6 +12,7 @@ const AddBoilerType = (props) => {
 
   const onSubmit = (values) => {
     props.addBoilerType(values);
+    props.setOpenModal(false)
   };
 
   return(
@@ -52,6 +53,7 @@ const AddBoilerType = (props) => {
                   </Field>
               </div>
             <button type="submit" className={style.btnSubmit} disabled={submitting}>Submit</button>
+            <button  onClick={() => props.setOpenModal(false)} className={style.btnSubmit} >Cancel</button>
           </form>
         )}
       </Form>

@@ -83,7 +83,7 @@ const BoilerType = (props) => {
         <li className={style.liStyle}>{props.boilerType.skillsId}</li>
         <li className={style.liStyle}>{props.boilerType.descriptions}</li>
         <li className={style.liStyle}>{props.boilerType.stock}</li>
-        <div>
+        <div className={style.btnGroup}>
         <button className={style.Btn} onClick={() => setOpenModal(true)}><GoTrashcan /></button>
           <Modal openModal={openModal} setOpenModal={setOpenModal}>
             <p className={style.msgConfirm}>Are you sure you want to delete ?</p>

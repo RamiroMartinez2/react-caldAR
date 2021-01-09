@@ -34,6 +34,9 @@
   margin-right: 12px;
   margin-top: 5px;
 }
+.btnGroup{
+  margin-right: 60px;
+}
 .btnSubmit {
   width: 40%;
   color: rgb(239, 222, 216);

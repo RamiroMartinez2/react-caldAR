@@ -1,3 +1,4 @@
+import React from 'react';
 import TechItem from '../TechItem/TechItem';
 import style from './ListTechnician.module.css'
 import PropTypes from 'prop-types';
