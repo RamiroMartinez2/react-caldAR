@@ -1,38 +1,51 @@
-.addForm {
-  margin-top: 10px;
-  display: block;
-  text-align: center;
-}
 .inputStyle {
-  align-content:  center;
-  margin-bottom: 7px;
+  flex: 1;
+  float: left;
   display: block;
-  padding: 3px;
+  font-size: 15px;
+  text-align: center;
+  padding: 4px;
   width: 100%;
+  height: 30px;
 }
 .btnSubmit {
-  width: 40%;
+  width: 42%;
   color: rgb(239, 222, 216);
-  margin-left: 5%;
+  margin-left: 6%;
   margin-top: 10px;
   padding: 15px;
   background-color: rgb(19, 84, 76);
-  border: 2px solid rgb(19, 84, 76) ;
+  border: none;
   font-weight: 600;
   flex: 1;
   font-size: 15px;
   cursor: pointer;
 }
+.btnSubmitCancel{
+  width: 42%;
+  color: rgb(239, 222, 216);
+  margin-left: 6%;
+  margin-top: 10px;
+  padding: 15px;
+  background-color: rgb(255, 129, 10);
+  border: none;
+  font-weight: 600;
+  flex: 1;
+  font-size: 15px;
+  cursor: pointer;
+}
+.lineGroup{
+  margin-bottom: 50px;
+}
 .errorMsg{
   color: brown;
   font-weight: 600;
+  margin-left: 45%;
 }
 select{
   font-size: 15px;
-  width: 92%;
+  width: 98%;
   height: 26px;
   margin-top: 7px;
-  margin-bottom: 7px;
-  margin-left: 7px;
+  margin-bottom: 20px;
 }
-

@@ -140,13 +140,13 @@ const TechItem = (props) => {
       <li className={style.liStyle}>{props.tech.assignedClients}</li>
       <li className={style.liStyle}>{props.tech.spareHoursAvailable}</li>
       <div>
-      <button onClick={toggleEdit} className={style.Btn}><BiPencil/></button>
-      <button className={style.Btn} onClick={() => setOpenModal(true)}><GoTrashcan /></button>
-        <Modal openModal={openModal} setOpenModal={setOpenModal}>
-          <p className={style.msgConfirm}>Are you sure you want to delete ?</p>
-          <button className={style.btnSubmit} onClick={() => props.deleteTechnician(props.tech._id)}>{" "}Confirm{" "}</button>
-          <button className={style.btnSubmit} onClick={() => setOpenModal(false)}>{" "}Cancel{" "}</button>
-        </Modal>
+        <button onClick={toggleEdit} className={style.Btn}><BiPencil/></button>
+        <button className={style.Btn} onClick={() => setOpenModal(true)}><GoTrashcan /></button>
+          <Modal openModal={openModal} setOpenModal={setOpenModal}>
+            <p className={style.msgConfirm}>Are you sure you want to delete ?</p>
+            <button className={style.btnSubmit} onClick={() => props.deleteTechnician(props.tech._id)}>{" "}Confirm{" "}</button>
+            <button className={style.btnSubmit} onClick={() => setOpenModal(false)}>{" "}Cancel{" "}</button>
+          </Modal>
       </div>
     </ul>
   );

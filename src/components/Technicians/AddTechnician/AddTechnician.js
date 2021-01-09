@@ -25,7 +25,7 @@ const AddTechnician = (props) => {
             <div>
               <Field name="fullName" placeholder="Full Name" validate = {composeValidators(required)}>
                 {({input,meta,placeholder}) => (
-                  <div >
+                  <div className={style.lineGroup}>
                     <label>Full Name</label>
                     <input {...input} className={style.inputStyle} placeholder={placeholder} />
                     {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
@@ -33,7 +33,7 @@ const AddTechnician = (props) => {
                 )}
               </Field>
             </div>
-              <div>
+              <div className={style.lineGroup}>
                 <Field name="email" placeholder="Email" validate = {composeValidators(required,email)}>
                   {({input,meta,placeholder}) => (
                     <div>
@@ -44,7 +44,7 @@ const AddTechnician = (props) => {
                   )}
                   </Field>
               </div>
-              <div >
+              <div className={style.lineGroup}>
                 <Field name="phone" placeholder="Phone" validate = {composeValidators(required,phone)}>
                   {({input,meta,placeholder}) => (
                     <div>
@@ -55,7 +55,7 @@ const AddTechnician = (props) => {
                   )}
                   </Field>
               </div>
-              <div >
+              <div>
                 <label>Status</label>
                 <Field name="statusActive" component="select">
                   <option>-</option>
@@ -63,7 +63,7 @@ const AddTechnician = (props) => {
                   <option>Inactive</option>
                   </Field>
               </div>
-              <div >
+              <div className={style.lineGroup}>
                 <Field name="trained" placeholder="Trained Skills" validate = {required}>
                   {({input,meta,placeholder}) => (
                     <div>
@@ -74,7 +74,7 @@ const AddTechnician = (props) => {
                   )}
                   </Field>
               </div>
-              <div >
+              <div className={style.lineGroup}>
                 <Field name="assignedClients" placeholder="Assigned Clients" validate = {required}>
                   {({input,meta,placeholder}) => (
                     <div>
@@ -85,7 +85,7 @@ const AddTechnician = (props) => {
                   )}
                   </Field>
               </div>
-              <div >
+              <div className={style.lineGroup}>
                 <Field name="spareHoursAvailable" placeholder="Hours Available" validate = {composeValidators(required,hours)}>
                   {({input,meta,placeholder}) => (
                     <div>
@@ -97,7 +97,7 @@ const AddTechnician = (props) => {
                   </Field>
               </div>
               <button type="submit" className={style.btnSubmit} disabled={submitting}>Submit</button>
-              <button  onClick={() => props.setOpenModal(false)} className={style.btnSubmit} >Cancel</button>
+              <button  onClick={() => props.setOpenModal(false)} className={style.btnSubmitCancel} >Cancel</button>
           </form>
         )}
       </Form>

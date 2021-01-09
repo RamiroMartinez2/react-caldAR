@@ -24,7 +24,7 @@ const AddBoilerType = (props) => {
             <div>
               <Field name="skillsId" placeholder="Skills ID" validate = {composeValidators(required,skill)}>
                 {({input,meta,placeholder}) => (
-                  <div >
+                  <div className={style.lineGroup}>
                     <label>Skills ID</label>
                     <input {...input} className={style.inputStyle} placeholder={placeholder} />
                     {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
@@ -35,13 +35,14 @@ const AddBoilerType = (props) => {
               <div >
                 <label>Descriptions</label>
                 <Field className={style.slection} name="descriptions" component="select">
-                    <option>Orange</option>
-                    <option>Turquoise</option>
-                    <option>Pink</option>
-                    <option>Puce</option>
-                  </Field>
+                  <option>-</option>
+                  <option>Orange</option>
+                  <option>Turquoise</option>
+                  <option>Pink</option>
+                  <option>Puce</option>
+                </Field>
               </div>
-              <div >
+              <div className={style.lineGroup}>
                 <Field name="stock" placeholder="Stock" validate = {composeValidators(required,stock)}>
                   {({input,meta,placeholder}) => (
                     <div>
@@ -53,7 +54,7 @@ const AddBoilerType = (props) => {
                   </Field>
               </div>
             <button type="submit" className={style.btnSubmit} disabled={submitting}>Submit</button>
-            <button  onClick={() => props.setOpenModal(false)} className={style.btnSubmit} >Cancel</button>
+            <button  onClick={() => props.setOpenModal(false)} className={style.btnCancel} >Cancel</button>
           </form>
         )}
       </Form>
