@@ -39,7 +39,13 @@ function Modal(props) {
         </div>
       </DialogTitle>
       <DialogContent dividers>
+<<<<<<< HEAD
         <div>{children}</div>
+=======
+        <div>
+          {children}
+        </div>
+>>>>>>> 6ba6a54... CAL-Technician
       </DialogContent>
     </Dialog>
   );
