@@ -1,6 +1,6 @@
 import React from "react";
 import ListBuildings from "../ListBuildings/ListBuildings";
-import "./Bld.css";
+import style from "./Bld.module.css";
 import PropTypes from "prop-types";
 
 const Bld = (props) => {
@@ -14,13 +14,13 @@ const Bld = (props) => {
   ));
   return (
     <div>
-      <ul className="ulStyle">
-        <li className="liStyleHeader">Id</li>
-        <li className="liStyleHeader">Address</li>
-        <li className="liStyleHeader">Boilers Id</li>
-        <li className="liStyleHeader">Name</li>
-        <li className="liStyleHeader">Phone</li>
-        <li className="liStyleHeader">Actions</li>
+      <ul className={style.ulStyle}>
+        <li className={style.liStyleHeader}>Id</li>
+        <li className={style.liStyleHeader}>Address</li>
+        <li className={style.liStyleHeader}>Boilers Id</li>
+        <li className={style.liStyleHeader}>Name</li>
+        <li className={style.liStyleHeader}>Phone</li>
+        <li className={style.liStyleHeader}>Actions</li>
       </ul>
       {build}
     </div>

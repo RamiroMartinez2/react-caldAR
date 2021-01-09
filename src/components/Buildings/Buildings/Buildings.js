@@ -1,22 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Bld from "../Bld/Bld";
 import AddBuildings from "../AddBuildings/AddBuildings";
 import HeaderBuilding from "../HeaderBuildings/HeaderBuildings";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
-import "./Buildings.css";
+import style from "./Buildings.module.css";
 import {
   getBuildingsAsync,
   deleteBuildingAsync,
   updateBuildingAsync,
   addBuildingAsync,
 } from "../../../redux/actions/buildingAction";
+import Modal from "../../Modal/Modal";
 
 const Buildings = (props) => {
   useEffect(() => {
     props.getBuildings();
   }, [props.getBuildings]);
+
+  const [openModal, setOpenModal] = useState(false);
 
   if (props.buildings.isLoading) {
     return <p>Loading...</p>;
@@ -27,7 +30,7 @@ const Buildings = (props) => {
   }
   return (
     <div className="App">
-      <div className="container">
+      <div className={style.container}>
         <HeaderBuilding />
         <Bld
           buildings={props.buildings.list}
@@ -35,7 +38,19 @@ const Buildings = (props) => {
           delBuilding={props.delBuilding}
           updateBuilding={props.updateBuilding}
         />
-        <AddBuildings addBuilding={props.addBuilding} />
+        <button className={style.btnAdd} onClick={() => setOpenModal(true)}>
+          Add New Building
+        </button>
+        <Modal
+          title="Add New Building"
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        >
+          <AddBuildings
+            addBuilding={props.addBuilding}
+            setOpenModal={setOpenModal}
+          />
+        </Modal>
       </div>
     </div>
   );

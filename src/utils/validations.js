@@ -5,6 +5,11 @@ export const fullName = (value) =>
     ? undefined
     : "Invalid Full Name";
 
+export const address = (value) =>
+  /^(?=.{5,})([a-zA-Z0-9]+\s{1}[0-9]+)$/.test(value)
+    ? undefined
+    : "Invalid Address";
+
 export const phone = (value) =>
   /^(?=.{7,})([0-9])+$/.test(value)
     ? undefined
