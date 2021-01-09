@@ -28,6 +28,7 @@
   padding: 4px;
   width: 100%;
   height: 30px;
+  border: solid 1px rgba(191, 206, 204, 0.582) ;
 }
 label{
   color: rgb(19, 84, 76);

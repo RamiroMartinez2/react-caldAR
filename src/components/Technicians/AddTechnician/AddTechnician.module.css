@@ -31,6 +31,7 @@
   padding: 4px;
   width: 100%;
   height: 30px;
+  border: solid 1px rgba(191, 206, 204, 0.582) ;
 }
 .btnSubmit {
   width: 100%;
@@ -75,4 +76,5 @@ select{
   margin-top: 7px;
   text-align-last:center;
   height: 30px; 
+  border: solid 1px rgba(191, 206, 204, 0.582) ;
 }

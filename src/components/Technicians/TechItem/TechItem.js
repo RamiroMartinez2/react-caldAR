@@ -82,7 +82,7 @@ const TechItem = (props) => {
                               }
                             }}
                           />
-                          {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                          {meta.error && meta.dirty && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
                         </div>
                       )}
                     </Field>
@@ -100,7 +100,7 @@ const TechItem = (props) => {
                               }
                             }}
                           />
-                          {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                          {meta.error && meta.dirty && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
                         </div>
                       )}
                     </Field>
@@ -128,7 +128,7 @@ const TechItem = (props) => {
                               }
                             }}
                           />
-                          {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                          {meta.error && meta.dirty && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
                         </div>
                       )}
                     </Field>
@@ -146,7 +146,7 @@ const TechItem = (props) => {
                               }
                             }}
                           />
-                          {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                          {meta.error && meta.dirty && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
                         </div>
                       )}
                     </Field>
@@ -164,7 +164,7 @@ const TechItem = (props) => {
                               }
                             }}
                           />
-                          {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                          {meta.error && meta.dirty && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
                         </div>
                       )}
                     </Field>

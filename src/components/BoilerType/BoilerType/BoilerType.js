@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import style from "./BoilerType.module.css";
 import { GoTrashcan } from "react-icons/go";
-import { AiOutlineCheckCircle } from "react-icons/ai";
-import { FcCancel } from "react-icons/fc";
 import { BiPencil } from "react-icons/bi";
 import Modal from "../../Modal/Modal";
+import { Form, Field } from "react-final-form";
+import {
+  required,
+  composeValidators,
+  stock } from "../../../utils/validations";
 
 const BoilerType = (props) => {
   const [isEditing, toggleEditing] = useState(false);
@@ -15,64 +18,84 @@ const BoilerType = (props) => {
   const cancelClick = () => {
     toggleEditing();
     setBoilerType(props.boilerType);
+    setOpenModal(false)
   }
 
   const toggleEdit = () => {
     toggleEditing(!isEditing);
+    setOpenModal(true);
   };
 
   const onChange = (e) => {
     setBoilerType({ ...boilerType, [e.target.name]: e.target.value });
   };
 
+  const onSubmit = () => {
+    props.setOpenModal(false);
+  };
+
   const saveChanges = () => {
-    toggleEdit();
     props.editBoilerType(boilerType);
+    toggleEdit();
   };
 
   if (isEditing) {
     return (
-      <ul className={style.showForm}>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="id"
-          value={boilerType._id}
-          readOnly
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="skillsId"
-          placeholder="Skills ID"
-          value={boilerType.skillsId}
-          onChange={onChange}
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="descriptions"
-          placeholder="Description"
-          value={boilerType.descriptions}
-          onChange={onChange}
-        ></input>
-        <input
-          className={style.inputStyle}
-          type="text"
-          name="stock"
-          placeholder="Stock"
-          value={boilerType.stock}
-          onChange={onChange}
-        ></input>
-        <div className={style.btnGroup}>
-          <button onClick={cancelClick} className={style.Btn}>
-            <FcCancel />
-          </button>
-          <button onClick={saveChanges} className={style.Btn}>
-            <AiOutlineCheckCircle />
-            </button>
-        </div>
-      </ul>
+      <Modal title="Editing Technician" openModal={openModal} setOpenModal={setOpenModal}>
+        <Form onSubmit={onSubmit}>
+          {/* eslint-disable-next-line no-unused-vars */}
+          {({ handleSubmit, meta, values, submitting }) => (
+            <form className={style.formStyle} onSubmit={handleSubmit}>
+              <div>
+                  <label>Status</label>
+                  <Field name="statusActive" component="select" >
+                      <option></option>
+                      <option>Active</option>
+                      <option>Inactive</option>
+                  </Field>
+                  </div>
+                  <div className={style.lineGroup}>
+                    <Field name="descriptions" placeholder="Descriptions" validate={required}>
+                      {({ input, meta, placeholder }) => (
+                        <div>
+                          <label>Descriptions</label>
+                          <input {...input} className={style.inputStyle} placeholder={placeholder} value={boilerType.descriptions}
+                            onChange={(e) => {
+                              input.onChange(e);
+                              if (onChange) {
+                                onChange(e);
+                              }
+                            }}
+                          />
+                          {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                        </div>
+                      )}
+                    </Field>
+                  </div>
+                  <div className={style.lineGroup}>
+                    <Field name="stock" placeholder="Stock" validate={composeValidators(required, stock)}>
+                      {({ input, meta, placeholder }) => (
+                        <div>
+                          <label>Stock</label>
+                          <input {...input} className={style.inputStyle} placeholder={placeholder} value={boilerType.stock}
+                            onChange={(e) => {
+                              input.onChange(e);
+                              if (onChange) {
+                                onChange(e);
+                              }
+                            }}
+                          />
+                          {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                        </div>
+                      )}
+                    </Field>
+                  </div>
+                  <button type="submit" disabled={submitting} className={style.BtnModCheck} onClick={saveChanges}>Confirm</button>
+                  <button className={style.BtnModCancel} onClick={cancelClick}>Cancel</button>
+            </form>
+          )}
+        </Form>
+      </Modal>
     );
   }
 
@@ -84,13 +107,13 @@ const BoilerType = (props) => {
         <li className={style.liStyle}>{props.boilerType.descriptions}</li>
         <li className={style.liStyle}>{props.boilerType.stock}</li>
         <div className={style.btnGroup}>
+        <button onClick={toggleEdit} className={style.Btn}><BiPencil/></button>
         <button className={style.Btn} onClick={() => setOpenModal(true)}><GoTrashcan /></button>
           <Modal openModal={openModal} setOpenModal={setOpenModal}>
             <p className={style.msgConfirm}>Are you sure you want to delete ?</p>
             <button className={style.btnSubmit} onClick={() => props.deleteBoilerType(props.boilerType._id)}>{" "}Confirm{" "}</button>
             <button className={style.btnSubmit} onClick={() => setOpenModal(false)}>{" "}Cancel{" "}</button>
           </Modal>
-      <button onClick={toggleEdit} className={style.Btn}><BiPencil/></button>
       </div>
       </ul>
     </div>
@@ -101,6 +124,7 @@ BoilerType.propTypes = {
   boilerType: PropTypes.object.isRequired,
   deleteBoilerType: PropTypes.func.isRequired,
   editBoilerType: PropTypes.func.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
 };
 
 
