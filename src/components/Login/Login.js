@@ -1,43 +1,58 @@
-import React, { useCallback, useContext } from 'react';
-import { withRouter, Redirect } from 'react-router';
-import app from '../../firebase/base';
-import { AuthContext } from '../../firebase/Auth'
+import React from 'react';
+import {Form, Field} from 'react-final-form';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { loginAction } from "../../redux/actions/authActions";
+import { required } from '../../utils/validations'
+import styles from "./login.module.css"
 
-const Login = ({ history }) => {
+const Login = ({login}) => {
 
-  const handleLogin = useCallback(async event => {
-    event.preventDefault();
-      const { email, password } = event.target.elements;
-      try{
-        await app
-					.auth()
-					.signInWithEmailAndPassword(email.value, password.value);
-				history.push("/");				
-      } catch (error) {
-				alert(error);
-			}
-  }, [history]);
-  
-  const { currentUser } = useContext(AuthContext)
-
-  if (currentUser) {
-    return <Redirect to="/" />;
-  }
+  const onSubmitLogin = (values) => {
+	  login(values);
+  };
 
 	return(
-		<div>
-			<h1>LOG IN</h1>
-			<form onSubmit={handleLogin}>
-				<label>EMAIL
-					<input name='email' type='email' placeholder='Email' />
-				</label>
-				<label>PASSWORD
-					<input name='password' type='password' placeholder='Password' />
-				</label>
-				<button type='Submit'>Log In</button>
-			</form>
-		</div>
+		<div className={styles.loginContainer}>
+      <div className={styles.formContainer}>
+        <h1>LOG IN</h1>
+          <Form 
+            onSubmit={onSubmitLogin}
+            render={({ handleSubmit, form, submitting, pristine, values}) => (
+              <form onSubmit={handleSubmit}>
+                <div className={styles.inputLgn}>
+                  <Field 
+                    name='email'
+                    type="text"
+                    placeholder="Email"
+                    label="Email"
+                    validate={required}
+                  />
+                </div>
+                <div className={styles.inputLgn}>
+                  <Field 
+                    name='password'
+                    type="password"
+                    placeholder="Password"
+                    label="Password"
+                    validate={required}
+                  />
+                </div>
+                <div className={styles.buttonLgn}>
+                  <Button disabled={submitting || pristine} primary btnLabel="Login" type="submit" />
+                </div>
+              </form>
+            )}  
+          />
+      </div>
+    </div>
 	);
 };
 
-export default withRouter (Login);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    login: loginAction
+  }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Login);
