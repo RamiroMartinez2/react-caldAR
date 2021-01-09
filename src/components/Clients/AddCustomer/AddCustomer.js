@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styles from "./AddCustomer.module.css";
 import PropTypes from "prop-types";
-import { addCustomer as addCustomerAction } from "../../../redux/actions/customerAction";
-import { connect } from "react-redux";
 
 const AddCustomer = (props) => {
   const [customer, setNewCustomer] = useState({
@@ -17,8 +15,7 @@ const AddCustomer = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addCustomer(customer);
-
+    props.addCustomer({ ...customer });
     setNewCustomer({
       customerType: "",
       email: "",
@@ -35,7 +32,7 @@ const AddCustomer = (props) => {
           type="text"
           name="customerType"
           placeholder="Particular or Business"
-          defaultValue={customer.customerType}
+          value={customer.customerType}
           onChange={onChange}
           required
         />
@@ -43,17 +40,18 @@ const AddCustomer = (props) => {
           className={styles.inputStyle}
           type="email"
           name="email"
-          placeholder="ramiro@hotmail.com"
-          defaultValue={customer.email}
+          placeholder="Add your email"
+          value={customer.email}
           onChange={onChange}
           required
         />
+
         <input
           className={styles.inputStyle}
-          type="text"
+          type="number"
           name="buildings"
           placeholder="Add how many buildings you have"
-          defaultValue={customer.buildings}
+          value={customer.buildings}
           onChange={onChange}
           required
         />
@@ -61,11 +59,12 @@ const AddCustomer = (props) => {
           className={styles.inputStyle}
           type="text"
           name="fiscal_address"
-          placeholder="Cordoba 2020"
-          defaultValue={customer.fiscal_address}
+          placeholder="Add your address"
+          value={customer.fiscal_address}
           onChange={onChange}
           required
         />
+
         <input
           className={styles.btnSubmit}
           type="submit"
@@ -77,19 +76,7 @@ const AddCustomer = (props) => {
 };
 
 AddCustomer.propTypes = {
-  addCustomer: PropTypes.object.isRequired,
+  addCustomer: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addCustomer: (content) => dispatch(addCustomerAction(content)),
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    customer: state.customers,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddCustomer);
+export default AddCustomer;

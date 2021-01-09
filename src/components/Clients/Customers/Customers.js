@@ -5,7 +5,12 @@ import styles from "./Customers.module.css";
 
 const Customers = (props) => {
   const items = props.customers.map((customer) => (
-    <Item key={customer.id} customer={customer} />
+    <Item
+      key={customer._id}
+      customer={customer}
+      deleteCustomer={props.deleteCustomer}
+      editCustomer={props.editCustomer}
+    />
   ));
 
   return (
@@ -16,6 +21,7 @@ const Customers = (props) => {
         <li className={styles.liStyleHeader}>Email</li>
         <li className={styles.liStyleHeader}>Buildings</li>
         <li className={styles.liStyleHeader}>Fiscal Address</li>
+        <li className={styles.liStyleHeader}>Actions</li>
       </ul>
       {items}
     </div>
@@ -24,6 +30,8 @@ const Customers = (props) => {
 
 Customers.propTypes = {
   customers: PropTypes.array.isRequired,
+  editCustomer: PropTypes.func.isRequired,
+  deleteCustomer: PropTypes.func.isRequired,
 };
 
 export default Customers;

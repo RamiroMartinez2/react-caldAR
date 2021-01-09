@@ -1,21 +1,68 @@
-import { ADD_CUSTOMER, DEL_CUSTOMER, UPD_CUSTOMER } from "../types/customerTypes";
-import customersBD from "../../mocks/customers-data.json";
+import {  
+  GET_CUSTOMERS_FETCHING, 
+  GET_CUSTOMERS_FULFILLED, 
+  GET_CUSTOMERS_REJECTED, 
+  ADD_CUSTOMER_FETCHING, 
+  ADD_CUSTOMER_FULFILLED, 
+  ADD_CUSTOMER_REJECTED,
+  DELETE_CUSTOMER_FETCHING,
+  DELETE_CUSTOMER_FULFILLED,
+  DELETE_CUSTOMER_REJECTED,
+  EDIT_CUSTOMER_FETCHING,  
+  EDIT_CUSTOMER_FULFILLED,
+  EDIT_CUSTOMER_REJECTED, } from "../types/customerTypes";
 
-const customersReducer = (state = customersBD, action) => {
+const initialState = {
+  isLoading: false, 
+  list: [],
+  error: false
+}
+
+const customerReducer = (state = initialState, action) => {
   switch(action.type) {
-    case ADD_CUSTOMER: {
-      return [...state, action.payload];
+    case GET_CUSTOMERS_FETCHING: {
+      return {...state, isLoading: true,};
     }
-    case DEL_CUSTOMER: {
-      return [...state.filter(customer => customer.id !== action.payload)]
+    case GET_CUSTOMERS_FULFILLED: {
+      return {...state, isLoading: false, list: action.payload};
     }
-    case UPD_CUSTOMER: {
-      return [...state.map(customer => {
-        if(customer.id === action.payload.id) {
-          customer = action.payload;
-        }
-        return customer;
+    case GET_CUSTOMERS_REJECTED: {
+      return {...state, isLoading: false, error: action.payload};
+    }
+    case ADD_CUSTOMER_FETCHING: {
+      return {...state, isLoading: true,};
+    }
+    case ADD_CUSTOMER_FULFILLED: {
+      return {...state, isLoading: false, list: [...state.list, action.payload]};
+    }
+    case ADD_CUSTOMER_REJECTED: {
+      return {...state, isLoading: false, error: action.payload};
+    }
+    case DELETE_CUSTOMER_FETCHING: {
+      return {...state, isLoading: true,};
+    }
+    case DELETE_CUSTOMER_FULFILLED: {
+      return {...state, isLoading: false, list: [...state.list.filter(boiler => boiler._id !== action.payload)]}
+    }
+    case DELETE_CUSTOMER_REJECTED: {
+      return {...state, isLoading: false, error: action.payload};
+    }
+    case EDIT_CUSTOMER_FETCHING: {
+      return {...state, isLoading: true,};
+    }
+    case EDIT_CUSTOMER_FULFILLED: {
+      return {
+        ...state, 
+        isLoading: false, 
+        list: [...state.list.map(customer => { 
+          if (customer._id === action.payload._id){
+            customer = action.payload;
+          }return customer;
         })]
+      }
+    }
+    case EDIT_CUSTOMER_REJECTED: {
+      return {...state, isLoading: false, error: action.payload};
     }
     default: {
       return state;
@@ -23,4 +70,4 @@ const customersReducer = (state = customersBD, action) => {
   }
 }
 
-export default customersReducer;
+export default customerReducer;
