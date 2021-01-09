@@ -7,6 +7,7 @@ import {required,
         composeValidators,
         email,
         phone,
+        clients,
         hours} from '../../../utils/validations';
 
 const AddTechnician = (props) => {
@@ -28,7 +29,7 @@ const AddTechnician = (props) => {
                   <div className={style.lineGroup}>
                     <label>Full Name</label>
                     <input {...input} className={style.inputStyle} placeholder={placeholder} />
-                    {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                    {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
                   </div>
                 )}
               </Field>
@@ -39,7 +40,7 @@ const AddTechnician = (props) => {
                     <div>
                       <label>Email</label>
                       <input {...input} className={style.inputStyle} placeholder={placeholder} />
-                      {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                      {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
                     </div>
                   )}
                   </Field>
@@ -50,7 +51,7 @@ const AddTechnician = (props) => {
                     <div>
                       <label>Phone</label>
                       <input {...input} className={style.inputStyle} placeholder={placeholder} />
-                      {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                      {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
                     </div>
                   )}
                   </Field>
@@ -69,18 +70,18 @@ const AddTechnician = (props) => {
                     <div>
                       <label>Trained Skills</label>
                       <input {...input} className={style.inputStyle} placeholder={placeholder} />
-                      {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                      {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
                     </div>
                   )}
                   </Field>
               </div>
               <div className={style.lineGroup}>
-                <Field name="assignedClients" placeholder="Assigned Clients" validate = {required}>
+                <Field name="assignedClients" placeholder="Assigned Clients" validate = {composeValidators(required,clients)}>
                   {({input,meta,placeholder}) => (
                     <div>
                       <label>Assigned Clients</label>
                       <input {...input} className={style.inputStyle} placeholder={placeholder} />
-                      {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                      {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
                     </div>
                   )}
                   </Field>
@@ -91,7 +92,7 @@ const AddTechnician = (props) => {
                     <div>
                       <label>Hours Available</label>
                       <input {...input} className={style.inputStyle} placeholder={placeholder} />
-                      {meta.error && meta.touched && <span className={style.errorMsg}>{meta.error}</span>}
+                      {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
                     </div>
                   )}
                   </Field>

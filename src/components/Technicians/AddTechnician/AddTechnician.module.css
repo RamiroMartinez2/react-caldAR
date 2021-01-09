@@ -40,7 +40,12 @@
 .errorMsg{
   color: brown;
   font-weight: 600;
-  margin-left: 45%;
+  display: inline-block;
+  margin: 10px 10px 0 0;
+  padding: 5px 10px
+}
+.errorDiv{
+  text-align: center;
 }
 select{
   font-size: 15px;
