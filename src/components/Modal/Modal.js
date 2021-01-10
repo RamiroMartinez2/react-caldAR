@@ -39,9 +39,7 @@ function Modal(props) {
         </div>
       </DialogTitle>
       <DialogContent dividers>
-        <div>
-          {children}
-        </div>
+        <div>{children}</div>
       </DialogContent>
     </Dialog>
   );
