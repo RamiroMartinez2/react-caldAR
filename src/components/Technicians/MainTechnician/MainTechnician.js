@@ -47,7 +47,7 @@ const MainTechnician = (props) => {
           openModal={openModal}
           setOpenModal={setOpenModal}
         >
-          <AddTechnician addTechnician={props.addTechnician} />
+          <AddTechnician setOpenModal={setOpenModal} addTechnician={props.addTechnician} />
         </Modal>
       </div>
     </div>

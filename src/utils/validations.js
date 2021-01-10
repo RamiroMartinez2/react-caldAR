@@ -15,6 +15,9 @@ export const phone = (value) =>
     ? undefined
     : "Must have at least 7 numbers";
 
+export const clients = (value) =>
+  /^[0-9]+$/.test(value) ? undefined : "Must be a number";
+
 export const hours = (value) =>
   value <= 8 ? undefined : "Must be a number between 0-8";
 
