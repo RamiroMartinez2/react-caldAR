@@ -7,7 +7,6 @@ import {
   SIGNOUT_FULFILLED,
   SIGNOUT_REJECTED
 } from '../types/authTypes';
-import { requestPost } from '../../utils/request'
 
 const URL = "https://be-caldar.herokuapp.com/";
 
@@ -31,7 +30,17 @@ const loginRejected = () => {
 
 export const loginAction = credentials => dispatch => {
   dispatch(loginFetching());
-  return requestPost(`${URL}/login`, { data: credentials })
+  return fetch(`${URL}/login`, { 
+    data: credentials, 
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      'Accept': "application/json",
+      "Content-Type": "application/json",
+      token: localStorage.getItem('token')
+    },
+  })
+    .then(data => data.json())
     .then(response => {
       localStorage.setItem('token', response.token);
       return dispatch(loginFulfilled());
@@ -67,7 +76,17 @@ const signoutRejected = () => {
 
 export const signoutAction = () => dispatch => {
   dispatch(signoutFetching());
-  return requestPost(`${URL}/signout`)
+  return fetch(`${URL}/signout`, {
+    data: credentials, 
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      'Accept': "application/json",
+      "Content-Type": "application/json",
+      token: localStorage.getItem('token')
+    },
+  })
+    .then(data => data.json())
     .then(() => {
       localStorage.removeItem('token');
       return dispatch(signoutFulfilled());
