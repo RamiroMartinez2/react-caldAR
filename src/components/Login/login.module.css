@@ -1,16 +1,68 @@
-.loginContainer{
-  margin-top: 10px;
+.newBtn {
+  display: block;
+  font-size: 25px;
+  padding: 30px;
+  margin-top: 3%;
+  margin-left: 35%;
+  text-align: center;
+  width: 30%;
+  border: none;
+  background: rgb(255, 129, 10);
+  color: rgb(239, 232, 216);
+  cursor: pointer;
+}
+.BtnModCheck {
+  width: 40%;
+  color: rgb(239, 222, 216);
+  margin-top: 40px;
+  margin-left: 8%;
+  padding: 15px;
+  background-color: rgb(19, 84, 76);
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+.BtnModCancel {
+  width: 40%;
+  color: rgb(239, 222, 216);
+  margin-left: 4%;
+  margin-top: 40px;
+  padding: 15px;
+  background-color: rgb(255, 129, 10);
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+.inputStyle {
+  float: left;
+  display: block;
+  font-size: 15px;
+  text-align: center;
+  padding: 4px;
+  width: 100%;
+  height: 30px;
+  border: solid 1px rgba(191, 206, 204, 0.582);
+  margin-bottom: 20px;
+}
+label {
+  color: rgb(19, 84, 76);
+  width: 100%;
+  padding: 2px;
   display: block;
   text-align: center;
+  background-color: white;
+  font-weight: 600;
+  font-size: 25px;
 }
-.formContainer{
-  margin-top: 10px;
-  display: block;
+.errorMsg {
+  color: brown;
+  font-weight: 600;
+  display: inline-block;
+  margin: 5px 5px 0 0;
+  padding: 5px 5px;
+}
+.errorDiv {
   text-align: center;
-}
-.inputLgn{
-
-}
-.buttonLgn{
-  
 }

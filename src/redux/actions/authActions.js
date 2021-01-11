@@ -7,6 +7,7 @@ import {
   SIGNOUT_FULFILLED,
   SIGNOUT_REJECTED
 } from '../types/authTypes';
+import Firebase from '../../firebase'
 
 const URL = "https://be-caldar.herokuapp.com/";
 
@@ -30,19 +31,10 @@ const loginRejected = () => {
 
 export const loginAction = credentials => dispatch => {
   dispatch(loginFetching());
-  return fetch(`${URL}/login`, { 
-    data: credentials, 
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      'Accept': "application/json",
-      "Content-Type": "application/json",
-      token: localStorage.getItem('token')
-    },
-  })
-    .then(data => data.json())
-    .then(response => {
-      localStorage.setItem('token', response.token);
+  return Firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
+    .then(async (response) => {
+      const token = await response.user.getIdToken();
+      localStorage.setItem('token', token)
       return dispatch(loginFulfilled());
     })
     .catch(() => {
@@ -76,17 +68,7 @@ const signoutRejected = () => {
 
 export const signoutAction = () => dispatch => {
   dispatch(signoutFetching());
-  return fetch(`${URL}/signout`, {
-    data: credentials, 
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      'Accept': "application/json",
-      "Content-Type": "application/json",
-      token: localStorage.getItem('token')
-    },
-  })
-    .then(data => data.json())
+  return Firebase.auth().signOut()
     .then(() => {
       localStorage.removeItem('token');
       return dispatch(signoutFulfilled());

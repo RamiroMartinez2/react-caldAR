@@ -1,5 +1,9 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { connect } from 'react-redux';
+import Login from './components/Login/Login'
+import { setAuthentication } from './redux/actions/authActions';
+import { tokenListener } from './firebase';
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Footer from "./components/Layout/Footer/Footer";
 import Nav from "./components/Layout/Nav/Nav";
 import Main from "./components/Layout/Main/Main";
@@ -11,23 +15,27 @@ import MainBoilerType from "./components/BoilerType/MainBoilerType/MainBoilerTyp
 import Buildings from "./components/Buildings/Buildings/Buildings";
 import Modal from "./components/Modal/Modal";
 import style from "./App.module.css";
-import { Form, Field } from "react-final-form";
-import { required } from "./utils/validations";
 
-const App = () => {
+const App = ({
+  authenticated,
+  setAuthentication
+}) => {
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setAuthentication();
+      setOpenModal(false);
+    }
+  }, [setAuthentication])
+
+  useEffect(() => {
+    tokenListener();
+  }, [tokenListener])
+  
   const [openModal, setOpenModal] = useState(false);
-  const [isLogged, toggleLogin] = useState(false);
 
-  const toggleLog = () => {
-    toggleLogin(!isLogged);
-    setOpenModal(false);
-  };
-
-  const onSubmit = () => {
-    toggleLog();
-  };
-
-  if (isLogged) {
+  if (authenticated) {
     return (
       <Router>
         <div className="App">
@@ -41,6 +49,7 @@ const App = () => {
               <Route path="/boilersTypes" component={MainBoilerType} />
               <Route path="/buildings" component={Buildings} />
               <Route path="/" exact component={Main} />
+              <Redirect exact path="/" to = "/" />
             </Switch>
             <Footer />
           </div>
@@ -54,82 +63,8 @@ const App = () => {
       <button className={style.newBtn} onClick={() => setOpenModal(true)}>
         Login
       </button>
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        <Form onSubmit={onSubmit}>
-          {/* eslint-disable-next-line no-unused-vars */}
-          {({ handleSubmit, meta, values, submitting }) => (
-            <form className={style.formStyle} onSubmit={handleSubmit}>
-              <div className={style.columnfile}>
-                <div className={style.columnA}>
-                  <div className={style.lineGroup}>
-                    <Field
-                      name="username"
-                      placeholder="Username"
-                      validate={required}
-                    >
-                      {({ input, meta, placeholder }) => (
-                        <div>
-                          <label>Username</label>
-                          <input
-                            {...input}
-                            className={style.inputStyle}
-                            placeholder={placeholder}
-                          />
-                          {meta.error && meta.touched && (
-                            <div className={style.errorDiv}>
-                              <span className={style.errorMsg}>
-                                {meta.error}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </Field>
-                  </div>
-                  <div className={style.lineGroup}>
-                    <Field
-                      name="password"
-                      placeholder="Password"
-                      validate={required}
-                      type="password"
-                    >
-                      {({ input, meta, placeholder }) => (
-                        <div>
-                          <label>Password</label>
-                          <input
-                            {...input}
-                            className={style.inputStyle}
-                            placeholder={placeholder}
-                          />
-                          {meta.error && meta.touched && (
-                            <div className={style.errorDiv}>
-                              <span className={style.errorMsg}>
-                                {meta.error}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </Field>
-                  </div>
-                  <button
-                    className={style.BtnModCheck}
-                    type="submit"
-                    onClick={toggleLog}
-                  >
-                    Confirm
-                  </button>
-                  <button
-                    className={style.BtnModCancel}
-                    onClick={() => setOpenModal(false)}
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            </form>
-          )}
-        </Form>
+      <Modal title="Login" openModal={openModal} setOpenModal={setOpenModal}>
+        <Login login={props.login} />
       </Modal>
       <Footer />
     </div>
@@ -138,4 +73,15 @@ const App = () => {
   
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    authenticated: state.auth.authenticated
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    setAuthentication
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -5,8 +5,6 @@ import { BiPencil } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GoTrashcan } from "react-icons/go";
-//import { Form, Field } from 'react-final-form'
-
 
 const Items = (props) => {
   const [isEditing, toggleEditing] = useState(false);
@@ -31,18 +29,6 @@ const Items = (props) => {
 
   if (isEditing) {
     return (
-      // También puede ser: 
-      //<Form onSubmit={showResults}>
-      /*
-      <Form onSubmit={() => {
-        alert: ("BOILER ADDED!")
-      }}>
-        {({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <input></input>
-          </form>
-        )}
-      </Form>*/
       <ul className={styles.showForm}>
         <input
           className={styles.inputStyleEdt}
