@@ -9,7 +9,6 @@ import {
   required,
   composeValidators,
   email,
-  phone,
  } from "../../../utils/validations";
 
 const Item = (props) => {
@@ -50,9 +49,9 @@ const Item = (props) => {
             <form className={style.formStyle} onSubmit={handleSubmit}>
               <div className={style.columnfile}>
                 <div className={style.columnA}>
-                  <div className={style.lineGroup}>
+                <div>
                     <label>Customer Type</label>
-                    <Field name="statusActive" component="select" >
+                    <Field name="customerType" component="select" >
                       <option></option>
                       <option>Particular</option>
                       <option>Business</option>
@@ -77,7 +76,7 @@ const Item = (props) => {
                     </Field>
                   </div>
                   <div className={style.lineGroup}>
-                    <Field name="buildings" placeholder="Add number of builidings" validate={composeValidators(required, phone)}>
+                    <Field name="buildings" placeholder="Buildings">
                       {({ input, meta, placeholder }) => (
                         <div>
                           <label>Buildings</label>

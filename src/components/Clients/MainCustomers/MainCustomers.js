@@ -41,7 +41,6 @@ const MainCustomers = (props) => {
           deleteCustomer={props.deleteCustomer}
           updateCustomer={props.updateCustomer}
         />
-        <AddCustomer addCustomer={props.addCustomer} />
         <button className={style.btnAdd} onClick={() => setOpenModal(true)}>
           Add New Customer
         </button>
@@ -50,7 +49,8 @@ const MainCustomers = (props) => {
           openModal={openModal}
           setOpenModal={setOpenModal}
         >
-          <AddCustomer addCustomer={props.addCustomer} />
+          <AddCustomer addCustomer={props.addCustomer} setOpenModal={setOpenModal}
+          />
         </Modal>
       </div>
     </div>
