@@ -12,3 +12,27 @@
 h1 {
   border-bottom: 10px solid rgb(19, 84, 76);
 }
+.btnLogin{
+    width: 15%;
+    color: rgb(239, 232, 216);
+    margin-left: 560px;
+    margin-top: 50px;
+    padding: 5px;
+    background-color: rgb(19, 84, 76);
+    border: 1px solid rgb(19, 84, 76);
+    font-weight: 600;
+    flex: 1;
+    cursor: pointer;
+}
+.btnSignup{
+    width: 15%;
+    color: rgb(239, 232, 216);
+    margin-left: 960px;
+    margin-top: 50px;
+    padding: 5px;
+    background-color: rgb(19, 84, 76);
+    border: 1px solid rgb(19, 84, 76);
+    font-weight: 600;
+    flex: 1;
+    cursor: pointer;
+}
