@@ -71,7 +71,7 @@ const ListBuildings = (props) => {
                           }
                         }}
                       />
-                      {meta.error && meta.dirty && (
+                      {(building.address === "" || meta.dirty) && (
                         <span className={style.errorMsg}> {meta.error} </span>
                       )}
                     </div>
@@ -99,7 +99,7 @@ const ListBuildings = (props) => {
                           }
                         }}
                       />
-                      {meta.error && meta.dirty && (
+                      {(building.boilerID === "" || meta.dirty) && (
                         <span className={style.errorMsg}> {meta.error} </span>
                       )}
                     </div>
@@ -110,7 +110,7 @@ const ListBuildings = (props) => {
                 <Field
                   name="fullname"
                   placeholder="Name"
-                  validate={composeValidators(required, fullName)}
+                  validate={composeValidators(fullName, required)}
                 >
                   {({ input, meta, placeholder }) => (
                     <div>
@@ -127,7 +127,7 @@ const ListBuildings = (props) => {
                           }
                         }}
                       />
-                      {meta.error && meta.dirty && (
+                      {(building.fullname === "" || meta.dirty) && (
                         <span className={style.errorMsg}> {meta.error} </span>
                       )}
                     </div>
@@ -155,7 +155,7 @@ const ListBuildings = (props) => {
                           }
                         }}
                       />
-                      {meta.error && meta.dirty && (
+                      {(building.phone === "" || meta.dirty) && (
                         <span className={style.errorMsg}> {meta.error} </span>
                       )}
                     </div>
