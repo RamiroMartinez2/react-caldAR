@@ -22,15 +22,20 @@ const AddCustomer = (props) => {
         {({ handleSubmit, meta, values, submitting }) => (
           <form onSubmit={handleSubmit}>
             <div>
-              <label>Customer Type</label>
-              <Field name="customerType" component="select">
-                <option></option>
-                <option>Particular</option>
-                <option>Business</option>
-              </Field>
-            </div>
+                  <label>Customer Type</label>
+                  <Field name="customerType" component="select" validate = {composeValidators(required)}>
+                    <option></option>
+                    <option>Particular</option>
+                    <option>Business</option>
+                    </Field>
+                </div>
             <div>
-              <Field name="buildings" placeholder="Buildings">
+              <Field
+                name="buildings"
+                placeholder="Buildings"
+                validate = {composeValidators(required)}
+                
+              >
                 {({ input, meta, placeholder }) => (
                   <div>
                     <label>Buildings</label>
@@ -47,29 +52,17 @@ const AddCustomer = (props) => {
               </Field>
             </div>
             <div className={style.lineGroup}>
-              <Field
-                name="email"
-                placeholder="Email"
-                validate={composeValidators(required, email)}
-              >
-                {({ input, meta, placeholder }) => (
-                  <div>
-                    <label>Email</label>
-                    <input
-                      {...input}
-                      className={style.inputStyle}
-                      placeholder={placeholder}
-                    />
-                    {meta.error && meta.touched && (
-                      <div className={style.errorDiv}>
-                        <span className={style.errorMsg}>{meta.error}</span>
-                      </div>
-                    )}
+                    <Field name="email" placeholder="Email" validate = {composeValidators(required,email)}>
+                      {({input,meta,placeholder}) => (
+                        <div>
+                          <label>Email</label>
+                          <input {...input} className={style.inputStyle} placeholder={placeholder} />
+                          {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                        </div>
+                      )}
+                      </Field>
                   </div>
-                )}
-              </Field>
-            </div>
-            <div>
+                  <div>
               <Field
                 name="fiscal_address"
                 placeholder="Fiscal Address"
@@ -99,7 +92,7 @@ const AddCustomer = (props) => {
             </button>
             <button
               onClick={() => props.setOpenModal(false)}
-              className={style.btnSubmit}
+              className={style.btnSubmitCancel}
             >
               Cancel
             </button>
