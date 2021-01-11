@@ -52,8 +52,11 @@ select{
   padding: 3px;
   margin-left: 0px;
   width: 100%;
+<<<<<<< HEAD
 }
 label{
   font-size: 17px;
   font-weight: 600;
+=======
+>>>>>>> 1f5dc17... add form
 }
