@@ -45,7 +45,9 @@ const MainAppointment = (props) => {
           openModal={openModal}
           setOpenModal={setOpenModal}
         >
-          <AddAppointment addAppointment={props.addAppointment} />
+          <AddAppointment 
+          setOpenModal={setOpenModal}
+          addAppointment={props.addAppointment} />
         </Modal>
       </div>
     </div>
