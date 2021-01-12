@@ -1,62 +1,62 @@
+label {
+  font-size: 17px;
+  font-weight: 600;
+}
 .inputStyle {
-  float: left;
   display: block;
-  font-size: 15px;
-  margin-top: 10px;
-  text-align: center;
-  padding: 4px;
+  float: left;
   width: 100%;
   height: 30px;
+  margin-top: 10px;
+  padding: 4px;
+  font-size: 15px;
   border: solid 1px rgba(191, 206, 204, 0.582);
+  text-align: center;
+}
+.errorMsg {
+  display: inline-block;
+  color: brown;
+  margin: 10px 10px 0 0;
+  padding: 5px 10px;
+  font-weight: 600;
+}
+.inputSelectStyle {
+  display: block;
+  padding: 3px;
+  margin-left: 0px;
+  width: 100%;
+  align-content: center;
+  margin-bottom: 7px;
 }
 .btnSubmit {
   width: 100%;
-  color: rgb(239, 222, 216);
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 15px;
   background-color: rgb(19, 84, 76);
   border: none;
+  color: rgb(239, 222, 216);
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
 }
+select {
+  width: 96%;
+  height: 26px;
+  margin-top: 7px;
+  height: 30px;
+  border: solid 1px rgba(191, 206, 204, 0.582);
+  text-align-last: center;
+  font-size: 15px;
+}
 .btnSubmitCancel {
   width: 100%;
-  color: rgb(239, 222, 216);
   margin-top: 10px;
   padding: 15px;
   background-color: rgb(255, 129, 10);
   border: none;
+  color: rgb(239, 222, 216);
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
-}
-.errorMsg {
-  color: brown;
-  font-weight: 600;
-  display: inline-block;
-  margin: 10px 10px 0 0;
-  padding: 5px 10px;
-}
-select {
-  font-size: 15px;
-  width: 96%;
-  height: 26px;
-  margin-top: 7px;
-  text-align-last: center;
-  height: 30px;
-  border: solid 1px rgba(191, 206, 204, 0.582);
-}
-.inputSelectStyle {
-  align-content: center;
-  margin-bottom: 7px;
-  display: block;
-  padding: 3px;
-  margin-left: 0px;
-  width: 100%;
-}
-label {
-  font-size: 17px;
-  font-weight: 600;
 }
