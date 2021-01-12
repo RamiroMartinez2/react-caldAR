@@ -5,11 +5,12 @@ import { loginAction } from "../../redux/actions/authActions";
 import { required } from '../../utils/validations';
 import style from "./login.module.css";
 import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 
 const Login = (props) => {
 
   const onSubmit = (values) => {
-	  props.login(values);
+    props.loginAction(values);
   };
 
 	return(
@@ -74,13 +75,13 @@ const Login = (props) => {
                 <button
                   className={style.BtnModCheck}
                   type="submit"
-                  onClick={login}
+                  onClick={loginAction}
                 >
                   Confirm
                 </button>
                 <button
                   className={style.BtnModCancel}
-                  onClick={() => setOpenModal(false)}
+                  onClick={() => props.setOpenModal(false)}
                 >
                   Cancel
                 </button>
@@ -94,12 +95,12 @@ const Login = (props) => {
 };
 
 Login.propTypes = {
-  login: PropTypes.func.isRequired,
+  loginAction: PropTypes.func.isRequired,
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    login: loginAction
+    loginAction: loginAction
   }, dispatch);
 };
 

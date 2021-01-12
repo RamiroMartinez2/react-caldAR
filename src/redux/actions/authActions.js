@@ -9,7 +9,7 @@ import {
 } from '../types/authTypes';
 import Firebase from '../../firebase'
 
-const URL = "https://be-caldar.herokuapp.com/";
+//const URL = "https://be-caldar.herokuapp.com/";
 
 const loginFetching = () => {
   return {

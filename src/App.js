@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
-import Login from './components/Login/Login'
 import { setAuthentication } from './redux/actions/authActions';
 import { tokenListener } from './firebase';
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import Login from './components/Login/Login'
 import Footer from "./components/Layout/Footer/Footer";
 import Nav from "./components/Layout/Nav/Nav";
 import Main from "./components/Layout/Main/Main";
@@ -15,6 +16,7 @@ import MainBoilerType from "./components/BoilerType/MainBoilerType/MainBoilerTyp
 import Buildings from "./components/Buildings/Buildings/Buildings";
 import Modal from "./components/Modal/Modal";
 import style from "./App.module.css";
+import PropTypes from "prop-types";
 
 const App = ({
   authenticated,
@@ -64,13 +66,18 @@ const App = ({
         Login
       </button>
       <Modal title="Login" openModal={openModal} setOpenModal={setOpenModal}>
-        <Login login={props.login} />
+        <Login />
       </Modal>
       <Footer />
     </div>
   );
   
   
+};
+
+App.propTypes = {
+  authenticated: PropTypes.object.isRequired,
+  setAuthentication: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {
