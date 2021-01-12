@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Form, Field} from 'react-final-form';
 import { bindActionCreators } from 'redux';
 import { loginAction } from "../../redux/actions/authActions";
@@ -12,6 +12,8 @@ const Login = (props) => {
   const onSubmit = (values) => {
     props.loginAction(values);
   };
+
+  const setOpenModal = useState(false);
 
 	return(
 		<div>
@@ -81,7 +83,7 @@ const Login = (props) => {
                 </button>
                 <button
                   className={style.BtnModCancel}
-                  onClick={() => props.setOpenModal(false)}
+                  onClick={() => setOpenModal(false)}
                 >
                   Cancel
                 </button>
@@ -96,11 +98,12 @@ const Login = (props) => {
 
 Login.propTypes = {
   loginAction: PropTypes.func.isRequired,
+
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    loginAction: loginAction
+    loginAction: loginAction,
   }, dispatch);
 };
 

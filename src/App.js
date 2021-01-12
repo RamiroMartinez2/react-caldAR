@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import { setAuthentication } from './redux/actions/authActions';
-import { tokenListener } from './firebase';
+import { tokenListener } from './firebase/index';
 import Login from './components/Login/Login'
 import Footer from "./components/Layout/Footer/Footer";
 import Nav from "./components/Layout/Nav/Nav";
@@ -33,7 +33,7 @@ const App = ({
 
   useEffect(() => {
     tokenListener();
-  }, [tokenListener])
+  }, [])
   
   const [openModal, setOpenModal] = useState(false);
 

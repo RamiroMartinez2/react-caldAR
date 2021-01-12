@@ -41,3 +41,5 @@ const todosReducers = (state = initialState, action) => {
       return state;
   }
 }
+
+export default todosReducers;

@@ -5,6 +5,7 @@ import boilerReducer from "./boilerReducer";
 import buildingReducer from "./buildingReducer";
 import boilerTypesReducer from "./boilerTypesReducer";
 import appointmentReducer from "./appointmentsReducer";
+import todosReducers from "./authReducer"
 
 const rootReducer = combineReducers({
   technicians: techReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   buildings: buildingReducer,
   boilerTypes: boilerTypesReducer,
   appointments: appointmentReducer,
+  authenticated: todosReducers,
 });
 
 export default rootReducer;
