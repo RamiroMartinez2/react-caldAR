@@ -101,7 +101,7 @@ export const deleteBoiler = (id) => (dispatch) => {
     })
     .catch(() => {
       dispatch(deleteBoilerRejected());
-    });
+    })
 };
 
 export const editBoilerFetching = () => ({
@@ -118,15 +118,15 @@ export const editBoilerRejected = (error) => ({
   payload: error,
 });
 
-export const editBoiler = (content) => (dispatch) => {
+export const editBoiler = content => dispatch => {
   dispatch(editBoilerFetching());
   return fetch(`${URL}/${content._id}`, {
     method: "PUT",
     headers: {
-      'Accept': "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(content),
+    body: JSON.stringify(content)
   })
     .then((data) => data.json())
     .then((json) => {
@@ -136,5 +136,5 @@ export const editBoiler = (content) => (dispatch) => {
         dispatch(editBoilerRejected(json));
       }
     })
-    .catch((error) => dispatch(editBoilerRejected(error)));
-};
+    .catch((error) => dispatch(editBoilerRejected(error)))
+}
