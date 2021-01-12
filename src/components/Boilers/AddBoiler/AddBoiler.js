@@ -13,6 +13,7 @@ const AddBoiler = (props) => {
 
   const onSubmit = (values) => {
     props.addBoiler(values);
+    props.setOpenModal(false);
   };
 
   return (
@@ -64,6 +65,12 @@ const AddBoiler = (props) => {
               </Field>
             </div>
             <button type="submit" className={styles.btnSubmit} disabled={submitting}>Submit</button>
+            <button
+              onClick={() => props.setOpenModal(false)}
+              className={styles.btnCancel}
+            >
+              Cancel
+            </button>
           </form>
         )}
       </Form>

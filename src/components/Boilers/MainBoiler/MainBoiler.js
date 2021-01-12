@@ -47,7 +47,7 @@ const MainBoiler = (props) => {
           openModal={openModal}
           setOpenModal={setOpenModal}
         >
-          <AddBoiler addBoiler={props.addBoiler}/>
+          <AddBoiler setOpenModal={setOpenModal} addBoiler={props.addBoiler}/>
         </Modal>
       </div>
     </div>
