@@ -14,9 +14,7 @@ import {
 } from "../../../redux/actions/customerAction";
 import Modal from "../../Modal/Modal";
 
-
 const MainCustomers = (props) => {
-  
   useEffect(() => {
     props.getCustomers();
   }, [props.getCustomers]);
@@ -49,7 +47,9 @@ const MainCustomers = (props) => {
           openModal={openModal}
           setOpenModal={setOpenModal}
         >
-          <AddCustomer addCustomer={props.addCustomer} setOpenModal={setOpenModal}
+          <AddCustomer
+            addCustomer={props.addCustomer}
+            setOpenModal={setOpenModal}
           />
         </Modal>
       </div>
@@ -82,4 +82,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainCustomers);
-
