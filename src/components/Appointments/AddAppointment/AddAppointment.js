@@ -131,6 +131,7 @@ const AddAppointment = (props) => {
 
 AddAppointment.propTypes = {
   addAppointment: PropTypes.func.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
 };
 
 export default AddAppointment;

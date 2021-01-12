@@ -47,8 +47,8 @@ if (isEditing) {
           {/* eslint-disable-next-line no-unused-vars */}
           {({ handleSubmit, meta, values, submitting }) => (
             <form className={style.formStyle} onSubmit={handleSubmit}>
-              <div className={style.columnfile}>
-                <div className={style.columnA}>
+              <div className={style.columnFile}>
+                <div className={style.column}>
                   <div className={style.lineGroup}>
                     <Field 
                     name="buildingId"
@@ -116,7 +116,7 @@ if (isEditing) {
                   </div>
                   
                 </div>
-                <div className={style.columnA}>
+                <div className={style.column}>
                   <div className={style.lineGroup}>
                     <Field 
                       name="estimatedTime"
