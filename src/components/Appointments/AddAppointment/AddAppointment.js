@@ -2,13 +2,14 @@ import React from "react";
 import style from "./AddAppointment.module.css";
 import PropTypes from "prop-types";
 import { Form, Field } from "react-final-form";
-import {required,
-        composeValidators,
-        number,
-        hours} from "../../../utils/appointmentsValidations"
+import {
+  required,
+  composeValidators,
+  number,
+  hours,
+} from "../../../utils/appointmentsValidations";
 
 const AddAppointment = (props) => {
-  
   const onSubmit = (values) => {
     props.addAppointment(values);
     props.setOpenModal(false);
@@ -23,7 +24,7 @@ const AddAppointment = (props) => {
               <Field
                 name="buildingId"
                 placeholder="Building Id"
-                validate={composeValidators(required,number)}
+                validate={composeValidators(required, number)}
               >
                 {({ input, meta, placeholder }) => (
                   <div>
@@ -44,7 +45,7 @@ const AddAppointment = (props) => {
               <Field
                 name="boilerId"
                 placeholder="Boiler Id"
-                validate={composeValidators(required,number)}
+                validate={composeValidators(required, number)}
               >
                 {({ input, meta, placeholder }) => (
                   <div>
@@ -87,7 +88,7 @@ const AddAppointment = (props) => {
               <Field
                 name="estimatedTime"
                 placeholder="Estimated Time"
-                validate={composeValidators(required,hours)}
+                validate={composeValidators(required, hours)}
               >
                 {({ input, meta, placeholder }) => (
                   <div>
@@ -106,7 +107,11 @@ const AddAppointment = (props) => {
             </div>
             <div>
               <label>Maintenance Type</label>
-              <Field className={style.inputSelectStyle} name="maintenanceType" component="select">
+              <Field
+                className={style.inputSelectStyle}
+                name="maintenanceType"
+                component="select"
+              >
                 <option></option>
                 <option>Regular</option>
                 <option>Eventual</option>
@@ -119,8 +124,11 @@ const AddAppointment = (props) => {
             >
               Submit
             </button>
-            <button  
-            onClick={() => props.setOpenModal(false)} className={style.btnSubmitCancel} >Cancel
+            <button
+              onClick={() => props.setOpenModal(false)}
+              className={style.btnSubmitCancel}
+            >
+              Cancel
             </button>
           </form>
         )}

@@ -1,5 +1,5 @@
-import React from 'react';
-import style from './HeaderAppointment.module.css'
+import React from "react";
+import style from "./HeaderAppointment.module.css";
 
 function Header() {
   return (

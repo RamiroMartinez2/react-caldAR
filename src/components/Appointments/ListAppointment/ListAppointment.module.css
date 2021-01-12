@@ -10,7 +10,7 @@
 .liStyle {
   float: left;
   display: block;
-  width: 14.0%;
+  width: 14%;
   color: rgb(0, 0, 0);
   font-weight: 600;
   font-size: 12px;
@@ -30,7 +30,7 @@
   margin-left: 12px;
   margin-top: 10px;
   border: none;
-  }
+}
 .Btn {
   background-color: rgb(239, 232, 216);
   border: none;
@@ -42,23 +42,23 @@
   margin-right: 25px;
   margin-top: 5px;
 }
-.formStyle{
+.formStyle {
   flex-wrap: nowrap;
   justify-content: space-between;
   margin: auto;
 }
-.columnFile{
+.columnFile {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.column{
+.column {
   width: 90%;
   display: flex;
   flex-direction: column;
   margin-right: 4%;
 }
-label{
+label {
   color: rgb(19, 84, 76);
   width: 100%;
   padding: 2px;
@@ -67,18 +67,18 @@ label{
   background-color: white;
   font-weight: 600;
 }
-select{
+select {
   font-size: 15px;
   width: 96%;
   height: 26px;
   margin-top: 7px;
-  text-align-last:center;
-  height: 30px; 
+  text-align-last: center;
+  height: 30px;
 }
-.lineGroup{
+.lineGroup {
   margin-bottom: 27px;
 }
-.BtnModCheck{
+.BtnModCheck {
   width: 100%;
   color: rgb(239, 222, 216);
   margin-top: 10px;
@@ -90,7 +90,7 @@ select{
   font-size: 15px;
   cursor: pointer;
 }
-.BtnModCancel{
+.BtnModCancel {
   width: 100%;
   color: rgb(239, 222, 216);
   margin-top: 10px;
@@ -108,24 +108,24 @@ select{
   margin-top: 10px;
   padding: 15px;
   background-color: rgb(19, 84, 76);
-  border: 2px solid rgb(19, 84, 76) ;
+  border: 2px solid rgb(19, 84, 76);
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
 }
-.msgConfirm{
+.msgConfirm {
   font-size: 25px;
   text-align: center;
   padding: 20px;
   margin-bottom: 20px;
 }
-.errorMsg{
+.errorMsg {
   color: brown;
   font-weight: 600;
   display: inline-block;
   margin: 10px 10px 0 0;
-  padding: 5px 10px
+  padding: 5px 10px;
 }
-.errorDiv{
+.errorDiv {
   text-align: center;
 }

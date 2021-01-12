@@ -5,11 +5,12 @@ import { BiPencil } from "react-icons/bi";
 import style from "./ListAppointment.module.css";
 import Modal from "../../Modal/Modal";
 import { Form, Field } from "react-final-form";
-import {required,
-        composeValidators,
-        number,
-        hours} from "../../../utils/appointmentsValidations"
-
+import {
+  required,
+  composeValidators,
+  number,
+  hours,
+} from "../../../utils/appointmentsValidations";
 
 const ListAppointment = (props) => {
   const [isEditing, toggleEditing] = useState(false);
@@ -19,7 +20,7 @@ const ListAppointment = (props) => {
   const cancelClick = () => {
     toggleEditing();
     setAppointment(props.appointments);
-    setOpenModal(false)
+    setOpenModal(false);
   };
 
   const toggleEdit = () => {
@@ -40,9 +41,13 @@ const ListAppointment = (props) => {
     props.updateAppointment(appointments);
   };
 
-if (isEditing) {
+  if (isEditing) {
     return (
-      <Modal title="Editing Appointment" openModal={openModal} setOpenModal={setOpenModal}>
+      <Modal
+        title="Editing Appointment"
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      >
         <Form onSubmit={onSubmit}>
           {/* eslint-disable-next-line no-unused-vars */}
           {({ handleSubmit, meta, values, submitting }) => (
@@ -50,15 +55,19 @@ if (isEditing) {
               <div className={style.columnFile}>
                 <div className={style.column}>
                   <div className={style.lineGroup}>
-                    <Field 
-                    name="buildingId"
-                    placeholder="Building Id"
-                    validate={composeValidators(required,number)}
+                    <Field
+                      name="buildingId"
+                      placeholder="Building Id"
+                      validate={composeValidators(required, number)}
                     >
                       {({ input, meta, placeholder }) => (
                         <div>
                           <label>Building Id</label>
-                          <input {...input} className={style.inputStyle} placeholder={placeholder} value={appointments.buildingId}
+                          <input
+                            {...input}
+                            className={style.inputStyle}
+                            placeholder={placeholder}
+                            value={appointments.buildingId}
                             onChange={(e) => {
                               input.onChange(e);
                               if (onChange) {
@@ -66,20 +75,31 @@ if (isEditing) {
                               }
                             }}
                           />
-                          {meta.error && meta.touched && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                          {meta.error && meta.touched && (
+                            <div className={style.errorDiv}>
+                              <span className={style.errorMsg}>
+                                {meta.error}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       )}
                     </Field>
                   </div>
                   <div className={style.lineGroup}>
-                    <Field 
+                    <Field
                       name="boilerId"
                       placeholder="Boiler Id"
-                      validate={composeValidators(required,number)}>
+                      validate={composeValidators(required, number)}
+                    >
                       {({ input, meta, placeholder }) => (
                         <div>
                           <label>Boiler Id</label>
-                          <input {...input} className={style.inputStyle} placeholder={placeholder} value={appointments.boilerId}
+                          <input
+                            {...input}
+                            className={style.inputStyle}
+                            placeholder={placeholder}
+                            value={appointments.boilerId}
                             onChange={(e) => {
                               input.onChange(e);
                               if (onChange) {
@@ -87,21 +107,32 @@ if (isEditing) {
                               }
                             }}
                           />
-                          {meta.error && meta.dirty && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                          {meta.error && meta.dirty && (
+                            <div className={style.errorDiv}>
+                              <span className={style.errorMsg}>
+                                {meta.error}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       )}
                     </Field>
                   </div>
                   <div className={style.lineGroup}>
-                    <Field 
+                    <Field
                       name="date"
                       placeholder="Date"
                       validate={required}
-                      component="date">
+                      component="date"
+                    >
                       {({ input, meta, placeholder }) => (
                         <div>
                           <label>Date</label>
-                          <input {...input} className={style.inputStyle} placeholder={placeholder} value={appointments.date}
+                          <input
+                            {...input}
+                            className={style.inputStyle}
+                            placeholder={placeholder}
+                            value={appointments.date}
                             onChange={(e) => {
                               input.onChange(e);
                               if (onChange) {
@@ -109,24 +140,33 @@ if (isEditing) {
                               }
                             }}
                           />
-                          {meta.error && meta.dirty && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                          {meta.error && meta.dirty && (
+                            <div className={style.errorDiv}>
+                              <span className={style.errorMsg}>
+                                {meta.error}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       )}
                     </Field>
                   </div>
-                  
                 </div>
                 <div className={style.column}>
                   <div className={style.lineGroup}>
-                    <Field 
+                    <Field
                       name="estimatedTime"
                       placeholder="Estimated Time"
-                      validate={composeValidators(required,hours)}
+                      validate={composeValidators(required, hours)}
                     >
                       {({ input, meta, placeholder }) => (
                         <div>
                           <label>Estimated Time</label>
-                          <input {...input} className={style.inputStyle} placeholder={placeholder} value={appointments.estimatedTime}
+                          <input
+                            {...input}
+                            className={style.inputStyle}
+                            placeholder={placeholder}
+                            value={appointments.estimatedTime}
                             onChange={(e) => {
                               input.onChange(e);
                               if (onChange) {
@@ -134,7 +174,13 @@ if (isEditing) {
                               }
                             }}
                           />
-                          {meta.error && meta.dirty && <div className={style.errorDiv}><span className={style.errorMsg}>{meta.error}</span></div>}
+                          {meta.error && meta.dirty && (
+                            <div className={style.errorDiv}>
+                              <span className={style.errorMsg}>
+                                {meta.error}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       )}
                     </Field>
@@ -145,10 +191,19 @@ if (isEditing) {
                       <option></option>
                       <option>Regular</option>
                       <option>Eventual</option>
-                    </Field>                  
+                    </Field>
                   </div>
-                  <button type="submit" disabled={submitting} className={style.BtnModCheck} onClick={saveChanges}>Confirm</button>
-                  <button className={style.BtnModCancel} onClick={cancelClick}>Cancel</button>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className={style.BtnModCheck}
+                    onClick={saveChanges}
+                  >
+                    Confirm
+                  </button>
+                  <button className={style.BtnModCancel} onClick={cancelClick}>
+                    Cancel
+                  </button>
                 </div>
               </div>
             </form>
@@ -170,16 +225,27 @@ if (isEditing) {
           <button onClick={toggleEdit} className={style.Btn}>
             <BiPencil />
           </button>
-          <button
-            onClick={() => setOpenModal(true)}
-            className={style.Btn}
-          >
+          <button onClick={() => setOpenModal(true)} className={style.Btn}>
             <GoTrashcan />
           </button>
           <Modal openModal={openModal} setOpenModal={setOpenModal}>
-            <p className={style.msgConfirm}>Are you sure you want to delete ?</p>
-            <button className={style.btnSubmit} onClick={() => props.deleteAppointment(props.appointments._id)}>{" "}Confirm{" "}</button>
-            <button className={style.btnSubmit} onClick={() => setOpenModal(false)}>{" "}Cancel{" "}</button>
+            <p className={style.msgConfirm}>
+              Are you sure you want to delete ?
+            </p>
+            <button
+              className={style.btnSubmit}
+              onClick={() => props.deleteAppointment(props.appointments._id)}
+            >
+              {" "}
+              Confirm{" "}
+            </button>
+            <button
+              className={style.btnSubmit}
+              onClick={() => setOpenModal(false)}
+            >
+              {" "}
+              Cancel{" "}
+            </button>
           </Modal>
         </div>
       </ul>
@@ -195,4 +261,3 @@ ListAppointment.propTypes = {
 };
 
 export default ListAppointment;
-
