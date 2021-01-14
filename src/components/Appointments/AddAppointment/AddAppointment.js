@@ -64,6 +64,7 @@ const AddAppointment = (props) => {
             </div>
             <div>
               <Field
+                type="date"
                 name="date"
                 placeholder="Date"
                 validate={required}
