@@ -120,6 +120,7 @@ const ListAppointment = (props) => {
                   </div>
                   <div className={style.lineGroup}>
                     <Field
+                      type="date"
                       name="date"
                       placeholder="Date"
                       validate={required}
