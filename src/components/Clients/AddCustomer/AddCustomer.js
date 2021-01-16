@@ -1,82 +1,126 @@
-import React, { useState } from "react";
-import styles from "./AddCustomer.module.css";
+import React from "react";
+import style from "./AddCustomer.module.css";
 import PropTypes from "prop-types";
+import { Form, Field } from "react-final-form";
+import {
+  required,
+  address,
+  email,
+  composeValidators,
+} from "../../../utils/validations";
 
 const AddCustomer = (props) => {
-  const [customer, setNewCustomer] = useState({
-    customerType: "",
-    email: "",
-    buildings: "",
-    fiscal_address: "",
-  });
-
-  const onChange = (e) =>
-    setNewCustomer({ ...customer, [e.target.name]: e.target.value });
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    props.addCustomer({ ...customer });
-    setNewCustomer({
-      customerType: "",
-      email: "",
-      buildings: "",
-      fiscal_address: "",
-    });
+  const onSubmit = (values) => {
+    props.addCustomer(values);
+    props.setOpenModal(false);
   };
 
   return (
-    <>
-      <form className={styles.addForm} onSubmit={onSubmit}>
-        <input
-          className={styles.inputStyle}
-          type="text"
-          name="customerType"
-          placeholder="Particular or Business"
-          value={customer.customerType}
-          onChange={onChange}
-          required
-        />
-        <input
-          className={styles.inputStyle}
-          type="email"
-          name="email"
-          placeholder="Add your email"
-          value={customer.email}
-          onChange={onChange}
-          required
-        />
-
-        <input
-          className={styles.inputStyle}
-          type="number"
-          name="buildings"
-          placeholder="Add how many buildings you have"
-          value={customer.buildings}
-          onChange={onChange}
-          required
-        />
-        <input
-          className={styles.inputStyle}
-          type="text"
-          name="fiscal_address"
-          placeholder="Add your address"
-          value={customer.fiscal_address}
-          onChange={onChange}
-          required
-        />
-
-        <input
-          className={styles.btnSubmit}
-          type="submit"
-          value="Add new customer"
-        />
-      </form>
-    </>
+    <div>
+      <Form onSubmit={onSubmit}>
+        {/* eslint-disable-next-line no-unused-vars */}
+        {({ handleSubmit, meta, values, submitting }) => (
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>Customer Type</label>
+              <Field
+                name="customerType"
+                component="select"
+                validate={composeValidators(required)}
+              >
+                <option></option>
+                <option>Particular</option>
+                <option>Business</option>
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="buildings"
+                placeholder="Buildings"
+                validate={composeValidators(required)}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Buildings</label>
+                    <input
+                      {...input}
+                      className={style.inputStyle}
+                      placeholder={placeholder}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className={style.errorMsg}> {meta.error} </span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div className={style.lineGroup}>
+              <Field
+                name="email"
+                placeholder="Email"
+                validate={composeValidators(required, email)}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Email</label>
+                    <input
+                      {...input}
+                      className={style.inputStyle}
+                      placeholder={placeholder}
+                    />
+                    {meta.error && meta.touched && (
+                      <div className={style.errorDiv}>
+                        <span className={style.errorMsg}>{meta.error}</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <div>
+              <Field
+                name="fiscal_address"
+                placeholder="Fiscal Address"
+                validate={composeValidators(required, address)}
+              >
+                {({ input, meta, placeholder }) => (
+                  <div>
+                    <label>Fiscal Address</label>
+                    <input
+                      {...input}
+                      className={style.inputStyle}
+                      placeholder={placeholder}
+                    />
+                    {meta.error && meta.touched && (
+                      <span className={style.errorMsg}> {meta.error} </span>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </div>
+            <button
+              type="submit"
+              className={style.btnSubmit}
+              disabled={submitting}
+            >
+              Submit
+            </button>
+            <button
+              onClick={() => props.setOpenModal(false)}
+              className={style.btnSubmitCancel}
+            >
+              Cancel
+            </button>
+          </form>
+        )}
+      </Form>
+    </div>
   );
 };
 
 AddCustomer.propTypes = {
   addCustomer: PropTypes.func.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
 };
 
 export default AddCustomer;
