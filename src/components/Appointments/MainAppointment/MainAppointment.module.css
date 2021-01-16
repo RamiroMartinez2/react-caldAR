@@ -3,21 +3,18 @@
   margin: 0;
   padding: 0;
 }
-
 body {
-  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
   background: rgb(239, 232, 216);
+  font-family: Arial, Helvetica, sans-serif;
 }
-
 .container {
   padding: 0 1rem;
 }
-
 .btn:hover {
   background: #666;
 }
-.btnAdd{
+.btnAdd {
   width: 15%;
   color: rgb(239, 232, 216);
   margin-left: 560px;
